@@ -1,0 +1,7 @@
+{
+  "name": "ApneaElearning",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
