@@ -1,27 +1,32 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content" type="overlay" swipeGesture="true">
       <ion-content>
-        <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
-
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
-              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
-              <ion-label>{{ p.title }}</ion-label>
-            </ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
+        <ion-title class="ion-padding-top" class="ion-padding-top">user.name</ion-title>
+        <ion-accordion-group back expand="compact">
+          <ion-accordion toggleIcon="add-outline" toggleIconSlot="start">
+            <ion-item slot="header">Courses</ion-item>
+            <ion-item-divider></ion-item-divider>
+            <div slot="content">
+              <ion-accordion-group>
+                <ion-accordion toggleIcon="add-outline">
+                  <ion-item slot="header">AIDA2</ion-item>
+                  <ion-list slot="content">
+                    <ion-item routerLink="/folder/AIDA2Modules">
+                        <ion-icon size="large" name="book-outline"></ion-icon>                        
+                        <ion-label class="ion-margin-start">Modules</ion-label>
+                    </ion-item>
+                  
+                    <ion-item routerLink="/folder/AIDA2Quiz">
+                          <ion-icon size="large" name="help-outline"></ion-icon>
+                          <ion-label class="ion-margin-start">Quiz</ion-label>
+                      </ion-item>
+                  </ion-list>
+                </ion-accordion>
+              </ion-accordion-group>
+            </div>
+          </ion-accordion>
+        </ion-accordion-group>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>
