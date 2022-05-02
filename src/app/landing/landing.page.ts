@@ -1,21 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { UserService } from '../users/user.service';
 
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.page.html',
   styleUrls: ['./landing.page.scss'],
 })
-export class LandingPage implements OnInit {
-  availableCourses = ['AIDA1','AIDA2','AIDA3','AIDA4','AIDA Monofin Freediver', 'AIDA Competition Freediver', 
-  'AIDA Competition Safety', 'AIDA Judge', 'AIDA Instructor', 'Crossover Evaluation', 'AIDA Youth Instructor', 
-  'AIDA Youth Course', 'Emergency Medical Responder', ]
-  constructor() { }
+export class LandingPage {
+  availableCourses: String[]
+  username: String
+  constructor(private userService: UserService) {
+    this.availableCourses = this.userService.getCourses()
+    this.username = this.userService.getUsername()
+   }
 
-  random() {
-    return Math.random()
-  }
+   tester(){
+    this.availableCourses = this.userService.getCourses()
+    this.username = this.userService.getUsername()
+   }
+   ionViewWillEnter(){
+    this.tester()
+   }
 
-  ngOnInit() {
-  }
+ 
+
 
 }

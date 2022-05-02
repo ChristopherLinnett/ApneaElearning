@@ -17,10 +17,21 @@ export class UserService {
         }
     }
   }
+getCourses() {
+if (this.loggedIn) {
+  for (let thisUser of this.existingUsers) {
+    if (thisUser.username == this.username){
+      return thisUser.availableCourses
+    }
+  }
+}
+}
   getUsername() {
-    return this.username
+    if (this.loggedIn){
+    return this.username}
   }
   logout(){
+    this.username = undefined
     this.loggedIn = false
   }
 }

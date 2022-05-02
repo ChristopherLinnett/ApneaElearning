@@ -19,7 +19,14 @@ ngOnInit(): void {
       component:LoginPage,
       componentProps: { },backdropDismiss: false
     });
+    modal.onDidDismiss().then(() => {
+      
+    })
     return modal.present()
+  }
+  logout() {
+    this.userService.logout()
+    this.checkLogin()
   }
 
   checkLogin() {
