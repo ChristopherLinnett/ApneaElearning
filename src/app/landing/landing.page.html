@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><p align="center">Apnea Elearning</p></ion-title>
+    <ion-button size="small" color="dark" fill="clear" slot="end"><ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+  <ion-grid>
+    <ion-row>
+     <ion-header align="center">Welcome [YourName] to your Apnea Elearning App.</ion-header>
+    </ion-row>
+    <ion-row>
+      <p align="center">To get started, select an available course from below</p>
+    </ion-row>
+    <ion-row >
+      <ion-col size="12" *ngFor="let course of availableCourses"><ion-button expand="full"> {{course}} </ion-button></ion-col>
+      </ion-row>
+      </ion-grid>
+      </div>
+</ion-content>
