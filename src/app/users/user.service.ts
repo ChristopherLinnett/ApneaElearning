@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -6,14 +7,17 @@ import { Injectable } from '@angular/core';
 export class UserService {
   username: String
   existingUsers = [{username:"Instructor", password:"password", role: "Instructor", availableCourses: ["AIDA1","AIDA2","AIDA3","AIDA4","AIDA Instructor"]},{username: "NewStudent", password: "password",role: "Student", availableCourses: ["AIDA2"]}]
-  loggedIn = false
-  constructor() { }
+  loggedIn: Boolean = false;
+  loggedInChanged: Subject<Boolean> = new Subject<Boolean>(); // observing that bool
+  constructor() {
+   }
 
   login(inputUser:String, inputPass: String) {
     for (let user of this.existingUsers) {
         if (user.username == inputUser && user.password == inputPass){
           this.loggedIn = true
           this.username = inputUser
+          this.loggedInChanged.next(this.isLoggedIn())
         }
     }
   }
@@ -33,5 +37,8 @@ if (this.loggedIn) {
   logout(){
     this.username = undefined
     this.loggedIn = false
+  }
+  isLoggedIn() {
+    return this.loggedIn
   }
 }
