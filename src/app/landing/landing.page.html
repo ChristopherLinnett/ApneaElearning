@@ -1,15 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title><p align="center">Apnea Elearning</p></ion-title>
+    <ion-button size="small" color="dark" fill="clear" slot="end"><ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
   <ion-grid>
     <ion-row><hr></ion-row>
     <ion-row>
-     <ion-label (click)="tester()" align="center">Welcome <ion-text color="secondary"><span>{{username}}</span></ion-text> to your Apnea Elearning App.</ion-label>
+     <ion-label align="center">Welcome <ion-text color="secondary"><span>{{username}}</span></ion-text> to your Apnea Elearning App.</ion-label>
     </ion-row>
     <hr>
     <ion-row>
       <p align="center">To get started, select an available course from below</p>
     </ion-row>
     <ion-row  *ngFor="let course of availableCourses; index as i">
-      <ion-col><ion-button expand="full"> {{course}} </ion-button></ion-col>
+      <ion-col><ion-button (click)="onSelectCourse(course)" expand="block"> {{course}} </ion-button></ion-col>
       </ion-row>
     </ion-grid>
 </ion-content>

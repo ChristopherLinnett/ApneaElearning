@@ -1,9 +1,33 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>courseLanding</ion-title>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>  
+    <ion-title slot="secondary">{{thisCourse}} Course</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{thisCourse}} Course Progress</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <h1>Module Completion</h1>
+      <h1>Quiz Completion</h1>
+    </ion-card-content>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block">Continue Module</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block">Take Quiz</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

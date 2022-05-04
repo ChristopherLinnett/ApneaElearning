@@ -1,21 +1,33 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title><p align="center">User Login</p></ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-item>
-  <ion-label position="floating" for="username">Username</ion-label>
-  <ion-input ngModel #username id="username" type="text"></ion-input>
-</ion-item>
-<ion-item>
-  <ion-label position="floating" for="password">Password</ion-label>
-  <ion-input ngModel #password id="password" type="text"></ion-input>
-</ion-item>
-<ion-button expand="full" (click)="login()">Login</ion-button>
-
-
-
 <ion-content>
+  <div align="center" class="ion-margin-top">
+    <ion-label class="ion-padding">Welcome to Apnea E-Learning</ion-label>
+    <img class="ion-padding" src=\..\..\..\..\assets\img\maskimage.png width="50%">
+  </div>
+  <div align="center" class="ion-margin-bottom">
+    <ion-label>Enter your details to begin</ion-label>
+  </div>
 
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating" for="username">Username</ion-label>
+      <ion-input ngModel #username id="username" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" for="password">Password</ion-label>
+      <ion-input ngModel #password id="password" type="text"></ion-input>
+    </ion-item>
+    </ion-list>
+    <hr>
+    <div align="center">
+    <ion-button expand="block" (click)="login()">LOGIN</ion-button>
+    <ion-item *ngIf="incorrectPassword">
+      <p >Incorrect details, please try again</p>
+  </ion-item >
+    </div>
 </ion-content>

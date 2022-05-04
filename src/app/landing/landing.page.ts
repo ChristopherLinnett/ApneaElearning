@@ -1,5 +1,7 @@
 import { Component, Injectable, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CourseService } from '../course-landing/course.service';
 import { UserService } from '../users/user.service';
 @Component({
   selector: 'app-landing',
@@ -12,7 +14,7 @@ export class LandingPage implements OnInit{
   username: String;
   loggedIn: Boolean;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private courseService: CourseService, private router: Router) {
     this.availableCourses = this.userService.getCourses()
     this.username = this.userService.getUsername()
    }
@@ -21,21 +23,18 @@ export class LandingPage implements OnInit{
    this.loggedInSubscribed = this.userService.loggedInChanged
         .subscribe(logged => {
           this.loggedIn = logged;
-          this.tester()
+          this.synchroniseUser()
         })
   }
+  onSelectCourse(course) {
+    this.courseService.setCourse(course)
+    this.router.navigate(['/course-landing'])
+  }
 
-  tester(){
+  synchroniseUser(){
     this.availableCourses = this.userService.getCourses()
     this.username = this.userService.getUsername()
    }
 
-}
-function next(next: any, arg1: (logged: Boolean) => void, error: any, arg3: null, complete: any, arg5: null): Subscription {
-  throw new Error('Function not implemented.');
-}
-
-function complete(next: (next: any, arg1: (logged: Boolean) => void, error: any, arg3: null, complete: any, arg5: null) => Subscription, arg1: (logged: Boolean) => void, Error: ErrorConstructor, arg3: null, complete: any, arg5: null): Subscription {
-  throw new Error('Function not implemented.');
 }
 
