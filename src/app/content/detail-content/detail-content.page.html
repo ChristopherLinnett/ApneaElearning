@@ -1,9 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>detailContent</ion-title>
+  <ion-toolbar class="ion-text-center">
+    <ion-button (click)="closeModalAlert()" size="small" color="dark" fill="clear" slot="start"><ion-icon slot="icon-only" name="arrow-back"></ion-icon></ion-button>
+    <ion-label class="ion-align-self-center">Modules</ion-label>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf="selection=='selection'">
+  <ion-accordion-group>
+    <ion-row *ngFor="let moduleItem of moduleList, index as i">
+      <ion-col>
+      <ion-accordion>
+        <ion-item slot="header"><p>{{i+1}}) {{moduleItem.title}}</p></ion-item>
+        <ion-list slot="content">
+          <ion-item *ngFor="let section of moduleItem.innerModules, index as j">
+            <p>{{j+1}}) {{section.title}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-accordion>
+      </ion-col>
+    </ion-row>
+  </ion-accordion-group>
 </ion-content>

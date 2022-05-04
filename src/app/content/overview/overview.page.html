@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar class="ion-text-center">
     <ion-buttons>
-      <ion-back-button></ion-back-button>
+      <ion-back-button slot="start"></ion-back-button>
     </ion-buttons>
-    <ion-title  slot="secondary">Course Overview</ion-title>
+    <ion-label>Course Overview</ion-label>
     <ion-button size="small" color="dark" fill="clear" slot="end"><ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon></ion-button>
   </ion-toolbar>
   </ion-header>
@@ -21,8 +21,8 @@
     </ion-col>
     <ion-row>
       <ion-col class="ion-align-self-center">
-        <ion-button expand="inline-block">Resume Modules</ion-button>
-        <ion-button expand="inline-block">Start from Scratch</ion-button>
+        <ion-button expand="block">Resume Modules</ion-button>
+        <ion-button expand="block">Start from Scratch</ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -30,20 +30,5 @@
         <ion-button (click)="showModules()" expand="block">Select Module</ion-button>
       </ion-col>
     </ion-row>
-    <ion-accordion-group>
-    <ion-row *ngFor="let moduleItem of moduleList, index as i">
-      <ion-col>
-      <ion-accordion>
-        <ion-item slot="header"><p>{{i+1}}) {{moduleItem.title}}</p></ion-item>
-        <ion-list slot="content">
-          <ion-item *ngFor="let section of moduleItem.innerModules, index as j">
-            <p>{{j+1}}) {{section.title}}</p>
-          </ion-item>
-        </ion-list>
-      </ion-accordion>
-      </ion-col>
-    </ion-row>
-  </ion-accordion-group>
-
   </ion-grid>
 </ion-content>
