@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UserService } from '../users/user.service';
 import { CourseService } from './course.service';
 
 @Component({
@@ -8,13 +9,12 @@ import { CourseService } from './course.service';
 })
 export class CourseLandingPage implements OnInit {
   thisCourse: {title: String, description: String};
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService, private userService: UserService) { }
 
-  ngOnInit() {
-    this.thisCourse = this.courseService.getCourse()
+ngOnInit() {
+  this.thisCourse = this.courseService.getCourse()
 }
 
-logCourse() {
-  console.log(this.thisCourse)
-}
+
+
 }

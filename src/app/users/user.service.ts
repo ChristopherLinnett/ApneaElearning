@@ -8,7 +8,7 @@ export class UserService {
   username: String
   existingUsers = [{username:"Instructor", password:"password", role: "Instructor", availableCourses: ["AIDA1","AIDA2","AIDA3","AIDA4","AIDA Instructor"]},{username: "NewStudent", password: "password",role: "Student", availableCourses: ["AIDA2"]}]
   loggedIn: Boolean = false;
-  loggedInChanged: Subject<Boolean> = new Subject<Boolean>(); // observing that bool
+  loggedInChanged: Subject<Boolean> = new Subject<Boolean>();
   constructor() {
    }
 
