@@ -10,7 +10,8 @@ import { UserService } from '../user.service';
 export class LoginPage implements OnInit {
   @ViewChild('username') usernameRef: ElementRef<HTMLInputElement>;
   @ViewChild('password') passwordRef: ElementRef<HTMLInputElement>;
-  incorrectPassword: Boolean = false;
+  incorrectPassword: string;
+  incorrectCount: number = 0
   username: String;
   password: String;
   constructor(private userService: UserService, private modalController: ModalController, private router: Router) {}
@@ -18,8 +19,9 @@ export class LoginPage implements OnInit {
   login(){
     this.userService.login(this.usernameRef.nativeElement.value,this.passwordRef.nativeElement.value)
     if (!this.userService.loggedIn){
-      this.incorrectPassword = true;
-      console.log(this.incorrectPassword)
+      this.incorrectCount++
+      this.incorrectPassword = `Incorrect details, please try again
+      (${this.incorrectCount} attempts)`;
       return
     }
       this.router.navigate(['landing'])

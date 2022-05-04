@@ -18,6 +18,7 @@ export class UserService {
           this.loggedIn = true
           this.username = inputUser
           this.loggedInChanged.next(this.isLoggedIn())
+          return
         }
     }
   }

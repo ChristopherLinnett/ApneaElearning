@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
 import { CourseService } from './course.service';
 
 @Component({
@@ -8,16 +7,14 @@ import { CourseService } from './course.service';
   styleUrls: ['./course-landing.page.scss'],
 })
 export class CourseLandingPage implements OnInit {
-  thisCourse: String;
-  thisCourseChanged: Subscription;
+  thisCourse: {title: String, description: String};
   constructor(private courseService: CourseService) { }
 
   ngOnInit() {
-    this.thisCourse = this.courseService.thisCourse
-    this.thisCourseChanged = this.courseService.courseChange
-        .subscribe(course => {
-          this.thisCourse = course;
-        })
-  }
+    this.thisCourse = this.courseService.getCourse()
+}
 
+logCourse() {
+  console.log(this.thisCourse)
+}
 }

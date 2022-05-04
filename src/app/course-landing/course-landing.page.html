@@ -1,31 +1,37 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons>
-      <ion-back-button></ion-back-button>
-    </ion-buttons>  
-    <ion-title slot="secondary">{{thisCourse}} Course</ion-title>
+      <ion-back-button defaultHref=""></ion-back-button>
+    </ion-buttons>
+    <ion-title align="center" slot="secondary">{{thisCourse.title}} Course</ion-title>
+    <ion-button size="small" color="dark" fill="clear" slot="end"><ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>{{thisCourse}} Course Progress</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <h1>Module Completion</h1>
-      <h1>Quiz Completion</h1>
-    </ion-card-content>
-  </ion-card>
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button expand="block">Continue Module</ion-button>
+        <ion-button (click)="logCourse()" expand="block">Continue Module</ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
         <ion-button expand="block">Take Quiz</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" >
+        <ion-label class="ion-align-self-center">
+          Overview
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let descriptionBlock of thisCourse.description.split('. ')">
+      <ion-col>
+        <ion-label>
+          {{ descriptionBlock }}
+        </ion-label>
       </ion-col>
     </ion-row>
   </ion-grid>

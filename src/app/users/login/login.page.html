@@ -26,8 +26,6 @@
     <hr>
     <div align="center">
     <ion-button expand="block" (click)="login()">LOGIN</ion-button>
-    <ion-item *ngIf="incorrectPassword">
-      <p >Incorrect details, please try again</p>
-  </ion-item >
+    <p style="color:red">{{incorrectPassword}}</p>
     </div>
 </ion-content>

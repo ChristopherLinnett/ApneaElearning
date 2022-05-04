@@ -28,7 +28,6 @@ export class LandingPage implements OnInit{
   }
   onSelectCourse(course) {
     this.courseService.setCourse(course)
-    this.router.navigate(['/course-landing'])
   }
 
   synchroniseUser(){
