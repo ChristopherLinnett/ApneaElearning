@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="ion-text-center">
     <ion-buttons>
       <ion-back-button defaultHref=""></ion-back-button>
     </ion-buttons>
-    <ion-title align="center" slot="secondary">{{thisCourse.title}} Course</ion-title>
+    <ion-title  slot="secondary">{{thisCourse.title}} Course</ion-title>
     <ion-button size="small" color="dark" fill="clear" slot="end"><ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
@@ -18,7 +18,7 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-button expand="block">Continue Module</ion-button>
+        <ion-button (click)="onClickModule()" expand="block">Continue Module</ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
