@@ -1,6 +1,7 @@
 import { Component, Injectable, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AppComponent } from '../app.component';
 import { CourseService } from '../course-landing/course.service';
 import { UserService } from '../users/user.service';
 @Component({
@@ -16,7 +17,7 @@ export class LandingPage implements OnInit{
   userRole: string;
   instructorView: Boolean;
 
-  constructor(private userService: UserService, private courseService: CourseService, private router: Router) {
+  constructor(private userService: UserService,private homeComp: AppComponent, private courseService: CourseService, private router: Router) {
     this.availableCourses = this.userService.getCourses()
     this.username = this.userService.getUsername()
    }
@@ -38,8 +39,10 @@ export class LandingPage implements OnInit{
     this.userRole = this.userService.getUserRole()
    }
    logout(){
+    this.userService.logout()
+    this.homeComp.checkLogin()
+  }
 
-   }
 
 }
 
