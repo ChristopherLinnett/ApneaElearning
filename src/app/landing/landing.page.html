@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="!instructorView">
   <ion-grid>
     <ion-row>
       <hr>
@@ -29,11 +29,39 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<ion-content *ngIf="instructorView">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+            <ion-card-header class="ion-text-center">
+              <ion-card-title>Upcoming Course</ion-card-title>
+            </ion-card-header>
+            <ion-card-content class="ion-text-center">
+              <ion-card-subtitle>Course.date:</ion-card-subtitle>
+              <ion-card-subtitle>course.type</ion-card-subtitle>
+
+                <ion-list>
+                  <ion-item>Student1</ion-item>
+                  <ion-item>Student2</ion-item>
+                  <ion-item>Student3</ion-item>
+                  <ion-item>Student4</ion-item>
+                </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+
+
 <ion-footer *ngIf="userRole=='Instructor'">
   <ion-toolbar class="ion-align-items-center">
     <ion-item>
-      <ion-toggle slot="" color="primary"></ion-toggle>
       <ion-label>Instructor View</ion-label>
+      <ion-toggle [(ngModel)]="instructorView" color="primary"></ion-toggle>
     </ion-item>
     </ion-toolbar>
 </ion-footer>

@@ -14,6 +14,7 @@ export class LandingPage implements OnInit{
   username: string;
   loggedIn: Boolean;
   userRole: string;
+  instructorView: Boolean;
 
   constructor(private userService: UserService, private courseService: CourseService, private router: Router) {
     this.availableCourses = this.userService.getCourses()
