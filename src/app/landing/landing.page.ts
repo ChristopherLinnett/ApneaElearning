@@ -10,9 +10,10 @@ import { UserService } from '../users/user.service';
 })
 export class LandingPage implements OnInit{
   private loggedInSubscribed: Subscription;
-  availableCourses: String[];
-  username: String;
+  availableCourses: string[];
+  username: string;
   loggedIn: Boolean;
+  userRole: string;
 
   constructor(private userService: UserService, private courseService: CourseService, private router: Router) {
     this.availableCourses = this.userService.getCourses()
@@ -33,9 +34,10 @@ export class LandingPage implements OnInit{
   synchroniseUser(){
     this.availableCourses = this.userService.getCourses()
     this.username = this.userService.getUsername()
+    this.userRole = this.userService.getUserRole()
    }
    logout(){
-  
+
    }
 
 }

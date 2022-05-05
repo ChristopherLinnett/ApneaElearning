@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  username: String
+  user: {username: string, password: string, role: string, availableCourses: string[]}
   existingUsers = [{username:"Instructor", password:"password", role: "Instructor", availableCourses: ["AIDA1","AIDA2","AIDA3","AIDA4","AIDA Instructor"]},{username: "NewStudent", password: "password",role: "Student", availableCourses: ["AIDA2"]}]
   loggedIn: Boolean = false;
   loggedInChanged: Subject<Boolean> = new Subject<Boolean>();
@@ -16,7 +16,7 @@ export class UserService {
     for (let user of this.existingUsers) {
         if (user.username == inputUser && user.password == inputPass){
           this.loggedIn = true
-          this.username = inputUser
+          this.user = user
           this.loggedInChanged.next(this.isLoggedIn())
           return
         }
@@ -24,19 +24,20 @@ export class UserService {
   }
 getCourses() {
 if (this.loggedIn) {
-  for (let thisUser of this.existingUsers) {
-    if (thisUser.username == this.username){
-      return thisUser.availableCourses
+      return this.user.availableCourses
     }
   }
-}
-}
   getUsername() {
     if (this.loggedIn){
-    return this.username}
+    return this.user.username}
+  }
+  getUserRole() {
+    if (this.loggedIn){
+      return this.user.role
+    }
   }
   logout(){
-    this.username = undefined
+    this.user = undefined
     this.loggedIn = false
   }
   isLoggedIn() {
