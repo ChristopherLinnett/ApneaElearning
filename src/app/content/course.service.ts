@@ -1300,6 +1300,9 @@ export class CourseService {
     },
   ];
   constructor() {}
+  getAllModules(){
+    return this.AIDA2Default
+  }
 
   getModuleTitle(moduleNo) {
     return this.AIDA2Default[moduleNo - 1].title;

@@ -26,5 +26,28 @@ async showModules() {
     })
     return modal.present()
   }
+
+  async onStart(){
+    const modal = await this.modalController.create({
+      component:DetailContentPage,
+      componentProps: {selection: "start"},backdropDismiss: false
+    });
+    modal.onDidDismiss().then(() => {
+      
+    })
+    return modal.present()
+  }
+
+async onContinue(){
+  const modal = await this.modalController.create({
+    component:DetailContentPage,
+    componentProps: {selection:"continue"},backdropDismiss: false
+  });
+  modal.onDidDismiss().then(() => {
+    
+  })
+  return modal.present()
+}
+
   }
 
