@@ -1,27 +1,34 @@
 <ion-header>
-  <ion-toolbar class="ion-text-center">
-    <ion-label>Apnea Elearning</ion-label>
-    <ion-button size="small" color="dark" fill="clear" slot="end"><ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon></ion-button>
+  <ion-toolbar>
+    <ion-title>Apnea Elearning</ion-title>
+    <ion-buttons>
+      <ion-button size="small" color="dark" fill="dark" slot="end">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-grid>
-    <ion-row><hr></ion-row>
     <ion-row>
-     <ion-label align="center">Welcome <ion-text color="secondary"><span>{{username}}</span></ion-text> to your Apnea Elearning App.</ion-label>
+      <hr>
+    </ion-row>
+    <ion-row>
+      <ion-label align="center">Welcome <ion-text color="secondary"><span>{{username}}</span></ion-text> to your Apnea
+        Elearning App.</ion-label>
     </ion-row>
     <hr>
     <ion-row>
       <p align="center">To get started, select an available course from below</p>
     </ion-row>
-    <ion-row  *ngFor="let course of availableCourses; index as i">
+    <ion-row *ngFor="let course of availableCourses; index as i">
       <ion-col>
         <a [routerLink]="['/course-landing']">
-        <ion-button (click)="onSelectCourse(course)" expand="block"> {{course}} </ion-button>
-      </a>
+          <ion-button (click)="onSelectCourse(course)" expand="block"> {{course}} </ion-button>
+        </a>
 
       </ion-col>
-      </ion-row>
-    </ion-grid>
+    </ion-row>
+  </ion-grid>
 </ion-content>

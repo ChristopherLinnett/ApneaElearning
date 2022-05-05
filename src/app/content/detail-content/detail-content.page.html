@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar class="ion-text-center">
     <ion-button (click)="closeModalAlert()" size="small" color="dark" fill="clear" slot="start"><ion-icon slot="icon-only" name="arrow-back"></ion-icon></ion-button>
-    <ion-label class="ion-align-self-center">{{moduleTitle}}</ion-label>
+    <ion-title class="ion-align-self-center">{{moduleTitle}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +13,7 @@
         <ion-item slot="header"><p>{{i+1}}) {{moduleItem.title}}</p></ion-item>
         <ion-list slot="content">
           <ion-item *ngFor="let section of moduleItem.innerModules, index as j">
-            <p (click)="startModules(i,j)">{{j+1}}) {{section.title}}</p>
+            <ion-label (click)="startModules(i,j)">{{j+1}}) {{section.title}}</ion-label>
           </ion-item>
         </ion-list>
       </ion-accordion>
@@ -32,7 +32,9 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-label>{{ currentContent }}</ion-label>
+        <ion-label>{{ currentContent }}Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae placerat sem. Suspendisse at molestie tortor. Morbi ipsum turpis, cursus sit amet augue vel, lacinia porttitor velit. Aenean tempor turpis quis tortor imperdiet, ac commodo eros vulputate. Suspendisse eu dui quis risus tincidunt hendrerit. Suspendisse non volutpat leo. Cras nec tellus et lectus semper feugiat id a sem. Duis non nulla non enim semper lobortis. Nullam ultrices est non condimentum maximus.
+
+          Sed in rutrum magna. Aliquam mollis rutrum urna. Praesent et velit porta, ornare ante ut, porta neque. Phasellus ullamcorper finibus porta. Sed libero risus, egestas eget tincidunt ut, commodo at turpis. Aenean consequat massa et nibh faucibus maximus. Fusce egestas lobortis vestibulum. Suspendisse varius, eros quis fermentum gravida, diam orci ullamcorper ipsum, consequat volutpat magna est sed nisl. Phasellus vestibulum magna porttitor egestas dictum. Sed ultrices massa vel sapien maximus, at imperdiet quam vulputate. Mauris nec efficitur lorem.</ion-label>
       </ion-col>
     </ion-row>
   </ion-grid>
