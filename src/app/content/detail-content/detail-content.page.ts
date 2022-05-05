@@ -63,6 +63,7 @@ export class DetailContentPage implements OnInit {
         {
           text: 'Yes',
           cssClass: 'primary',
+          id: 'confirm-button',
           handler: () => {
             this.closeModal();
           },
