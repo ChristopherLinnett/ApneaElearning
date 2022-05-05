@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Course</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card><ion-datetime presentation="date"></ion-datetime>
+  </ion-card>
+  <ion-list class="ion-margin-top">
+    <ion-list-header><ion-label><h1>Course Type</h1></ion-label></ion-list-header>
+    <ion-item *ngFor='for let value of ["AIDA1","AIDA2","AIDA3","AIDA4"]'>
+      <ion-label>{{value}}</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+</ion-content>
