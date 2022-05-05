@@ -11,9 +11,9 @@ completed: Boolean
 
 export class CourseStructure {
   title: String;
-  innerModules: InnerModule[];
+  innerModules: [InnerModule];
   completed: Boolean
-  constructor(title: String, innerModules: InnerModule[], completed: Boolean) {
+  constructor(title: String, innerModules: [InnerModule], completed: Boolean) {
     this.title = title;
     this.innerModules = innerModules;
     this.completed = completed;

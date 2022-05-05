@@ -1,7 +1,8 @@
 <ion-header>
-  <ion-toolbar class="ion-text-center">
-    <ion-button (click)="closeModalAlert()" size="small" color="dark" fill="clear" slot="start"><ion-icon slot="icon-only" name="arrow-back"></ion-icon></ion-button>
+  <ion-toolbar>
     <ion-title class="ion-align-self-center">{{moduleTitle}}</ion-title>
+    <ion-button (click)="closeModalAlert()" size="small" color="dark" fill="clear" slot="end"><ion-icon slot="icon-only" name="close"></ion-icon></ion-button>
+
   </ion-toolbar>
 </ion-header>
 
@@ -41,8 +42,8 @@
 </ion-content>
 <ion-footer>
   <ion-toolbar>
-      <ion-button slot="start" (click)="onNextClick()">back</ion-button>
-      <ion-button slot="end" (click)="onNextClick()">next</ion-button>
+      <ion-button slot="start" fill="clear" (click)="onBackClick()"><ion-icon slot="icon-only" name="caret-back"></ion-icon></ion-button>
+      <ion-button slot="end" fill="clear" (click)="onNextClick()"><ion-icon slot="icon-only" name="caret-forward"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-footer>
 </ng-template>

@@ -34,6 +34,20 @@ export class CurrentModuleService {
       return {module: this.currentModuleIndex, inner: this.currentInnerIndex}
     }
     this.currentInnerIndex++
+    return this.currentInnerIndex
+  }
+  back(){
+    if (this.currentInnerIndex == 0 && this.currentModuleIndex == 0){
+      return
+    }
+    if (this.currentInnerIndex == 0){
+      this.currentModuleIndex--
+      this.innerModuleCount = this.courseService.getAllModules()[this.currentModuleIndex].innerModules.length
+      this.currentInnerIndex = this.innerModuleCount-1
+      return {module: this.currentModuleIndex, inner: this.currentInnerIndex}
+    }
+    this.currentInnerIndex--
+    return this.currentInnerIndex
   }
 
   getCurrentPosition(){

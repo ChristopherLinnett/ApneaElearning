@@ -15,6 +15,6 @@ import { DetailContentPage } from './content/detail-content/detail-content.page'
   entryComponents: [DetailContentPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, CommonModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
-  bootstrap: [AppComponent, DetailContentPage],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

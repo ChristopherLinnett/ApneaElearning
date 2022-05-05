@@ -24,6 +24,8 @@ export class LoginPage implements OnInit {
       (${this.incorrectCount} attempts)`;
       return
     }
+      this.incorrectCount= 0
+      this.incorrectPassword=''
       this.router.navigate(['landing'])
       this.modalController.dismiss()
   }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { AppComponent } from 'src/app/app.component';
+import { UserService } from 'src/app/users/user.service';
 import { CourseService } from '../course.service';
 import { DetailContentPage } from '../detail-content/detail-content.page';
 
@@ -11,7 +13,7 @@ import { DetailContentPage } from '../detail-content/detail-content.page';
 export class OverviewPage implements OnInit {
   moduleList:{ completed: boolean; innerModules: { completed: boolean; content: string; title: string; }[]; title: string; }[]
 
-  constructor(private courseService: CourseService, private modalController: ModalController) { }
+  constructor(private homeComp: AppComponent, private userService:UserService, private courseService: CourseService, private modalController: ModalController) { }
 
   ngOnInit() {
   }
@@ -22,7 +24,7 @@ async showModules() {
       componentProps: {selection: "selection",moduleList: this.courseService.AIDA2Default},backdropDismiss: false
     });
     modal.onDidDismiss().then(() => {
-      
+
     })
     return modal.present()
   }
@@ -33,7 +35,7 @@ async showModules() {
       componentProps: {selection: "start"},backdropDismiss: false
     });
     modal.onDidDismiss().then(() => {
-      
+
     })
     return modal.present()
   }
@@ -44,10 +46,13 @@ async onContinue(){
     componentProps: {selection:"continue"},backdropDismiss: false
   });
   modal.onDidDismiss().then(() => {
-    
+
   })
   return modal.present()
 }
-
+logout(){
+  this.userService.logout()
+  this.homeComp.checkLogin()
+}
   }
 

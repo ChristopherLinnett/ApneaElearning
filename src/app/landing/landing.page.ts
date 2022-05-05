@@ -34,6 +34,9 @@ export class LandingPage implements OnInit{
     this.availableCourses = this.userService.getCourses()
     this.username = this.userService.getUsername()
    }
+   logout(){
+  
+   }
 
 }
 

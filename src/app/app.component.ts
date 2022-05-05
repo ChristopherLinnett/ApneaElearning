@@ -9,7 +9,7 @@ import { UserService } from './users/user.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private modalController: ModalController, private userService: UserService) {} 
+  constructor(private modalController: ModalController, private userService: UserService) {}
 
 ngOnInit(): void {
   this.checkLogin()
@@ -20,7 +20,6 @@ ngOnInit(): void {
       componentProps: { },backdropDismiss: false
     });
     modal.onDidDismiss().then(() => {
-      
     })
     return modal.present()
   }

@@ -1,10 +1,8 @@
 <ion-header>
-  <ion-toolbar class="ion-text-center">
-    <ion-buttons>
+  <ion-toolbar>
       <ion-back-button slot="start" defaultHref=""></ion-back-button>
-    </ion-buttons>
     <ion-title>{{thisCourse.title}} Course</ion-title>
-    <ion-button size="small" color="dark" fill="clear" slot="end"><ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon></ion-button>
+    <ion-button (click)="logout()" size="small" color="dark" fill="clear" slot="end"><ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon></ion-button>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -16,16 +14,7 @@
         </ion-label>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-button (click)="onClickModule()" expand="block">Continue Module</ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-button expand="block">Take Quiz</ion-button>
-      </ion-col>
-    </ion-row>
+
     <ion-row class="ion-margin-vertical">
       <ion-col class="ion-text-center"  >
         <ion-label class="ion-align-self-center">
@@ -41,5 +30,17 @@
         </ion-col>
       </ion-row>
   </ion-grid>
-
 </ion-content>
+<ion-footer>
+<ion-grid>
+  <ion-row class="ion-margin-bottom">
+    <ion-col >
+      <ion-button size="6" (click)="onClickModule()" expand="block">Continue Module</ion-button>
+    </ion-col>
+    <ion-col size="6" *ngIf="quizAvailable">
+      <ion-button (click)="launchQuiz()" expand="block">Take Quiz</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+</ion-footer>

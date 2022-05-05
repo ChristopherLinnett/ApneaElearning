@@ -50,6 +50,10 @@ export class DetailContentPage implements OnInit {
     this.currentModuleService.next()
     this.getContent()
   }
+  onBackClick() {
+    this.currentModuleService.back()
+    this.getContent()
+  }
 
   async closeModalAlert() {
     let alert = await this.alertCtrl.create({
