@@ -48,7 +48,7 @@ export class LandingPage implements OnInit{
   async onCreateCourse() {
     const modal = await this.modalController.create({
       component:CreatecourseComponent,
-      componentProps: { },backdropDismiss: false
+      componentProps: { },
     });
     modal.onDidDismiss().then(() => {
     })

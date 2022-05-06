@@ -35,10 +35,10 @@
 <ion-grid>
   <ion-row class="ion-margin-bottom">
     <ion-col >
-      <ion-button size="6" (click)="onClickModule()" expand="block">Continue Module</ion-button>
+      <ion-button size="6" expand="block" (click)="onClickModule()">Modules</ion-button>
     </ion-col>
     <ion-col size="6" *ngIf="quizAvailable">
-      <ion-button (click)="launchQuiz()" expand="block">Take Quiz</ion-button>
+      <ion-button expand="block" (click)="launchQuiz()">Quiz</ion-button>
     </ion-col>
   </ion-row>
 </ion-grid>

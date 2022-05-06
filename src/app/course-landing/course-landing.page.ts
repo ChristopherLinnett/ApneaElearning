@@ -11,7 +11,7 @@ import { CourseService } from './course.service';
 })
 export class CourseLandingPage implements OnInit {
   thisCourse: {title: String, description: String};
-  quizAvailable= false;
+  quizAvailable= true;
   constructor(private homeComp:AppComponent, private courseService: CourseService, private userService: UserService, private router: Router) { }
 
 ngOnInit() {

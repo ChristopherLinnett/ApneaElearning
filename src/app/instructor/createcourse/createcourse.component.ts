@@ -8,7 +8,8 @@ import { Student } from './student.class';
 })
 export class CreatecourseComponent implements OnInit {
   students: any[]
-  constructor() { 
+  courseDate;
+  constructor() {
     this.students = []
   }
   addStudent(){
