@@ -5,35 +5,45 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'landing',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'quizlanding',
-    loadChildren: () => import('./quiz/landing/landing.module').then( m => m.LandingPageModule)
+    loadChildren: () =>
+      import('./quiz/landing/landing.module').then((m) => m.LandingPageModule),
   },
   {
     path: 'in-progress',
-    loadChildren: () => import('./quiz/in-progress/in-progress.module').then( m => m.InProgressPageModule)
+    loadChildren: () =>
+      import('./quiz/in-progress/in-progress.module').then(
+        (m) => m.InProgressPageModule
+      ),
   },
   {
     path: 'overview',
-    loadChildren: () => import('./content/overview/overview.module').then( m => m.OverviewPageModule)
+    loadChildren: () =>
+      import('./content/overview/overview.module').then(
+        (m) => m.OverviewPageModule
+      ),
   },
   {
     path: 'landing',
-    loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)
+    loadChildren: () =>
+      import('./landing/landing.module').then((m) => m.LandingPageModule),
   },
   {
     path: 'course-landing',
-    loadChildren: () => import('./course-landing/course-landing.module').then( m => m.CourseLandingPageModule)
-  }
-
+    loadChildren: () =>
+      import('./course-landing/course-landing.module').then(
+        (m) => m.CourseLandingPageModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

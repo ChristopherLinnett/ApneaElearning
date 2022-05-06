@@ -1,6 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>this.quizTitle</ion-title>
+    <ion-back-button color="dark" slot="end" text="" icon="close"></ion-back-button>
+
   </ion-toolbar>
 </ion-header>
 
@@ -14,37 +16,41 @@
 
 <ion-footer>
   <ion-grid>
-  <ion-radio-group>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>ThisAnswer</ion-label>
-          <ion-radio slot="end" value="answer1"></ion-radio>
-        </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item>
-          <ion-label>ThisAnswer</ion-label>
-          <ion-radio slot="end" value="answer2"></ion-radio>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-<ion-col>
-  <ion-item>
-    <ion-label>ThisAnswer</ion-label>
-    <ion-radio slot="end" value="answer3"></ion-radio>
-  </ion-item>
-</ion-col>
-<ion-col>
-  <ion-item>
-    <ion-label>ThisAnswer</ion-label>
-    <ion-radio slot="end" value="answer4"></ion-radio>
-  </ion-item>
-</ion-col>
-    </ion-row>
-  </ion-radio-group>
-  <ion-button slot="end" fill="clear"><ion-icon slot="icon-only" name="caret-back"></ion-icon></ion-button>
-  <ion-button slot="start" fill="clear"><ion-icon slot="icon-only" name="caret-forward"></ion-icon></ion-button>
-</ion-grid>
+    <ion-radio-group>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>ThisAnswer</ion-label>
+            <ion-radio slot="end" value="answer1"></ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>ThisAnswer</ion-label>
+            <ion-radio slot="end" value="answer2"></ion-radio>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>ThisAnswer</ion-label>
+            <ion-radio slot="end" value="answer3"></ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label>ThisAnswer</ion-label>
+            <ion-radio slot="end" value="answer4"></ion-radio>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-radio-group>
+    <ion-button slot="end" fill="clear"
+      ><ion-icon slot="icon-only" name="caret-back"></ion-icon
+    ></ion-button>
+    <ion-button slot="start" fill="clear"
+      ><ion-icon slot="icon-only" name="caret-forward"></ion-icon
+    ></ion-button>
+  </ion-grid>
 </ion-footer>

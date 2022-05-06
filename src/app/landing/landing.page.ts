@@ -1,4 +1,10 @@
-import { Component, Injectable, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Injectable,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
@@ -11,7 +17,7 @@ import { UserService } from '../users/user.service';
   templateUrl: './landing.page.html',
   styleUrls: ['./landing.page.scss'],
 })
-export class LandingPage implements OnInit{
+export class LandingPage implements OnInit {
   private loggedInSubscribed: Subscription;
   availableCourses: string[];
   username: string;
@@ -19,41 +25,49 @@ export class LandingPage implements OnInit{
   userRole: string;
   instructorView: Boolean;
 
-  constructor(private modalController:ModalController, private userService: UserService,private homeComp: AppComponent, private courseService: CourseService, private router: Router) {
-    this.availableCourses = this.userService.getCourses()
-    this.username = this.userService.getUsername()
-   }
-   ngOnInit() {
-   this.loggedIn = this.userService.loggedIn;
-   this.loggedInSubscribed = this.userService.loggedInChanged
-        .subscribe(logged => {
-          this.loggedIn = logged;
-          this.synchroniseUser()
-        })
+  constructor(
+    private modalController: ModalController,
+    private userService: UserService,
+    private homeComp: AppComponent,
+    private courseService: CourseService,
+    private router: Router
+  ) {
+    this.availableCourses = this.userService.getCourses();
+    this.username = this.userService.getUsername();
   }
-  onSelectCourse(course) {              //when pressing course button, updates course's state to show that as the current course
-    this.courseService.setCourse(course)
+  ngOnInit() {
+    this.loggedIn = this.userService.loggedIn;
+    this.loggedInSubscribed = this.userService.loggedInChanged.subscribe(
+      (logged) => {
+        this.loggedIn = logged;
+        this.synchroniseUser();
+      }
+    );
   }
-
-  synchroniseUser(){                    //sets component variables to match the application's state
-    this.availableCourses = this.userService.getCourses()
-    this.username = this.userService.getUsername()
-    this.userRole = this.userService.getUserRole()
-   }
-   logout(){                //logout button
-    this.userService.logout()
-    this.homeComp.checkLogin()
+  onSelectCourse(course) {
+    //when pressing course button, updates course's state to show that as the current course
+    this.courseService.setCourse(course);
   }
 
-  async onCreateCourse() {            //launches modal for instructor to add new courses
+  synchroniseUser() {
+    //sets component variables to match the application's state
+    this.availableCourses = this.userService.getCourses();
+    this.username = this.userService.getUsername();
+    this.userRole = this.userService.getUserRole();
+  }
+  logout() {
+    //logout button
+    this.userService.logout();
+    this.homeComp.checkLogin();
+  }
+
+  async onCreateCourse() {
+    //launches modal for instructor to add new courses
     const modal = await this.modalController.create({
-      component:CreatecourseComponent,
-      componentProps: { },
+      component: CreatecourseComponent,
+      componentProps: {},
     });
-    modal.onDidDismiss().then(() => {
-    })
-    return modal.present()
+    modal.onDidDismiss().then(() => {});
+    return modal.present();
   }
-
 }
-

@@ -9,12 +9,7 @@ import { OverviewPageRoutingModule } from './overview-routing.module';
 import { OverviewPage } from './overview.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    OverviewPageRoutingModule
-  ],
-  declarations: [OverviewPage]
+  imports: [CommonModule, FormsModule, IonicModule, OverviewPageRoutingModule],
+  declarations: [OverviewPage],
 })
 export class OverviewPageModule {}

@@ -6,8 +6,8 @@ import { CourseLandingPage } from './course-landing.page';
 const routes: Routes = [
   {
     path: '',
-    component: CourseLandingPage
-  }
+    component: CourseLandingPage,
+  },
 ];
 
 @NgModule({

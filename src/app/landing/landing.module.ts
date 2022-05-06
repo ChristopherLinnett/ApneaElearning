@@ -11,12 +11,7 @@ import { CreatecourseComponent } from '../instructor/createcourse/createcourse.c
 
 @NgModule({
   entryComponents: [CreatecourseComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    LandingPageRoutingModule
-  ],
-  declarations: [LandingPage, CreatecourseComponent]
+  imports: [CommonModule, FormsModule, IonicModule, LandingPageRoutingModule],
+  declarations: [LandingPage, CreatecourseComponent],
 })
 export class LandingPageModule {}

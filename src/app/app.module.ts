@@ -11,9 +11,15 @@ import { CommonModule } from '@angular/common';
 import { DetailContentPage } from './content/detail-content/detail-content.page';
 
 @NgModule({
-  declarations: [AppComponent,DetailContentPage],
+  declarations: [AppComponent, DetailContentPage],
   entryComponents: [DetailContentPage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, CommonModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    FormsModule,
+    CommonModule,
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

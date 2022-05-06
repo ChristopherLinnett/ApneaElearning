@@ -9,8 +9,8 @@ describe('InProgressPage', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ InProgressPage ],
-      imports: [IonicModule.forRoot()]
+      declarations: [InProgressPage],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(InProgressPage);

@@ -7,15 +7,15 @@ import { Student } from './student.class';
   styleUrls: ['./createcourse.component.scss'],
 })
 export class CreatecourseComponent implements OnInit {
-  students: any[]
+  students: any[];
   courseDate;
   constructor() {
-    this.students = []
+    this.students = [];
   }
-  addStudent(){           //adds a new student to be edited in this page's form
-    var student = new Student()
-    this.students.push(student)
+  addStudent() {
+    //adds a new student to be edited in this page's form
+    var student = new Student();
+    this.students.push(student);
   }
   ngOnInit() {}
-
 }

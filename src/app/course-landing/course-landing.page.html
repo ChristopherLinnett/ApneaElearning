@@ -1,46 +1,50 @@
 <ion-header>
   <ion-toolbar>
-      <ion-back-button slot="start" defaultHref=""></ion-back-button>
+    <ion-back-button slot="start" defaultHref=""></ion-back-button>
     <ion-title>{{thisCourse.title}} Course</ion-title>
-    <ion-button (click)="logout()" size="small" color="dark" fill="clear" slot="end"><ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon></ion-button>
+    <ion-button
+      (click)="logout()"
+      size="small"
+      color="dark"
+      fill="clear"
+      slot="end"
+      ><ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon
+    ></ion-button>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-grid>
-    <ion-row class="ion-margin-vertical" >
+    <ion-row class="ion-margin-vertical">
       <ion-col class="ion-text-center">
-        <ion-label>
-          Your course date is {{ "user.courseDate" }}
-        </ion-label>
+        <ion-label> Your course date is {{ "user.courseDate" }} </ion-label>
       </ion-col>
     </ion-row>
 
     <ion-row class="ion-margin-vertical">
-      <ion-col class="ion-text-center"  >
-        <ion-label class="ion-align-self-center">
-          Overview
-        </ion-label>
+      <ion-col class="ion-text-center">
+        <ion-label class="ion-align-self-center"> Overview </ion-label>
       </ion-col>
     </ion-row>
-      <ion-row *ngFor="let descriptionBlock of thisCourse.description.split('\n')">
-        <ion-col>
-          <ion-label>
-            {{ descriptionBlock }}
-          </ion-label>
-        </ion-col>
-      </ion-row>
+    <ion-row
+      *ngFor="let descriptionBlock of thisCourse.description.split('\n')"
+    >
+      <ion-col>
+        <ion-label> {{ descriptionBlock }} </ion-label>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
 <ion-footer>
-<ion-grid>
-  <ion-row class="ion-margin-bottom">
-    <ion-col >
-      <ion-button size="6" expand="block" (click)="onClickModule()">Modules</ion-button>
-    </ion-col>
-    <ion-col size="6" *ngIf="quizAvailable">
-      <ion-button expand="block" (click)="launchQuiz()">Quiz</ion-button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
-
+  <ion-grid>
+    <ion-row class="ion-margin-bottom">
+      <ion-col>
+        <ion-button size="6" expand="block" (click)="onClickModule()"
+          >Modules</ion-button
+        >
+      </ion-col>
+      <ion-col size="6" *ngIf="quizAvailable">
+        <ion-button expand="block" (click)="launchQuiz()">Quiz</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-footer>

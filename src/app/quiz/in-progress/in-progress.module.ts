@@ -13,8 +13,8 @@ import { InProgressPage } from './in-progress.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    InProgressPageRoutingModule
+    InProgressPageRoutingModule,
   ],
-  declarations: [InProgressPage]
+  declarations: [InProgressPage],
 })
 export class InProgressPageModule {}

@@ -1301,19 +1301,20 @@ export class CourseService {
     },
   ];
   constructor() {}
-  getAllModules(){
-    return this.AIDA2Default    //returns course structure file
+  getAllModules() {
+    return this.AIDA2Default; //returns course structure file
   }
 
   getModuleTitle(moduleNo) {
-    return this.AIDA2Default[moduleNo - 1].title;     //takes a module number, and returns the title
+    return this.AIDA2Default[moduleNo - 1].title; //takes a module number, and returns the title
   }
 
-  getModuleTitleList() {                          //returns an array of all module titles in current course
-    var newArray = []
-    for (let moduleItem of this.AIDA2Default){
-      newArray.push(moduleItem.title)
+  getModuleTitleList() {
+    //returns an array of all module titles in current course
+    var newArray = [];
+    for (let moduleItem of this.AIDA2Default) {
+      newArray.push(moduleItem.title);
     }
-    return newArray
+    return newArray;
   }
 }

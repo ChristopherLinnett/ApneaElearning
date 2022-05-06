@@ -13,8 +13,8 @@ import { CourseLandingPage } from './course-landing.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    CourseLandingPageRoutingModule
+    CourseLandingPageRoutingModule,
   ],
-  declarations: [CourseLandingPage]
+  declarations: [CourseLandingPage],
 })
 export class CourseLandingPageModule {}

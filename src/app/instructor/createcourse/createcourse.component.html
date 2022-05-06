@@ -4,24 +4,33 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-card><ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="courseDate" presentation="date"></ion-datetime>
+  <ion-card
+    ><ion-datetime
+      display-format="DD/MM/YYYY"
+      [(ngModel)]="courseDate"
+      presentation="date"
+    ></ion-datetime>
     <ion-item>
-      <ion-label>{{courseDate.split('T')[0]}}</ion-label>
+      <ion-label>{{ courseDate.split("T")[0] }}</ion-label>
       <ion-button>save</ion-button>
     </ion-item>
   </ion-card>
   <ion-item>
     <ion-label>Students</ion-label>
-    <ion-button  fill="clear" (click)="addStudent()"><ion-icon slot='icon-only' name="add"></ion-icon></ion-button>
+    <ion-button fill="clear" (click)="addStudent()"
+      ><ion-icon slot="icon-only" name="add"></ion-icon
+    ></ion-button>
   </ion-item>
-  <ion-list *ngFor="let student of students,index as i">
-    <ion-list-header><ion-label>Student {{ i+1 }}</ion-label></ion-list-header>
+  <ion-list *ngFor="let student of students; index as i">
+    <ion-list-header
+      ><ion-label>Student {{ i + 1 }}</ion-label></ion-list-header
+    >
     <ion-item>
-      <ion-label position="floating">Student {{i + 1}} Name</ion-label>
+      <ion-label position="floating">Student {{ i + 1 }} Name</ion-label>
       <ion-input></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Student {{i + 1}} Email</ion-label>
+      <ion-label position="floating">Student {{ i + 1 }} Email</ion-label>
       <ion-input></ion-input>
     </ion-item>
     <ion-item>
@@ -29,11 +38,12 @@
     </ion-item>
   </ion-list>
   <ion-list class="ion-margin-top">
-    <ion-list-header><ion-label><h1>Course Type</h1></ion-label></ion-list-header>
-    <ion-item *ngFor='for let value of ["AIDA1","AIDA2","AIDA3","AIDA4"]'>
-      <ion-label>{{value}}</ion-label>
+    <ion-list-header
+      ><ion-label><h1>Course Type</h1></ion-label></ion-list-header
+    >
+    <ion-item *ngFor="for; let value; of: ['AIDA1', 'AIDA2', 'AIDA3', 'AIDA4']">
+      <ion-label>{{ value }}</ion-label>
       <ion-checkbox slot="end"></ion-checkbox>
     </ion-item>
   </ion-list>
-
 </ion-content>

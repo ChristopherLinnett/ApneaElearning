@@ -1,8 +1,14 @@
 <ion-header>
   <ion-toolbar>
-      <ion-button (click)="logout()" size="small" color="dark" fill="dark" slot="end">
-        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
-      </ion-button>
+    <ion-button
+      (click)="logout()"
+      size="small"
+      color="dark"
+      fill="dark"
+      slot="end"
+    >
+      <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+    </ion-button>
     <ion-title>Apnea Elearning</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,22 +16,29 @@
 <ion-content *ngIf="!instructorView">
   <ion-grid>
     <ion-row>
-      <hr>
+      <hr />
     </ion-row>
     <ion-row>
-      <ion-label align="center">Welcome <ion-text color="secondary"><span>{{username}}</span></ion-text> to your Apnea
-        Elearning App.</ion-label>
+      <ion-label align="center"
+        >Welcome
+        <ion-text color="secondary"><span>{{username}}</span></ion-text> to your
+        Apnea Elearning App.</ion-label
+      >
     </ion-row>
-    <hr>
+    <hr />
     <ion-row>
-      <p align="center">To get started, select an available course from below</p>
+      <p align="center">
+        To get started, select an available course from below
+      </p>
     </ion-row>
     <ion-row *ngFor="let course of availableCourses; index as i">
       <ion-col>
         <a [routerLink]="['/course-landing']">
-          <ion-button (click)="onSelectCourse(course)" expand="block"> {{course}} </ion-button>
+          <ion-button (click)="onSelectCourse(course)" expand="block">
+            {{course}}
+          </ion-button>
         </a>
- </ion-col>
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
@@ -35,18 +48,18 @@
     <ion-row>
       <ion-col>
         <ion-card>
-            <ion-card-header class="ion-text-center">
-              <ion-card-title>Upcoming Course</ion-card-title>
-            </ion-card-header>
-            <ion-card-content class="ion-text-center">
-              <ion-card-subtitle>Course.date:</ion-card-subtitle>
-              <ion-card-subtitle>course.type</ion-card-subtitle>
-                <ion-list class="ion-text-center">
-                  <ion-item>Student1</ion-item>
-                  <ion-item>Student2</ion-item>
-                  <ion-item>Student3</ion-item>
-                  <ion-item>Student4</ion-item>
-                </ion-list>
+          <ion-card-header class="ion-text-center">
+            <ion-card-title>Upcoming Course</ion-card-title>
+          </ion-card-header>
+          <ion-card-content class="ion-text-center">
+            <ion-card-subtitle>Course.date:</ion-card-subtitle>
+            <ion-card-subtitle>course.type</ion-card-subtitle>
+            <ion-list class="ion-text-center">
+              <ion-item>Student1</ion-item>
+              <ion-item>Student2</ion-item>
+              <ion-item>Student3</ion-item>
+              <ion-item>Student4</ion-item>
+            </ion-list>
           </ion-card-content>
         </ion-card>
       </ion-col>
@@ -54,39 +67,39 @@
     <ion-row>
       <ion-col size="3"></ion-col>
       <ion-col size="6" class="ion-align-items-center" class="ion-text-center">
-        <ion-button (click)="onCreateCourse()" expand="block">Create Course</ion-button>
+        <ion-button (click)="onCreateCourse()" expand="block"
+          >Create Course</ion-button
+        >
       </ion-col>
       <ion-col size="3"></ion-col>
     </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-accordion-group>
-            <ion-accordion>
-              <ion-item  slot="header">
-                <ion-label>Upcoming Courses</ion-label>
+    <ion-row>
+      <ion-col>
+        <ion-accordion-group>
+          <ion-accordion>
+            <ion-item slot="header">
+              <ion-label>Upcoming Courses</ion-label>
+            </ion-item>
+            <ion-list slot="content">
+              <ion-item>
+                <ion-label>date1</ion-label>
               </ion-item>
-              <ion-list slot="content">
-                <ion-item>
-                  <ion-label>date1</ion-label>
-                </ion-item>
-                <ion-item>
-                  <ion-label>date2</ion-label>
-                </ion-item>
-                <ion-item>
-                  <ion-label>date3</ion-label>
-                </ion-item>
-                <ion-item>
-                  <ion-label>date4</ion-label>
-                </ion-item>
-              </ion-list>
-            </ion-accordion>
-          </ion-accordion-group>
-        </ion-col>
-      </ion-row>
+              <ion-item>
+                <ion-label>date2</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>date3</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>date4</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-accordion>
+        </ion-accordion-group>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
-
-
 
 <ion-footer *ngIf="userRole=='Instructor'">
   <ion-toolbar class="ion-align-items-center">
@@ -94,5 +107,5 @@
       <ion-label>Instructor View</ion-label>
       <ion-toggle [(ngModel)]="instructorView" color="primary"></ion-toggle>
     </ion-item>
-    </ion-toolbar>
+  </ion-toolbar>
 </ion-footer>

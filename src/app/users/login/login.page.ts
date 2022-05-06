@@ -11,26 +11,32 @@ export class LoginPage implements OnInit {
   @ViewChild('username') usernameRef: ElementRef<HTMLInputElement>;
   @ViewChild('password') passwordRef: ElementRef<HTMLInputElement>;
   incorrectPassword: string;
-  incorrectCount: number = 0
+  incorrectCount: number = 0;
   username: String;
   password: String;
-  constructor(private userService: UserService, private modalController: ModalController, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private modalController: ModalController,
+    private router: Router
+  ) {}
 
-  login(){        //authenticates user login, returns message if fails, navigates router to landing page if successful
-    this.userService.login(this.usernameRef.nativeElement.value,this.passwordRef.nativeElement.value)
-    if (!this.userService.loggedIn){
-      this.incorrectCount++
+  login() {
+    //authenticates user login, returns message if fails, navigates router to landing page if successful
+    this.userService.login(
+      this.usernameRef.nativeElement.value,
+      this.passwordRef.nativeElement.value
+    );
+    if (!this.userService.loggedIn) {
+      this.incorrectCount++;
       this.incorrectPassword = `Incorrect details, please try again
       (${this.incorrectCount} attempts)`;
-      return
+      return;
     }
-      this.incorrectCount= 0
-      this.incorrectPassword=''
-      this.router.navigate(['landing'])
-      this.modalController.dismiss()
+    this.incorrectCount = 0;
+    this.incorrectPassword = '';
+    this.router.navigate(['landing']);
+    this.modalController.dismiss();
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
