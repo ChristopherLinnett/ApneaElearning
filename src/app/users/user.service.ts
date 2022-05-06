@@ -12,7 +12,7 @@ export class UserService {
   constructor() {
    }
 
-  login(inputUser:String, inputPass: String) {
+  login(inputUser:String, inputPass: String) {          //authenticates login, updates info then returns
     for (let user of this.existingUsers) {
         if (user.username == inputUser && user.password == inputPass){
           this.loggedIn = true
@@ -22,25 +22,25 @@ export class UserService {
         }
     }
   }
-getCourses() {
+getCourses() {          //gets available courses if user logged in
 if (this.loggedIn) {
       return this.user.availableCourses
     }
   }
-  getUsername() {
+  getUsername() {       //gets username if logged in
     if (this.loggedIn){
     return this.user.username}
   }
-  getUserRole() {
+  getUserRole() {       //gets user role if logged in
     if (this.loggedIn){
       return this.user.role
     }
   }
-  logout(){
+  logout(){             //logs out
     this.user = undefined
     this.loggedIn = false
   }
-  isLoggedIn() {
+  isLoggedIn() {          //returns whether app state shows logged in
     return this.loggedIn
   }
 }

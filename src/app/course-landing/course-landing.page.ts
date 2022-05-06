@@ -17,13 +17,13 @@ export class CourseLandingPage implements OnInit {
 ngOnInit() {
   this.thisCourse = this.courseService.getCourse()
 }
-onClickModule() {
+onClickModule() {           //move to course overview page
 this.router.navigate(['overview'])
 }
 launchQuiz(){
-  this.router.navigate(['/in-progress'])
+  this.router.navigate(['/in-progress'])      //move to quiz in progress page
 }
-logout(){
+logout(){                             //logs out  user
   this.userService.logout()
   this.homeComp.checkLogin()
 }

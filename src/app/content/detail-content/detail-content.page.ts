@@ -29,33 +29,33 @@ export class DetailContentPage implements OnInit {
     if ((this.selection == 'continue')) {
     }
   }
-  getModuleList(){
+  getModuleList(){                              //returns the data for the whole course
     return this.courseService.getAllModules()
   }
 
-  closeModal() {
+  closeModal() {                                //closes the module
     this.modalController.dismiss();
   }
-  startModules(moduleIndex, innerIndex) {
+  startModules(moduleIndex, innerIndex) {       //accepts module/section as inputs and returns content fo that section
     this.selection = '';
     this.currentModuleService.initialise(moduleIndex, innerIndex);
     this.getContent()
   }
-  getContent() {
+  getContent() {                  //pulls content for current referenced module/section
     this.currentTitle = this.courseService.getAllModules()[this.currentModuleService.currentModuleIndex].innerModules[this.currentModuleService.currentInnerIndex].title
     this.currentContent = this.courseService.getAllModules()[this.currentModuleService.currentModuleIndex].innerModules[this.currentModuleService.currentInnerIndex].content
     this.moduleTitle = this.courseService.getAllModules()[this.currentModuleService.currentModuleIndex].title
   }
-  onNextClick() {
+  onNextClick() {                 //moves content forward one section
     this.currentModuleService.next()
     this.getContent()
   }
-  onBackClick() {
+  onBackClick() {                 //moves content back one section
     this.currentModuleService.back()
     this.getContent()
   }
 
-  async closeModalAlert() {
+  async closeModalAlert() {       //alert to have user confirm they want to close their course content
     let alert = await this.alertCtrl.create({
       header: `Close`,
       message: `Are you sure you want to exit your modules?`,

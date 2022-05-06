@@ -17,7 +17,7 @@ export class OverviewPage implements OnInit {
 
   ngOnInit() {
   }
-async showModules() {
+async showModules() {                         //creates a modal that prompts for start point in course content from dropdowns
   this.moduleList = this.courseService.AIDA2Default
     const modal = await this.modalController.create({
       component:DetailContentPage,
@@ -29,7 +29,7 @@ async showModules() {
     return modal.present()
   }
 
-  async onStart(){
+  async onStart(){                          //creates a modal that starts from module 1 section 1
     const modal = await this.modalController.create({
       component:DetailContentPage,
       componentProps: {selection: "start"},backdropDismiss: false
@@ -40,7 +40,7 @@ async showModules() {
     return modal.present()
   }
 
-async onContinue(){
+async onContinue(){                       //creates a modal that calculates the user's progress in content and starts after last completed module
   const modal = await this.modalController.create({
     component:DetailContentPage,
     componentProps: {selection:"continue"},backdropDismiss: false
@@ -50,7 +50,7 @@ async onContinue(){
   })
   return modal.present()
 }
-logout(){
+logout(){                                 //logs user out
   this.userService.logout()
   this.homeComp.checkLogin()
 }

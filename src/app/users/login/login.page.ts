@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
   password: String;
   constructor(private userService: UserService, private modalController: ModalController, private router: Router) {}
 
-  login(){
+  login(){        //authenticates user login, returns message if fails, navigates router to landing page if successful
     this.userService.login(this.usernameRef.nativeElement.value,this.passwordRef.nativeElement.value)
     if (!this.userService.loggedIn){
       this.incorrectCount++

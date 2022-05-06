@@ -15,14 +15,14 @@ export class CurrentModuleService {
 
   }
 
-  initialise(moduleIndex,innerIndex){
+  initialise(moduleIndex,innerIndex){         //calculates the length of the current module, and the length of the whole course
     this.currentModuleIndex = moduleIndex
     this.currentInnerIndex = innerIndex
     this.moduleCount = this.courseService.getAllModules().length
     this.innerModuleCount = this.courseService.getAllModules()[moduleIndex].innerModules.length
   }
 
-  next(){
+  next(){                                     //calculates the index for the next module and section and returns it
     if (this.currentInnerIndex >= this.innerModuleCount && this.currentModuleIndex >= this.moduleCount) {
       console.log("finished Modules")
       return
@@ -36,7 +36,7 @@ export class CurrentModuleService {
     this.currentInnerIndex++
     return this.currentInnerIndex
   }
-  back(){
+  back(){                                   //calculates the index for the previous module and section then returns it
     if (this.currentInnerIndex == 0 && this.currentModuleIndex == 0){
       return
     }
@@ -50,7 +50,7 @@ export class CurrentModuleService {
     return this.currentInnerIndex
   }
 
-  getCurrentPosition(){
+  getCurrentPosition(){                     //returns the current index of the module/section
     return {module: this.currentModuleIndex, inner: this.currentInnerIndex}
   }
 

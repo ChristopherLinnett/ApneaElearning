@@ -31,21 +31,21 @@ export class LandingPage implements OnInit{
           this.synchroniseUser()
         })
   }
-  onSelectCourse(course) {
+  onSelectCourse(course) {              //when pressing course button, updates course's state to show that as the current course
     this.courseService.setCourse(course)
   }
 
-  synchroniseUser(){
+  synchroniseUser(){                    //sets component variables to match the application's state
     this.availableCourses = this.userService.getCourses()
     this.username = this.userService.getUsername()
     this.userRole = this.userService.getUserRole()
    }
-   logout(){
+   logout(){                //logout button
     this.userService.logout()
     this.homeComp.checkLogin()
   }
 
-  async onCreateCourse() {
+  async onCreateCourse() {            //launches modal for instructor to add new courses
     const modal = await this.modalController.create({
       component:CreatecourseComponent,
       componentProps: { },
