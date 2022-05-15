@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Student } from './student.class';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonModal } from '@ionic/angular';
+import { StudentConstructor } from './studentconstructor.class';
+
 
 @Component({
   selector: 'app-createcourse',
@@ -7,15 +9,44 @@ import { Student } from './student.class';
   styleUrls: ['./createcourse.component.scss'],
 })
 export class CreatecourseComponent implements OnInit {
-  students: any[];
+  @ViewChild('addStudentModal') addStudentModal:IonModal;
+  @ViewChild('courseDateModal') courseDateModal:IonModal;
+  @ViewChild('courseTypeModal') courseTypeModal:IonModal;
+  courseOptions = ['AIDA1', 'AIDA2', 'AIDA3', 'AIDA4']
+  courseStudents: StudentConstructor[];
   courseDate;
+  selectedCourse;
+  firstname;
+  lastname;
+  email;
   constructor() {
-    this.students = [];
+    this.courseStudents = [];
+
   }
-  addStudent() {
+  addEmptyStudent() {
     //adds a new student to be edited in this page's form
-    var student = new Student();
-    this.students.push(student);
+    var studentEntry = new StudentConstructor("", "", "");
+    this.courseStudents.push(studentEntry);
+  }
+  addStudentToCourse(firstname:string, lastname: string, email:string, modal:IonModal) {
+    let studentEntry = new StudentConstructor(firstname, lastname, email)
+    this.courseStudents.push(studentEntry)
+    this.firstname = ""
+    this.lastname = ""
+    this.email = ""
+    this.closeModal(modal)
+  }
+  saveCourse() {
+  }
+  closeModal(modal:IonModal){
+    modal.dismiss()
+  }
+  openModal(modal: IonModal){
+    modal.present()
+  }
+
+  changed(event){
+    console.log(event)
   }
   ngOnInit() {}
 }
