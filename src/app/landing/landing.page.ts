@@ -23,7 +23,7 @@ export class LandingPage implements OnInit {
   username: string;
   loggedIn: Boolean;
   userRole: string;
-  instructorView: Boolean;
+  studentView: Boolean;
 
   constructor(
     private modalController: ModalController,
@@ -57,6 +57,7 @@ export class LandingPage implements OnInit {
   }
   logout() {
     //logout button
+    this.studentView = true;
     this.userService.logout();
     this.homeComp.checkLogin();
   }

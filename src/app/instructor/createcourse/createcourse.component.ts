@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonModal } from '@ionic/angular';
+import { AlertController, IonModal, ModalController } from '@ionic/angular';
 import { StudentConstructor } from './studentconstructor.class';
 
 
@@ -19,7 +19,7 @@ export class CreatecourseComponent implements OnInit {
   firstname;
   lastname;
   email;
-  constructor() {
+  constructor(private modalController:ModalController, private alertController: AlertController) {
     this.courseStudents = [];
 
   }
@@ -45,8 +45,15 @@ export class CreatecourseComponent implements OnInit {
     modal.present()
   }
 
-  changed(event){
-    console.log(event)
+  async quitAddCourse(){
+  if (this.courseDate || this.selectedCourse || this.courseStudents.length > 0) {const alert = await this.alertController.create({
+    cssClass: 'alert-controller',
+    header: 'Cancel Course Creation',
+    message: 'Are you sure you want to cancel creating this course?',
+    buttons: [{text: 'No', role: 'cancel', cssClass: 'secondary', id: 'cancel-button}'},{text: 'Yes', id: 'confirm-button', handler: () => {this.modalController.dismiss()}}]
+  });
+  await alert.present();
+} else {this.modalController.dismiss()}
   }
   ngOnInit() {}
 }

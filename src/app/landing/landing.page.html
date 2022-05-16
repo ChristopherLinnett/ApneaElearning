@@ -1,19 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-button
+    <ion-buttons slot="end">
+      <ion-button
       (click)="logout()"
       size="small"
       color="dark"
       fill="dark"
       slot="end"
-    >
+      >
       <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
     </ion-button>
+  </ion-buttons>
     <ion-title>Apnea Elearning</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="!instructorView">
+<ion-content *ngIf="studentView || userRole != 'Instructor'">
   <ion-grid>
     <ion-row>
       <hr />
@@ -43,7 +45,7 @@
   </ion-grid>
 </ion-content>
 
-<ion-content *ngIf="instructorView">
+<ion-content *ngIf="!studentView && userRole=='Instructor'">
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -104,8 +106,8 @@
 <ion-footer *ngIf="userRole=='Instructor'">
   <ion-toolbar class="ion-align-items-center">
     <ion-item>
-      <ion-label>Instructor View</ion-label>
-      <ion-toggle [(ngModel)]="instructorView" color="primary"></ion-toggle>
+      <ion-label>Student View</ion-label>
+      <ion-toggle [(ngModel)]="studentView" color="primary"></ion-toggle>
     </ion-item>
   </ion-toolbar>
 </ion-footer>
