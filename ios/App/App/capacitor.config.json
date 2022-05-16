@@ -1,0 +1,6 @@
+{
+	"appId": "com.linnettchristopher.apneaelearning",
+	"appName": "ApneaElearning",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
