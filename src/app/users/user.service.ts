@@ -13,13 +13,13 @@ export class UserService {
   };
   existingUsers = [
     {
-      username: 'Instructor',
+      username: 'instructor',
       password: 'password',
       role: 'Instructor',
       availableCourses: ['AIDA1', 'AIDA2', 'AIDA3', 'AIDA4', 'AIDA Instructor'],
     },
     {
-      username: 'NewStudent',
+      username: 'newstudent',
       password: 'password',
       role: 'Student',
       availableCourses: ['AIDA2'],
@@ -32,7 +32,7 @@ export class UserService {
   login(inputUser: String, inputPass: String) {
     //authenticates login, updates info then returns
     for (let user of this.existingUsers) {
-      if (user.username == inputUser && user.password == inputPass) {
+      if (user.username == inputUser.trim().toLowerCase() && user.password == inputPass.trim().toLowerCase()) {
         this.loggedIn = true;
         this.user = user;
         this.loggedInChanged.next(this.isLoggedIn());
