@@ -16,18 +16,18 @@
 
     <ion-item>
       <ion-label position="floating" for="username">Username</ion-label>
-      <ion-input ngModel #username id="username" type="text"></ion-input>
+      <ion-input [(ngModel)]="username" id="username" type="text"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating" for="password">Password</ion-label>
-      <ion-input ngModel #password id="password" type="text"></ion-input>
+      <ion-input [(ngModel)]="password" id="password" type="password"></ion-input>
     </ion-item>
   <ion-grid class="ion-margin-top"
     ><ion-row class="ion-margin-top"
       ><ion-col></ion-col
       ><ion-col size="8">
         <ion-button
-          class="ion-margin-top" shape="round" size="large" expand="block" (click)="login()">
+          class="ion-margin-top" shape="round" size="large" expand="block" (click)="login()" routerLink='/landing'>
           LOGIN
           </ion-button>
           </ion-col><ion-col></ion-col
