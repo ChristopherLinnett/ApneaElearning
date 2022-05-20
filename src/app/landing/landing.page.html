@@ -21,27 +21,27 @@
       <hr />
     </ion-row>
     <ion-row>
-      <ion-label align="center"
-        >Welcome
-        <ion-text color="secondary"><span>{{username}}</span></ion-text> to your
-        Apnea Elearning App.</ion-label
-      >
+      <div align="center">
+        <ion-label>Welcome 
+        <ion-text color="secondary"> <span>{{username}}</span></ion-text> to your
+        Apnea Elearning App.</ion-label></div>
     </ion-row>
     <hr />
     <ion-row>
-      <p align="center">
+      <div align="center">
         To get started, select an available course from below
-      </p>
+    </div>
     </ion-row>
-    <ion-row *ngFor="let course of availableCourses; index as i">
-      <ion-col>
-        <a [routerLink]="['/course-landing']">
-          <ion-button (click)="onSelectCourse(course)" expand="block">
-            {{course}}
-          </ion-button>
-        </a>
-      </ion-col>
-    </ion-row>
+    <swiper #swiper [config]="config">
+      <ng-template class="ion-margin" swiperSlide *ngFor="let course of availableCourses; index as i">
+              <!-- <ion-card > -->
+                <!-- <ion-card-title class="ion-text-center">{{course.title}}</ion-card-title> -->
+                <!-- <ion-card-content class="ion-text-center"> -->
+                  <img src="./assets/img/{{course.title.toLowerCase()}}image.png" alt="" [routerLink]="['/course-landing']" (click)="onSelectCourse(course.title)">
+              <!-- </ion-card-content> -->
+              <!-- </ion-card> -->
+      </ng-template>
+    </swiper>
   </ion-grid>
 </ion-content>
 

@@ -1,3 +1,4 @@
+import { ViewChild } from '@angular/core';
 import {
   Component,
   Injectable,
@@ -5,6 +6,9 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { SwiperOptions } from 'swiper';
+import { SwiperComponent } from 'swiper/angular';
+
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
@@ -12,19 +16,21 @@ import { AppComponent } from '../app.component';
 import { CourseService } from '../course-landing/course.service';
 import { CreatecourseComponent } from '../instructor/createcourse/createcourse.component';
 import { UserService } from '../users/user.service';
+import { AfterContentChecked } from '@angular/core';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.page.html',
   styleUrls: ['./landing.page.scss'],
 })
-export class LandingPage implements OnInit {
+export class LandingPage implements OnInit, AfterContentChecked {
   private loggedInSubscribed: Subscription;
-  availableCourses: string[];
+  availableCourses: {title: string, description: string}[] = []
   username: string;
   loggedIn: Boolean;
   userRole: string;
   studentView: Boolean;
-
+  @ViewChild('swiper') swiper: SwiperComponent
+config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
   constructor(
     private modalController: ModalController,
     private userService: UserService,
@@ -32,7 +38,6 @@ export class LandingPage implements OnInit {
     private courseService: CourseService,
     private router: Router
   ) {
-    this.availableCourses = this.userService.getCourses();
     this.username = this.userService.getUsername();
   }
   ngOnInit() {
@@ -49,11 +54,26 @@ export class LandingPage implements OnInit {
     this.courseService.setCourse(course);
   }
 
+  ngAfterContentChecked(): void {
+    if (this.swiper) {
+      this.swiper.updateSwiper({})
+    }
+  }
+
   synchroniseUser() {
     //sets component variables to match the application's state
-    this.availableCourses = this.userService.getCourses();
+    var availableCourseNames = this.userService.getCourses();
+    for (let course of this.courseService.getAllCourses()){
+      for (let testCourse of availableCourseNames){
+        if (testCourse == course.title){
+          this.availableCourses.push(course)
+        }
+      }
+      
+    }
     this.username = this.userService.getUsername();
     this.userRole = this.userService.getUserRole();
+    this.swiper.initSwiper()
   }
   logout() {
     //logout button

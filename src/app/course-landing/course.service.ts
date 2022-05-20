@@ -54,6 +54,9 @@ export class CourseService implements OnInit {
     //returns a course object
     return this.thisCourse;
   }
+  getAllCourses() {
+    return this.allCourses
+  }
   setCourse(course) {
     //takes a course title, sets current course to the course that contains that title
     for (let item of this.allCourses) {
