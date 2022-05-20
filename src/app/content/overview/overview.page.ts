@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { AppComponent } from 'src/app/app.component';
 import { UserService } from 'src/app/users/user.service';
 import { CourseService } from '../course.service';
 import { DetailContentPage } from '../detail-content/detail-content.page';
@@ -18,7 +17,6 @@ export class OverviewPage implements OnInit {
   }[];
 
   constructor(
-    private homeComp: AppComponent,
     private userService: UserService,
     private courseService: CourseService,
     private modalController: ModalController
@@ -64,6 +62,5 @@ export class OverviewPage implements OnInit {
   logout() {
     //logs user out
     this.userService.logout();
-    this.homeComp.checkLogin();
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AppComponent } from '../app.component';
 import { UserService } from '../users/user.service';
 import { CourseService } from './course.service';
 
@@ -13,7 +12,6 @@ export class CourseLandingPage implements OnInit {
   thisCourse: { title: String; description: String };
   quizAvailable = true;
   constructor(
-    private homeComp: AppComponent,
     private courseService: CourseService,
     private userService: UserService,
     private router: Router
@@ -32,6 +30,5 @@ export class CourseLandingPage implements OnInit {
   logout() {
     //logs out  user
     this.userService.logout();
-    this.homeComp.checkLogin();
   }
 }
