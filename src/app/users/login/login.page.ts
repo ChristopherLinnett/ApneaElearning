@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
 import { UserService } from '../user.service';
 @Component({
   selector: 'app-login',
@@ -8,24 +7,20 @@ import { UserService } from '../user.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  @ViewChild('username') usernameRef: ElementRef<HTMLInputElement>;
-  @ViewChild('password') passwordRef: ElementRef<HTMLInputElement>;
   incorrectPassword: string;
   incorrectCount: number = 0;
-  username: String;
-  password: String;
+  username: string = ""
+  password: string = ""
   constructor(
     private userService: UserService,
-    private modalController: ModalController,
     private router: Router
   ) {}
 
   login() {
     //authenticates user login, returns message if fails, navigates router to landing page if successful
-    this.userService.login(
-      this.usernameRef.nativeElement.value,
-      this.passwordRef.nativeElement.value
-    );
+    this.userService.login(this.username,this.password);
+    this.username = ""
+    this.password = ""
     if (!this.userService.loggedIn) {
       this.incorrectCount++;
       this.incorrectPassword = `Incorrect details, please try again
@@ -34,8 +29,6 @@ export class LoginPage implements OnInit {
     }
     this.incorrectCount = 0;
     this.incorrectPassword = '';
-    this.router.navigate(['landing']);
-    this.modalController.dismiss();
   }
 
   ngOnInit() {}
