@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
 @Injectable({
@@ -25,9 +26,9 @@ export class UserService {
       availableCourses: ['AIDA2'],
     },
   ];
-  loggedIn: Boolean = false;
-  loggedInChanged: Subject<Boolean> = new Subject<Boolean>();
-  constructor() {}
+  loggedIn: boolean = false;
+  loggedInChanged: Subject<boolean> = new Subject<boolean>();
+  constructor(private router: Router) {}
 
   login(inputUser: String, inputPass: String) {
     //authenticates login, updates info then returns
@@ -62,6 +63,7 @@ export class UserService {
     //logs out
     this.user = undefined;
     this.loggedIn = false;
+    this.router.navigate(["login"])
   }
   isLoggedIn() {
     //returns whether app state shows logged in
