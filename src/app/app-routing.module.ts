@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './users/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'landing',
+    redirectTo: 'login',
     pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./users/login/login.module').then((m) => m.LoginPageModule),
   },
   {
     path: 'quizlanding',
@@ -30,6 +36,7 @@ const routes: Routes = [
     path: 'landing',
     loadChildren: () =>
       import('./landing/landing.module').then((m) => m.LandingPageModule),
+      canActivate: [AuthGuard]
   },
   {
     path: 'course-landing',
