@@ -6,13 +6,12 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { SwiperOptions } from 'swiper';
+import Swiper, { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
 
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { AppComponent } from '../app.component';
 import { CourseService } from '../course-landing/course.service';
 import { CreatecourseComponent } from '../instructor/createcourse/createcourse.component';
 import { UserService } from '../users/user.service';
@@ -34,7 +33,6 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
   constructor(
     private modalController: ModalController,
     private userService: UserService,
-    private homeComp: AppComponent,
     private courseService: CourseService,
     private router: Router
   ) {
@@ -42,12 +40,13 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
   }
   ngOnInit() {
     this.loggedIn = this.userService.loggedIn;
-    this.loggedInSubscribed = this.userService.loggedInChanged.subscribe(
-      (logged) => {
-        this.loggedIn = logged;
-        this.synchroniseUser();
-      }
-    );
+    this.synchroniseUser()
+    // this.loggedInSubscribed = this.userService.loggedInChanged.subscribe(
+    //   (logged) => {
+    //     this.loggedIn = logged;
+    //     this.synchroniseUser();
+    //   }
+    // );
   }
   onSelectCourse(course) {
     //when pressing course button, updates course's state to show that as the current course
@@ -71,15 +70,14 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
       }
       
     }
+    console.log(this.availableCourses.length)
     this.username = this.userService.getUsername();
     this.userRole = this.userService.getUserRole();
-    this.swiper.initSwiper()
   }
   logout() {
     //logout button
-    this.studentView = true;
+    this.studentView = false;
     this.userService.logout();
-    this.homeComp.checkLogin();
   }
 
   async onCreateCourse() {
