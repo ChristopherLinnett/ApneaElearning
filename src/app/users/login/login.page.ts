@@ -29,6 +29,8 @@ export class LoginPage implements OnInit {
     }
     this.incorrectCount = 0;
     this.incorrectPassword = '';
+    this.router.navigateByUrl('/landing', { replaceUrl: true }) 
+
   }
 
   ngOnInit() {}
