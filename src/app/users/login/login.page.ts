@@ -19,6 +19,10 @@ export class LoginPage implements OnInit {
     private dataStorage: DatastorageService
   ) {
   }
+  clearMem(){
+    this.dataStorage.clear()
+    this.ngOnInit()
+  }
 
   async login() {
     //authenticates user login, returns message if fails, navigates router to landing page if successful
@@ -46,15 +50,14 @@ export class LoginPage implements OnInit {
 
 
  async ngOnInit() {
-    this.dataStorage.lookup('saveduserdetails').then((details) => {
+    var details = await this.dataStorage.lookup('saveduserdetails')
       if (details && details != {username: "", password: ""}) {
         this.username = details.username;
         this.password = details.password;
           if (this.username.length > 0 && this.password.length > 0){
             this.savelogin = true
           }
-      }
-    });
+      };
   }
 
 }
