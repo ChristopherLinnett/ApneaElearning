@@ -16,6 +16,7 @@ import { CourseService } from '../course-landing/course.service';
 import { CreatecourseComponent } from '../instructor/createcourse/createcourse.component';
 import { UserService } from '../users/user.service';
 import { AfterContentChecked } from '@angular/core';
+import { CourseConstructor } from '../instructor/createcourse/studentconstructor.class';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.page.html',
@@ -25,8 +26,9 @@ export class LandingPage implements OnInit, AfterContentChecked {
   private loggedInSubscribed: Subscription;
   availableCourses: {title: string, description: string}[] = []
   username: string;
-  loggedIn: Boolean;
+  loggedIn: boolean;
   userRole: string;
+  firstname: string;
   studentView: Boolean;
   @ViewChild('swiper') swiper: SwiperComponent
 config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
@@ -37,10 +39,14 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
     private router: Router
   ) {
     this.username = this.userService.getUsername();
-  }
-  ngOnInit() {
     this.loggedIn = this.userService.loggedIn;
-    this.synchroniseUser()
+
+  }
+  async ngOnInit() {
+    await this.synchroniseUser()
+    if (this.swiper) {
+      this.swiper.updateSwiper({})
+    }
     // this.loggedInSubscribed = this.userService.loggedInChanged.subscribe(
     //   (logged) => {
     //     this.loggedIn = logged;
@@ -54,17 +60,16 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
   }
 
   ngAfterContentChecked(): void {
-    if (this.swiper) {
-      this.swiper.updateSwiper({})
-    }
+
   }
 
-  synchroniseUser() {
+  async synchroniseUser() {
     //sets component variables to match the application's state
-    var availableCourseNames = this.userService.getCourses();
+    var availableCourseNames = await this.userService.getCourses();
     for (let course of this.courseService.getAllCourses()){
+      console.log(availableCourseNames, course.title)
       for (let testCourse of availableCourseNames){
-        if (testCourse == course.title){
+        if (testCourse.courseType == course.title){
           this.availableCourses.push(course)
         }
       }
@@ -72,6 +77,7 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
     }
     this.username = this.userService.getUsername();
     this.userRole = this.userService.getUserRole();
+    console.log(this.username,this.userRole, this.availableCourses)
   }
   logout() {
     //logout button
