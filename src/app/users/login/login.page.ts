@@ -19,10 +19,11 @@ export class LoginPage implements OnInit {
     private dataStorage: DatastorageService
   ) {}
 
-  login() {
+  async login() {
     //authenticates user login, returns message if fails, navigates router to landing page if successful
-    this.userService.login(this.username, this.password);
-    if (!this.userService.loggedIn) {
+    this.userService.login(this.username, this.password).then(_ => 
+    {
+      if (!this.userService.loggedIn) {
       this.incorrectCount++;
       this.incorrectPassword = `Incorrect details, please try again
       (${this.incorrectCount} attempts)`;
@@ -40,9 +41,10 @@ export class LoginPage implements OnInit {
     this.username = '';
     this.password = '';
     this.savelogin = false
-  }
+  })
+}
 
-  ngOnInit() {
+ async ngOnInit() {
     this.dataStorage.lookup('saveduserdetails').then((details) => {
       if (details && details != {username: "", password: ""}) {
         this.username = details.username;
