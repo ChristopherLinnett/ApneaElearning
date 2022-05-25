@@ -9,8 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DetailContentPage } from './content/detail-content/detail-content.page';
-import Swiper from 'swiper';
-
+import { IonicStorageModule } from '@ionic/storage-angular';
 @NgModule({
   declarations: [AppComponent, DetailContentPage],
   entryComponents: [DetailContentPage],
@@ -20,7 +19,8 @@ import Swiper from 'swiper';
     AppRoutingModule,
     FormsModule,
     CommonModule,
-    SwiperModule
+    SwiperModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
