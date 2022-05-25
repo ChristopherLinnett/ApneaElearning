@@ -66,7 +66,7 @@
 
 
   <!-- Modal for choosing the Date of the course -->
-  <ion-modal class="less-width" #courseDateModal [breakpoints]="[0.0, 0.55]" [initialBreakpoint]="0.55">
+  <ion-modal class="less-width" #courseDateModal [breakpoints]="[0.0, 0.55, 0.7]" [initialBreakpoint]="0.55">
     <ng-template>
       <ion-content>
         <ion-card>
@@ -77,7 +77,7 @@
   </ion-modal>
 
   <!-- Modal for choosing the Course Type -->
-  <ion-modal class="less-width" #courseTypeModal [breakpoints]="[0.0, 0.4]" [initialBreakpoint]="0.4">
+  <ion-modal class="less-width" #courseTypeModal [breakpoints]="[0.0, 0.4,0.6,0.7]" [initialBreakpoint]="0.4">
     <ng-template>
       <ion-list class="ion-margin-top" class="ion-text-center">
         <ion-radio-group [(ngModel)]="selectedCourse">
@@ -99,7 +99,7 @@
   </ion-modal>
 
   <!-- Modal for Adding an individual Student -->
-  <ion-modal class="less-width" #addStudentModal [breakpoints]="[0.0, 0.35]" [initialBreakpoint]="0.35">
+  <ion-modal class="less-width" #addStudentModal [breakpoints]="[0.0, 0.35,0.4,0.6,0.7]" [initialBreakpoint]="0.35">
     <ng-template>
       <ion-list class="ion-text-center">
         <ion-list-header>
@@ -128,5 +128,5 @@
 
 </ion-content>
 <ion-footer>
-  <ion-button expand="block">Save</ion-button>
+  <ion-button expand="block" (click)="saveCourse()">Save</ion-button>
 </ion-footer>
