@@ -21,8 +21,7 @@ export class LoginPage implements OnInit {
 
   async login() {
     //authenticates user login, returns message if fails, navigates router to landing page if successful
-    this.userService.login(this.username, this.password).then(_ => 
-    {
+    await this.userService.login(this.username, this.password)
       if (!this.userService.loggedIn) {
       this.incorrectCount++;
       this.incorrectPassword = `Incorrect details, please try again
@@ -32,17 +31,17 @@ export class LoginPage implements OnInit {
     this.incorrectCount = 0;
     this.incorrectPassword = '';
     if (this.savelogin) {
-      this.dataStorage.save('saveduserdetails', {
+    await this.dataStorage.save('saveduserdetails', {
         username: this.username,
         password: this.password,
       });
-    } else {this.dataStorage.save('saveduserdetails', {username: "", password: ""})}
-    this.router.navigateByUrl('/landing', { replaceUrl: true });
+    } else {await this.dataStorage.save('saveduserdetails', {username: "", password: ""})}
+    this.router.navigate(['/landing'], { replaceUrl: true });
     this.username = '';
     this.password = '';
     this.savelogin = false
-  })
-}
+  }
+
 
  async ngOnInit() {
     this.dataStorage.lookup('saveduserdetails').then((details) => {

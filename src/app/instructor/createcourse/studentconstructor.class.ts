@@ -6,13 +6,15 @@ export class StudentConstructor {
   email: string;
   availableCourses: any[]
   password: string
-  constructor(firstName: string, lastName: string,  email: string, role = "student") {
+  courses: any[]
+  constructor(firstName: string, lastName: string,  email: string, role = "student", courses = null) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.role = role
     this.email = email;
     this.availableCourses = []
     this.password = `${firstName.toLowerCase()}${lastName.toLowerCase()}`
+    this.courses = courses
   }
 }
 
@@ -27,4 +29,6 @@ export class CourseConstructor {
   this.courseInstructor = courseInstructor
   this.students = students
   }
+
+
 }

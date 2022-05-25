@@ -17,12 +17,15 @@ import { CreatecourseComponent } from '../instructor/createcourse/createcourse.c
 import { UserService } from '../users/user.service';
 import { AfterContentChecked } from '@angular/core';
 import { CourseConstructor } from '../instructor/createcourse/studentconstructor.class';
+import { OnDestroy } from '@angular/core';
+import { HostListener } from '@angular/core';
+import { DatastorageService } from '../datastorage.service';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.page.html',
   styleUrls: ['./landing.page.scss'],
 })
-export class LandingPage implements OnInit, AfterContentChecked {
+export class LandingPage implements OnInit, AfterContentChecked, OnDestroy {
   private loggedInSubscribed: Subscription;
   availableCourses: {title: string, description: string}[] = []
   username: string;
@@ -30,13 +33,19 @@ export class LandingPage implements OnInit, AfterContentChecked {
   userRole: string;
   firstname: string;
   studentView: Boolean;
+  user;
+  courseDate = ""
+  courseType = ""
+  studentList = []
+
   @ViewChild('swiper') swiper: SwiperComponent
 config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
   constructor(
+    private dataStorageService: DatastorageService,
     private modalController: ModalController,
     private userService: UserService,
     private courseService: CourseService,
-    private router: Router
+    private router: Router,
   ) {
     this.username = this.userService.getUsername();
     this.loggedIn = this.userService.loggedIn;
@@ -77,7 +86,9 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
     }
     this.username = this.userService.getUsername();
     this.userRole = this.userService.getUserRole();
-    console.log(this.username,this.userRole, this.availableCourses)
+    var userlist;
+    userlist = await this.dataStorageService.lookup('users')
+    console.log(userlist)
   }
   logout() {
     //logout button
@@ -93,5 +104,9 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
     });
     modal.onDidDismiss().then(() => {});
     return modal.present();
+  }
+
+  ngOnDestroy(){
+    console.log('destroy instan')
   }
 }

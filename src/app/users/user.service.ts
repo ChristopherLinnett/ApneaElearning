@@ -14,6 +14,7 @@ export class UserService {
     email: string,
     password: string,
     role: string,
+    courses: any[],
     availableCourses: CourseConstructor[],
   };
   existingUsers = [
@@ -42,13 +43,13 @@ export class UserService {
       email: 'newstudent',
       password: 'password',
       role: 'Student',
+      courses: [],
       availableCourses: [
         new CourseConstructor('25/05/2022', 'AIDA2', 'Instructor'),
       ],
     },
   ];
   loggedIn: boolean = false;
-  loggedInChanged: Subject<boolean> = new Subject<boolean>();
   constructor(
     private router: Router,
     private dataStorageService: DatastorageService
@@ -63,7 +64,6 @@ export class UserService {
       ) {
         this.loggedIn = true;
         this.user = user;
-        this.loggedInChanged.next(this.isLoggedIn());
         return;
       }
     }
@@ -75,13 +75,20 @@ export class UserService {
         ) {
           this.loggedIn = true;
           this.user = user;
-          this.loggedInChanged.next(this.isLoggedIn());
           this.router.navigateByUrl('/landing', { replaceUrl: true });
           return;
         }
       }
     });
   }
+  getUser() {
+    return this.user
+  }
+
+  getMyCourses() {
+    return this.user.courses
+  } 
+
   async addUsers(usersArray) {
     this.dataStorageService.lookup('users').then((userlist) => {
       if (userlist) {
@@ -95,24 +102,19 @@ export class UserService {
     });
   }
   async addCourse(course) {
-    this.dataStorageService.lookup('users').then((userlist) => {
-      if (userlist) {
-        var newUserList = userlist;
-        for (let user of newUserList) {
+    var userList = await this.dataStorageService.lookup('users')
+      if (userList) {
+        for (let user of userList) {
           if (user.email == this.getUsername()) {
             user.courses.push(course);
-            this.dataStorageService.save('users', newUserList).then((_) => {
-              return;
-            });
-          }
-        }
-      } else {
-        this.dataStorageService.save('users', []).then((_) => {
+            this.dataStorageService.save('users', userList)
+              return
+          }}}
+              else {
+        await this.dataStorageService.save('users', [])
           this.addCourse(course);
-        });
-      }
-    });
-  }
+        };
+      };
 
   getCourses() {
     //gets available courses if user logged in
@@ -136,7 +138,7 @@ export class UserService {
     //logs out
     this.user = undefined;
     this.loggedIn = false;
-    this.router.navigate(['login', { replaceUrl: true }]);
+    this.router.navigate(['/login'], { replaceUrl: true });
   }
   isLoggedIn() {
     //returns whether app state shows logged in
