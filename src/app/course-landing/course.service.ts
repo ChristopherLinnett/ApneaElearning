@@ -45,6 +45,7 @@ export class CourseService implements OnInit {
     },
   ];
   thisCourse: { title: String; description: String };
+  courseDate;
   courseChange: Subject<{ title: String; description: String }>;
   constructor() {}
 

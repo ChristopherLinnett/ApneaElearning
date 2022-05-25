@@ -108,9 +108,18 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
     modal.onDidDismiss().then(() => {
       this.dataStorageService.lookup('users').then((userlist => {
         for (let user of userlist){
-          if (user.email == this.userService.getUsername){
+          if (user.email == this.userService.getUsername()){
             this.userService.user = user
-            this.synchroniseUser()
+            this.synchroniseUser().then(_ => {
+            this.userCourses = this.userService.getUser().courses
+            this.userCourses = this.userCourses.sort((a, b) => {
+              return a.courseDate - b.courseDate})
+        
+              console.log(this.userCourses[0])
+              this.courseDate = this.userCourses[0].courseDate
+              this.courseType = this.userCourses[0].courseType
+              this.studentList = this.userCourses[0].students
+            })
           }
         }
       }))

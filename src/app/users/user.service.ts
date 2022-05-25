@@ -58,8 +58,7 @@ export class UserService {
   async login(inputUser: String, inputPass: String) {
     //authenticates login, updates info then returns
     var userlist = await this.dataStorageService.lookup('users');
-    if (!userlist) {await this.dataStorageService.save('users', this.existingUsers);
-  }
+    if (userlist) {
   console.log(userlist)
 
     for (let user of userlist) {
@@ -70,9 +69,12 @@ export class UserService {
       ) {
         this.user = user;
         this.loggedIn = true;
-      }
+      }}
     }
-  }
+      else  {await this.dataStorageService.save('users', this.existingUsers);
+    }
+    }
+  
   getUser() {
     if (this.user) {
     return this.user;
