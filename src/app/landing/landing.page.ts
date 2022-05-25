@@ -70,7 +70,6 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
       }
       
     }
-    console.log(this.availableCourses.length)
     this.username = this.userService.getUsername();
     this.userRole = this.userService.getUserRole();
   }
