@@ -19,4 +19,7 @@ export class DatastorageService {
   async save(datafield: string, value: any) {
     return this.storage.set(datafield, value)
   }
+  async clear(){
+    this.storage.clear()
+  }
 }
