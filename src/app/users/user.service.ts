@@ -63,7 +63,7 @@ export class UserService {
     //logs out
     this.user = undefined;
     this.loggedIn = false;
-    this.router.navigate(["login"])
+    this.router.navigate(["login", { replaceUrl: true }])
   }
   isLoggedIn() {
     //returns whether app state shows logged in
