@@ -40,7 +40,7 @@ export class CreatecourseComponent implements OnInit {
     this.email = ""
     this.closeModal(modal)
   }
-  saveCourse() {
+  async saveCourse() {
     var studentsToSave = []
     var studentIdsToSave = []
     for (let student of this.courseStudents) {
@@ -48,9 +48,9 @@ export class CreatecourseComponent implements OnInit {
       studentIdsToSave.push(`${student.firstName} ${student.lastName}`)
       studentsToSave.push(student)
     }
-    console.log(studentIdsToSave)
-    this.userService.addUsers(studentsToSave)
-    this.userService.addCourse(new CourseConstructor(this.courseDate, this.selectedCourse, "self", studentIdsToSave))
+    await this.userService.addUsers(studentsToSave)
+    await this.userService.addCourse(new CourseConstructor(this.courseDate, this.selectedCourse, "self", studentIdsToSave))
+    this.modalController.dismiss()
   }
   closeModal(modal:IonModal){
     modal.dismiss()
