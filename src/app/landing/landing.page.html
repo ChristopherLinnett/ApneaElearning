@@ -54,7 +54,7 @@
             <ion-card-title>Upcoming Course</ion-card-title>
           </ion-card-header>
           <ion-card-content class="ion-text-center">
-            <ion-card-subtitle>{{courseDate | date: 'dd/MM/yyyy'}}</ion-card-subtitle>
+            <ion-card-subtitle >{{courseDate | date: 'dd/MM/yyyy'}}</ion-card-subtitle>
             <ion-card-subtitle>{{courseType}}</ion-card-subtitle>
             <ion-list class="ion-text-center">
               <ion-item *ngFor="let student of studentList">{{student}}</ion-item>
@@ -81,7 +81,7 @@
               <ion-label>Upcoming Courses</ion-label>
             </ion-item>
             <ion-list slot="content">
-              <ion-item  *ngFor="let course of userCourses">
+              <ion-item  *ngFor="let course of userCourses.slice(1,-1)">
                 <ion-label>{{course.courseType}} {{course.courseDate | date: 'dd/MM/yyyy'}}</ion-label>
               </ion-item>
             </ion-list>
