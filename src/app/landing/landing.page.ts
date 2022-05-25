@@ -34,6 +34,7 @@ export class LandingPage implements OnInit, AfterContentChecked, OnDestroy {
   firstname: string;
   studentView: Boolean;
   user;
+  userCourses = []
   courseDate = ""
   courseType = ""
   studentList = []
@@ -56,12 +57,7 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
     if (this.swiper) {
       this.swiper.updateSwiper({})
     }
-    // this.loggedInSubscribed = this.userService.loggedInChanged.subscribe(
-    //   (logged) => {
-    //     this.loggedIn = logged;
-    //     this.synchroniseUser();
-    //   }
-    // );
+
   }
   onSelectCourse(course) {
     //when pressing course button, updates course's state to show that as the current course
@@ -86,9 +82,16 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
     }
     this.username = this.userService.getUsername();
     this.userRole = this.userService.getUserRole();
-    var userlist;
-    userlist = await this.dataStorageService.lookup('users')
-    console.log(userlist)
+    if (this.userService.getUser().courses.length > 0){
+
+    this.userCourses = this.userService.getUser().courses
+    this.userCourses= this.userCourses.sort((a, b) => {
+      return a.courseDate - b.courseDate}).reverse()
+      this.courseDate = this.userService.getUser().courses[0].courseDate
+      this.courseType = this.userService.getUser().courses[0].courseType
+      this.studentList = this.userService.getUser().courses[0].students
+    }
+
   }
   logout() {
     //logout button
@@ -102,7 +105,16 @@ config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
       component: CreatecourseComponent,
       componentProps: {},
     });
-    modal.onDidDismiss().then(() => {});
+    modal.onDidDismiss().then(() => {
+      this.dataStorageService.lookup('users').then((userlist => {
+        for (let user of userlist){
+          if (user.email == this.userService.getUsername){
+            this.userService.user = user
+            this.synchroniseUser()
+          }
+        }
+      }))
+    });
     return modal.present();
   }
 

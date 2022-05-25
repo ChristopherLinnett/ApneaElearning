@@ -9,18 +9,18 @@ import { CourseConstructor } from '../instructor/createcourse/studentconstructor
 })
 export class UserService {
   user: {
-    firstname: string,
-    lastname: string,
-    email: string,
-    password: string,
-    role: string,
-    courses: any[],
-    availableCourses: CourseConstructor[],
+    firstname: string;
+    lastname: string;
+    email: string;
+    password: string;
+    role: string;
+    courses: any[];
+    availableCourses: CourseConstructor[];
   };
   existingUsers = [
     {
-      firstname: "none",
-      lastname: "none",
+      firstname: 'none',
+      lastname: 'none',
       email: 'instructor',
       password: 'password',
       role: 'Instructor',
@@ -53,73 +53,66 @@ export class UserService {
   constructor(
     private router: Router,
     private dataStorageService: DatastorageService
-  ) {}
+  ) { }
 
   async login(inputUser: String, inputPass: String) {
     //authenticates login, updates info then returns
-    for (let user of this.existingUsers) {
+    var userlist = await this.dataStorageService.lookup('users');
+    if (!userlist) {await this.dataStorageService.save('users', this.existingUsers);
+  }
+  console.log(userlist)
+
+    for (let user of userlist) {
+      console.log(user.email, inputUser.trim().toLowerCase())
       if (
         user.email == inputUser.trim().toLowerCase() &&
         user.password == inputPass.trim().toLowerCase()
       ) {
-        this.loggedIn = true;
         this.user = user;
-        return;
+        this.loggedIn = true;
       }
     }
-    this.dataStorageService.lookup('users').then((userlist) => {
-      for (let user of userlist) {
-        if (
-          user.email == inputUser.trim().toLowerCase() &&
-          user.password == inputPass.trim().toLowerCase()
-        ) {
-          this.loggedIn = true;
-          this.user = user;
-          this.router.navigateByUrl('/landing', { replaceUrl: true });
-          return;
-        }
-      }
-    });
   }
   getUser() {
-    return this.user
+    if (this.user) {
+    return this.user;
+    }
   }
 
   getMyCourses() {
-    return this.user.courses
-  } 
-
-  async addUsers(usersArray) {
-    this.dataStorageService.lookup('users').then((userlist) => {
-      if (userlist) {
-        var newList = userlist;
-        let saveme = newList.concat(usersArray);
-        console.log(newList[newList.length - 1]);
-        this.dataStorageService.save('users', saveme);
-      } else {
-        this.dataStorageService.save('users', []);
-      }
-    });
+    return this.user.courses;
   }
-  async addCourse(course) {
-    var userList = await this.dataStorageService.lookup('users')
-      if (userList) {
-        for (let user of userList) {
-          if (user.email == this.getUsername()) {
-            user.courses.push(course);
-            this.dataStorageService.save('users', userList)
-              return
-          }}}
-              else {
-        await this.dataStorageService.save('users', [])
-          this.addCourse(course);
-        };
+
+  async addUsers(usersArray: any[]) {
+    var userlist = await this.dataStorageService.lookup('users')
+      if (userlist) {
+        let saveme = userlist.concat(usersArray);
+        console.log(userlist[userlist.length - 1]);
+        await this.dataStorageService.save('users', saveme);
+      } else {
+        await this.dataStorageService.save('users', this.existingUsers);
       };
+  }
+  async addCourse(course: CourseConstructor) {
+    var userList = await this.dataStorageService.lookup('users');
+    if (userList) {
+      for (let user of userList) {
+        if (user.email == this.getUsername()) {
+          user.courses.push(course);
+          this.dataStorageService.save('users', userList);
+          return;
+        }
+      }
+    } else {
+      await this.dataStorageService.save('users', this.existingUsers);
+      this.addCourse(course);
+    }
+  }
 
   getCourses() {
     //gets available courses if user logged in
     if (this.loggedIn) {
-      return this.user.availableCourses
+      return this.user.availableCourses;
     }
   }
   getUsername() {
@@ -145,6 +138,6 @@ export class UserService {
     return this.loggedIn;
   }
   getfirstname() {
-    return this.user.firstname
+    return this.user.firstname;
   }
 }

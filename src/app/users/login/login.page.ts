@@ -17,7 +17,8 @@ export class LoginPage implements OnInit {
     private userService: UserService,
     private router: Router,
     private dataStorage: DatastorageService
-  ) {}
+  ) {
+  }
 
   async login() {
     //authenticates user login, returns message if fails, navigates router to landing page if successful
@@ -36,10 +37,11 @@ export class LoginPage implements OnInit {
         password: this.password,
       });
     } else {await this.dataStorage.save('saveduserdetails', {username: "", password: ""})}
-    this.router.navigate(['/landing'], { replaceUrl: true });
     this.username = '';
     this.password = '';
     this.savelogin = false
+    this.router.navigate(['/landing'], { replaceUrl: true });
+
   }
 
 
@@ -54,4 +56,5 @@ export class LoginPage implements OnInit {
       }
     });
   }
+
 }
