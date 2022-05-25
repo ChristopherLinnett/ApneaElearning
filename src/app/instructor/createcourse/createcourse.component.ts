@@ -45,10 +45,10 @@ export class CreatecourseComponent implements OnInit {
     var studentIdsToSave = []
     for (let student of this.courseStudents) {
       student.availableCourses.push(new CourseConstructor(this.courseDate,this.selectedCourse, this.userService.getUsername()))
-      studentIdsToSave.push(student.email)
+      studentIdsToSave.push(`${student.firstName} ${student.lastName}`)
       studentsToSave.push(student)
     }
-    console.log(studentsToSave)
+    console.log(studentIdsToSave)
     this.userService.addUsers(studentsToSave)
     this.userService.addCourse(new CourseConstructor(this.courseDate, this.selectedCourse, "self", studentIdsToSave))
   }
