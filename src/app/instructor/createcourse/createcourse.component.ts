@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertController, IonModal, ModalController } from '@ionic/angular';
+import { DatastorageService } from 'src/app/datastorage.service';
+import { UserService } from 'src/app/users/user.service';
 import { StudentConstructor } from './studentconstructor.class';
-
+import { CourseConstructor } from './studentconstructor.class';
 
 @Component({
   selector: 'app-createcourse',
@@ -19,17 +21,19 @@ export class CreatecourseComponent implements OnInit {
   firstname;
   lastname;
   email;
-  constructor(private modalController:ModalController, private alertController: AlertController) {
+  constructor(private modalController:ModalController, private alertController: AlertController, private userService: UserService, private dataStorageService: DatastorageService) {
     this.courseStudents = [];
 
   }
+
   addEmptyStudent() {
     //adds a new student to be edited in this page's form
     var studentEntry = new StudentConstructor("", "", "");
     this.courseStudents.push(studentEntry);
   }
+
   addStudentToCourse(firstname:string, lastname: string, email:string, modal:IonModal) {
-    let studentEntry = new StudentConstructor(firstname, lastname, email)
+    let studentEntry = new StudentConstructor(firstname.toLowerCase(), lastname.toLowerCase(), email.toLowerCase())
     this.courseStudents.push(studentEntry)
     this.firstname = ""
     this.lastname = ""
@@ -37,12 +41,26 @@ export class CreatecourseComponent implements OnInit {
     this.closeModal(modal)
   }
   saveCourse() {
+    var studentsToSave = []
+    var studentIdsToSave = []
+    for (let student of this.courseStudents) {
+      student.availableCourses.push(new CourseConstructor(this.courseDate,this.selectedCourse, this.userService.getUsername()))
+      studentIdsToSave.push(student.email)
+      studentsToSave.push(student)
+    }
+    console.log(studentsToSave)
+    this.userService.addUsers(studentsToSave)
+    this.userService.addCourse(new CourseConstructor(this.courseDate, this.selectedCourse, "self", studentIdsToSave))
   }
   closeModal(modal:IonModal){
     modal.dismiss()
   }
   openModal(modal: IonModal){
     modal.present()
+  }
+
+  async loadAllCourses(){
+    this.dataStorageService.lookup('')
   }
 
   async quitAddCourse(){
