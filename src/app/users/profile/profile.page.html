@@ -6,25 +6,29 @@
 </ion-header>
 
 <ion-content>
-<ion-card>
-  <ion-card-header>
-    <div>Prifle PIct </div>
-  </ion-card-header>
-  <ion-card-content>
-    <ion-list>
-      <ion-item>
+    <ng-container>Prifle PIct</ng-container>
+    <ion-item class="ion-no-padding">
+      <ion-item class="ion-no-margin">
         <ion-label position="floating">First Name</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input [(ngModel)]="firstname" type="text"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Last Name</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input [(ngModel)]="lastname" type="text"></ion-input>
+      </ion-item>
+      </ion-item>
+      <ion-item class="ion-margin-top">
+        <ion-label position="floating">Phone Number</ion-label>
+        <ion-input [(ngModel)]="phonenum" type="tel"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Phone Number</ion-label>
-        <ion-input type="tel"></ion-input>
+        <ion-label class="ion-margin-top" position="floating">Current Password</ion-label>
+        <ion-input [(ngModel)]="oldpassword" type="password"></ion-input>
       </ion-item>
-    </ion-list>
-  </ion-card-content>
-</ion-card>
+      <ion-item>
+        <ion-label position="floating">New Password</ion-label>
+        <ion-input [(ngModel)]="newpassword" type="password"></ion-input>
+      </ion-item>
+      <ion-button (click)="saveProfile()">Save</ion-button>
+
 </ion-content>
