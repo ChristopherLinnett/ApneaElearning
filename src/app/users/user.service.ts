@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
 import { DatastorageService } from '../datastorage.service';
 import { CourseConstructor } from '../instructor/createcourse/studentconstructor.class';
 
@@ -12,6 +11,7 @@ export class UserService {
     firstname: string;
     lastname: string;
     email: string;
+    phonenum: string;
     password: string;
     role: string;
     courses: any[];
@@ -53,31 +53,29 @@ export class UserService {
   constructor(
     private router: Router,
     private dataStorageService: DatastorageService
-  ) { }
+  ) {}
 
   async login(inputUser: String, inputPass: String) {
     //authenticates login, updates info then returns
     var userlist = await this.dataStorageService.lookup('users');
     if (userlist) {
-  console.log(userlist)
+      for (let user of userlist) {
+        if (
+          user.email == inputUser.trim().toLowerCase() &&
+          user.password == inputPass.trim().toLowerCase()
+        ) {
+          this.user = user;
+          this.loggedIn = true;
+        }
+      }
+    } else {
+      await this.dataStorageService.save('users', this.existingUsers);
+    }
+  }
 
-    for (let user of userlist) {
-      console.log(user.email, inputUser.trim().toLowerCase())
-      if (
-        user.email == inputUser.trim().toLowerCase() &&
-        user.password == inputPass.trim().toLowerCase()
-      ) {
-        this.user = user;
-        this.loggedIn = true;
-      }}
-    }
-      else  {await this.dataStorageService.save('users', this.existingUsers);
-    }
-    }
-  
   getUser() {
     if (this.user) {
-    return this.user;
+      return this.user;
     }
   }
 
@@ -86,14 +84,14 @@ export class UserService {
   }
 
   async addUsers(usersArray: any[]) {
-    var userlist = await this.dataStorageService.lookup('users')
-      if (userlist) {
-        let saveme = userlist.concat(usersArray);
-        console.log(userlist[userlist.length - 1]);
-        await this.dataStorageService.save('users', saveme);
-      } else {
-        await this.dataStorageService.save('users', this.existingUsers);
-      };
+    var userlist = await this.dataStorageService.lookup('users');
+    if (userlist) {
+      let saveme = userlist.concat(usersArray);
+      console.log(userlist[userlist.length - 1]);
+      await this.dataStorageService.save('users', saveme);
+    } else {
+      await this.dataStorageService.save('users', this.existingUsers);
+    }
   }
   async addCourse(course: CourseConstructor) {
     var userList = await this.dataStorageService.lookup('users');
