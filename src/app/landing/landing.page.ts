@@ -8,7 +8,8 @@ import {
 } from '@angular/core';
 import Swiper, { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
-
+import SwiperCore, {EffectCoverflow} from "swiper";
+SwiperCore.use([EffectCoverflow])
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
@@ -40,7 +41,7 @@ export class LandingPage implements OnInit, AfterContentChecked, OnDestroy {
   studentList = []
 
   @ViewChild('swiper') swiper: SwiperComponent
-config: SwiperOptions = {slidesPerView: 'auto' , effect: 'cube'}
+config: SwiperOptions = {slidesPerView: 'auto' , effect: 'coverflow'}
   constructor(
     private dataStorageService: DatastorageService,
     private modalController: ModalController,

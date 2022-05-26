@@ -33,13 +33,13 @@
     </div>
     </ion-row>
     <swiper #swiper [config]="config">
-      <ng-template class="ion-margin" swiperSlide *ngFor="let course of availableCourses; index as i">
-              <!-- <ion-card > -->
+      <ng-template swiperSlide *ngFor="let course of availableCourses; index as i">
+              <ion-card >
                 <!-- <ion-card-title class="ion-text-center">{{course.title}}</ion-card-title> -->
                 <!-- <ion-card-content class="ion-text-center"> -->
                   <img src="./assets/img/{{course.title.toLowerCase()}}image.png" alt="" [routerLink]="['/course-landing']" (click)="onSelectCourse(course.title)">
               <!-- </ion-card-content> -->
-              <!-- </ion-card> -->
+              </ion-card>
       </ng-template>
     </swiper>
   </ion-grid>
