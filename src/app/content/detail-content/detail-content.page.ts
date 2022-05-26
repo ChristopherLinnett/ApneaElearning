@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ModalController, NavParams } from '@ionic/angular';
 import { CourseService } from '../course.service';
 import { CurrentModuleService } from './current-module.service';
+import { SwiperComponent } from 'swiper/angular';
+import SwiperCore, {Navigation,Pagination,EffectCoverflow} from "swiper";
+import { ViewChild } from '@angular/core';
+import { SwiperOptions } from 'swiper';
+SwiperCore.use([Navigation,Pagination,EffectCoverflow])
 
 @Component({
   selector: 'app-detail-content',
@@ -9,16 +14,19 @@ import { CurrentModuleService } from './current-module.service';
   styleUrls: ['./detail-content.page.scss'],
 })
 export class DetailContentPage implements OnInit {
+  @ViewChild('swiper') swiper: SwiperComponent
   selection: string;
   currentTitle: string;
   currentContent: string;
   moduleTitle = 'Choose Module';
+  config: SwiperOptions = {slidesPerView: 'auto' , effect: 'coverflow'}
+
   constructor(
     private navParams: NavParams,
     private alertCtrl: AlertController,
     private modalController: ModalController,
-    private currentModuleService: CurrentModuleService,
-    private courseService: CourseService
+    public currentModuleService: CurrentModuleService,
+    public courseService: CourseService
   ) {}
 
   ngOnInit() {
@@ -59,15 +67,28 @@ export class DetailContentPage implements OnInit {
         this.currentModuleService.currentModuleIndex
       ].title;
   }
+  launchModuleQuiz(moduleNo){
+    console.log(`launch quiz for chapter ${moduleNo+1}`)
+  }
+
   onNextClick() {
     //moves content forward one section
+    if (this.currentModuleService.currentInnerIndex < this.currentModuleService.innerModuleCount-1){
     this.currentModuleService.next();
     this.getContent();
+    this.swiper.swiperRef.slideNext()}
+    else {
+      this.launchModuleQuiz(this.currentModuleService.currentModuleIndex)
+    }
   }
   onBackClick() {
     //moves content back one section
+    if (this.currentModuleService.currentInnerIndex > 0){
+
     this.currentModuleService.back();
     this.getContent();
+    this.swiper.swiperRef.slidePrev()
+    }
   }
 
   async closeModalAlert() {
