@@ -1,15 +1,20 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="end">
-      <ion-button
-      (click)="logout()"
-      size="small"
-      color="dark"
-      fill="dark"
-      slot="end"
-      >
+    <ion-button (click)="presentActionSheet()" size="small" color="dark" fill="dark" slot="end">
+      <ion-popover trigger="popovertrigger" reference="event">
+        <ng-template>
+          <ion-content>
+          <ion-list class="ion-padding">
+            <li><ion-label [routerLink]="['/profile']" >Update Profile</ion-label></li>
+            <li><ion-label (click)="logout">logout</ion-label></li>
+          </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
       <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
     </ion-button>
+  
   </ion-buttons>
     <ion-title>Apnea Elearning</ion-title>
   </ion-toolbar>
