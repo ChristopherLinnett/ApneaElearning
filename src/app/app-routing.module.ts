@@ -44,7 +44,11 @@ const routes: Routes = [
       import('./course-landing/course-landing.module').then(
         (m) => m.CourseLandingPageModule
       ),
+  },  {
+    path: 'profile',
+    loadChildren: () => import('./users/profile/profile.module').then( m => m.ProfilePageModule)
   },
+
 ];
 
 @NgModule({
