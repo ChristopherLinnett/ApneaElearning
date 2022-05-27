@@ -1,56 +1,62 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>this.quizTitle</ion-title>
+    <ion-title>Chapter {{1}} Quiz</ion-title>
     <ion-back-button color="dark" slot="end" text="" icon="close"></ion-back-button>
 
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>this.question</ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content>
 
-<ion-footer>
-  <ion-grid>
-    <ion-radio-group>
+<swiper #swiper *ngIf="quizloaded">
+  <ng-template swiperSlide *ngFor="let question of quiz; index as i">
+    <ion-item-divider></ion-item-divider>
+ <ion-card class="no-background" button="true" (click)="checkQuestionsAnswered()"> 
+      <ion-card-title class="ion-text-center"><div>{{question.questionText}}</div></ion-card-title>
+<ion-card-content class="ion-no-padding">
+  <ion-grid class="ion-no-margin">
+    <ion-item-divider class="divider-quiz-question"></ion-item-divider>
+    <ion-radio-group #quizquestions>
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-label>ThisAnswer</ion-label>
-            <ion-radio slot="end" value="answer1"></ion-radio>
+            <ion-label>{{question.answers[0].text}}</ion-label>
+            <ion-radio slot="end" [value]="question.answers[0].num"></ion-radio>
           </ion-item>
         </ion-col>
         <ion-col>
           <ion-item>
-            <ion-label>ThisAnswer</ion-label>
-            <ion-radio slot="end" value="answer2"></ion-radio>
+            <ion-label>{{question.answers[1].text}}</ion-label>
+            <ion-radio slot="end" [value]="question.answers[1].num"></ion-radio>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-label>ThisAnswer</ion-label>
-            <ion-radio slot="end" value="answer3"></ion-radio>
+            <ion-label>{{question.answers[2].text}}</ion-label>
+            <ion-radio slot="end" [value]="question.answers[2].num"></ion-radio>
           </ion-item>
         </ion-col>
         <ion-col>
           <ion-item>
-            <ion-label>ThisAnswer</ion-label>
-            <ion-radio slot="end" value="answer4"></ion-radio>
+            <ion-label>{{question.answers[3].text}}</ion-label>
+            <ion-radio slot="end" [value]="question.answers[3].num"></ion-radio>
           </ion-item>
         </ion-col>
       </ion-row>
     </ion-radio-group>
-    <ion-button slot="end" fill="clear"
-      ><ion-icon slot="icon-only" name="caret-back"></ion-icon
-    ></ion-button>
-    <ion-button slot="start" fill="clear"
-      ><ion-icon slot="icon-only" name="caret-forward"></ion-icon
-    ></ion-button>
   </ion-grid>
+</ion-card-content>
+</ion-card>
+  </ng-template>
+</swiper>
+<ion-button *ngIf="allQuestionsAnswered" expand="block">Submit Quiz</ion-button>
+
+  </ion-content>
+  <ion-footer>
+
+    <ion-button slot="end" fill="clear"
+><ion-icon slot="icon-only" name="caret-back"></ion-icon></ion-button>
+    <ion-button slot="start" fill="clear"><ion-icon slot="icon-only" name="caret-forward"></ion-icon></ion-button>
 </ion-footer>
+
