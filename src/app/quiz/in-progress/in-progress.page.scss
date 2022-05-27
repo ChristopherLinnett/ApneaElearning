@@ -9,3 +9,9 @@ div {
     height: 150px;
     width: 100%;
   }
+.verticalcenter {
+    position: absolute;
+    bottom:10px;
+    transform:
+        translateY(0%);
+}
