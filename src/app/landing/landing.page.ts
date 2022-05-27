@@ -72,15 +72,16 @@ export class LandingPage implements OnInit, OnDestroy {
     }
     this.username = this.userService.getfirstname();
     this.userRole = this.userService.getUserRole();
-    if (this.userService.getUser().courses === null) {
+    if (this.userService.getUser().courses.length == 0) {
       return;
     } else {
       this.userCourses = this.userService.getUser().courses;
-      this.userCourses = this.userCourses
+      if (this.userCourses.length > 1)
+      {this.userCourses = this.userCourses
         .sort((a, b) => {
           return a.courseDate - b.courseDate;
         })
-        .reverse();
+        .reverse();}
       this.courseDate = this.userCourses[0].courseDate;
       this.courseType = this.userCourses[0].courseType;
       this.studentList = this.userCourses[0].students;
