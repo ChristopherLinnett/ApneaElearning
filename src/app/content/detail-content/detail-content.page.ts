@@ -6,6 +6,7 @@ import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, {Navigation,Pagination,EffectCoverflow} from "swiper";
 import { ViewChild } from '@angular/core';
 import { SwiperOptions } from 'swiper';
+import { InProgressPage } from 'src/app/quiz/in-progress/in-progress.page';
 SwiperCore.use([Navigation,Pagination,EffectCoverflow])
 
 @Component({
@@ -67,9 +68,15 @@ export class DetailContentPage implements OnInit {
         this.currentModuleService.currentModuleIndex
       ].title;
   }
-  launchModuleQuiz(moduleNo){
-    console.log(`launch quiz for chapter ${moduleNo+1}`)
-  }
+  async launchModuleQuiz(moduleNo){
+      const quizmodal = await this.modalController.create({
+        component: InProgressPage,
+        cssClass: 'my-custom-class'
+      });
+      return await quizmodal.present();
+    }
+  
+  
 
   onNextClick() {
     //moves content forward one section
@@ -78,7 +85,8 @@ export class DetailContentPage implements OnInit {
     this.getContent();
     this.swiper.swiperRef.slideNext()}
     else {
-      this.launchModuleQuiz(this.currentModuleService.currentModuleIndex)
+      this.swiper.swiperRef.slideNext()
+
     }
   }
   onBackClick() {
