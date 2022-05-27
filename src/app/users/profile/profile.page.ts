@@ -15,23 +15,25 @@ lastname;
 oldpassword;
 phonenum;
 newpassword;
-
-  constructor(private userService: UserService, private dataStorage: DatastorageService, private alertController: AlertController) { }
+olduser;
+  constructor(private userService: UserService, private dataStorage: DatastorageService, private alertController: AlertController) {
+    this.olduser = this.userService.getUser()
+  }
 
   async saveProfile(){
-    var currentUser = this.userService.getUser()
+    var currentUser = this.olduser
     if (this.email && this.email.length >5){
        currentUser.email = this.email.toLowerCase()
     }
     if (this.firstname && this.firstname.length > 3) {
       currentUser.firstname = this.firstname.toLowerCase()
-    } 
+    }
     if (this.lastname && this.lastname.length > 3) {
       currentUser.lastname = this.lastname.toLowerCase()
-    } 
+    }
     if (this.phonenum && this.phonenum.length > 6){
       currentUser.phonenum = this.phonenum
-    } 
+    }
     if (this.oldpassword == currentUser.password && this.newpassword && this.newpassword.length> 5){
         currentUser.password = this.newpassword.toLowerCase()
     var userlist = await this.dataStorage.lookup('users')
