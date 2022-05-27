@@ -23,7 +23,7 @@ export class CourseConstructor {
   courseType: string
   courseInstructor: string
   students: string[]
-  constructor(courseDate: string, courseType: string, courseInstructor: string, students: string[]=null){
+  constructor(courseIndex: number, courseDate: string, courseType: string, courseInstructor: string, students: string[]=null){
   this.courseDate = courseDate
   this.courseType = courseType
   this.courseInstructor = courseInstructor
