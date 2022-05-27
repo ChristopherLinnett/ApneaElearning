@@ -24,7 +24,12 @@ export class PhotoService {
   images: LocalFile[] = []
   constructor(private platform: Platform, private loadingCtrl: LoadingController){
   }
-  deleteImage(image){
+  async deleteImage(file: LocalFile){
+    await Filesystem.deleteFile({
+      directory: Directory.Data,
+      path: file.path
+    });
+    this.loadFiles();
   }
 
   async loadFiles() {
