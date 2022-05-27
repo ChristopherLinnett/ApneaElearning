@@ -6,21 +6,19 @@
 </ion-header>
 
 <ion-content>
-      <ion-button expand="full" color="light" (click)="photoService.selectImage()">upload image</ion-button>
-      <h3 *ngIf="photoService.images.length == 0" class="ion-padding ion-text-center">select image</h3>
-      <ion-list>
-        <ion-item *ngFor="let file of photoService.images">
-          <ion-thumbnail slot="start">
-            <ion-img [src]="file.data"></ion-img>
-          </ion-thumbnail>
-          <ion-label class="ion-text-wrap">
-            {{ file.name }}
-          </ion-label>
-          <ion-button slot="end" fill="clear" (click)="deleteImage(file)">x</ion-button>
-        </ion-item>
-      </ion-list>
+      <div class="ion-padding-top">
+      <ion-avatar *ngIf="photoService.images.length == 0; else profilePicture" (click)="photoService.selectImage()"><ion-img src="./assets/img/noprofileimage.jpg"></ion-img></ion-avatar>
+    </div>
+    <ng-template #profilePicture class="centered">
+      <ion-item>
+        <ion-avatar  (click)="photoService.replaceImage(photoService.images[0])"><ion-img [src]="photoService.images[0].data"></ion-img></ion-avatar>
+        <ion-button fill="clear" (click)="deleteImage(photoService.images[0])">x</ion-button>
+      </ion-item>
 
-      <ion-item class="ion-no-margin">
+    </ng-template>
+
+
+      <ion-item class="ion-margin-top">
         <ion-label position="fixed">First Name:</ion-label>
         <ion-input [(ngModel)]="firstname" placeholder="{{olduser.firstname}}" type="text"></ion-input>
       </ion-item>

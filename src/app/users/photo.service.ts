@@ -85,6 +85,11 @@ export class PhotoService {
     }
   }
 
+  async replaceImage(image) {
+    await this.deleteImage(image);
+    await this.selectImage();
+  }
+
   async saveImage(photo: Photo) {
     const base64Data = await this.readAsBase64(photo);
     console.log(base64Data);
