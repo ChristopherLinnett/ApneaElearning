@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { InProgressPage } from '../quiz/in-progress/in-progress.page';
 import { UserService } from '../users/user.service';
 import { CourseService } from './course.service';
 
@@ -12,9 +14,10 @@ export class CourseLandingPage implements OnInit {
   thisCourse: { title: String; description: String };
   quizAvailable = true;
   constructor(
-    private courseService: CourseService,
+    public courseService: CourseService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -25,8 +28,9 @@ export class CourseLandingPage implements OnInit {
     this.router.navigate(['overview']);
   }
   launchQuiz() {
-    this.router.navigate(['/in-progress']); //move to quiz in progress page
+    this.router.navigate(['/app-landing']); //move to quiz in progress page
   }
+
   logout() {
     //logs out  user
     this.userService.logout();
