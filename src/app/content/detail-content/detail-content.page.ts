@@ -80,23 +80,12 @@ export class DetailContentPage implements OnInit {
 
   onNextClick() {
     //moves content forward one section
-    if (this.currentModuleService.currentInnerIndex < this.currentModuleService.innerModuleCount-1){
-    this.currentModuleService.next();
-    this.getContent();
-    this.swiper.swiperRef.slideNext()}
-    else {
       this.swiper.swiperRef.slideNext()
 
-    }
   }
   onBackClick() {
-    //moves content back one section
-    if (this.currentModuleService.currentInnerIndex > 0){
 
-    this.currentModuleService.back();
-    this.getContent();
     this.swiper.swiperRef.slidePrev()
-    }
   }
 
   async closeModalAlert() {
