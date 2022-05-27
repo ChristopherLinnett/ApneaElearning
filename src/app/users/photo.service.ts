@@ -20,36 +20,52 @@ interface LocalFile {
 @Injectable({
   providedIn: 'root',
 })
-export class PhotoService implements OnInit {
+export class PhotoService {
   images: LocalFile[] = []
-  constructor(private platform: Platform, private loadingCtrl: LoadingController){}
+  constructor(private platform: Platform, private loadingCtrl: LoadingController){
+  }
+  deleteImage(image){
+  }
 
   async loadFiles() {
     this.images = [];
     const loading = await this.loadingCtrl.create({
       message: 'Loading data...',
     });
-    await loading.present();
+    // await loading.present();
 
     Filesystem.readdir({
       directory: Directory.Data,
       path: IMAGE_DIR
     }).then(result => {
       console.log('HERE: ', result)
+      this.loadFileData(result.files);
     }, async err => {
       console.log('err: ', err);
       await Filesystem.mkdir({
         directory: Directory.Data,
         path: IMAGE_DIR
-      });
-    }).then(_ => {
-      loading.dismiss();
+      })
     })
+    // .then(_ => {
+      // loading.dismiss();
+    // })
   }
 
-  async ngOnInit(){
-    this.loadFiles();
+  async loadFileData(fileNames: string[]) {
+    for (let f of fileNames) {
+      const filePath = `${IMAGE_DIR}/${f}`;
 
+      const readFile = await Filesystem.readFile({
+        directory: Directory.Data,
+        path: filePath
+      });
+      this.images.push({
+        name: f,
+        path: filePath,
+        data: `data:image/jpeg;base64,${readFile.data}`
+      });
+    }
   }
 
   async selectImage() {
@@ -57,7 +73,7 @@ export class PhotoService implements OnInit {
       quality: 90,
       allowEditing: false,
       resultType: CameraResultType.Uri,
-      source: CameraSource.Photos,
+      source: CameraSource.Camera,
     });
     console.log(image);
     if (image) {

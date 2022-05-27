@@ -7,7 +7,18 @@
 
 <ion-content>
       <ion-button expand="full" color="light" (click)="photoService.selectImage()">upload image</ion-button>
-
+      <h3 *ngIf="photoService.images.length == 0" class="ion-padding ion-text-center">select image</h3>
+      <ion-list>
+        <ion-item *ngFor="let file of photoService.images">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="file.data"></ion-img>
+          </ion-thumbnail>
+          <ion-label class="ion-text-wrap">
+            {{ file.name }}
+          </ion-label>
+          <ion-button slot="end" fill="clear" (click)="deleteImage(file)">x</ion-button>
+        </ion-item>
+      </ion-list>
 
       <ion-item class="ion-no-margin">
         <ion-label position="fixed">First Name:</ion-label>

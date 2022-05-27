@@ -55,6 +55,7 @@ olduser;
   }
 
   ngOnInit() {
+    this.photoService.loadFiles()
   }
   async saveAlert(successful: boolean){
     const alert = await this.alertController.create({
@@ -65,5 +66,9 @@ olduser;
     });
 
     await alert.present();
+}
+
+deleteImage(image){
+  this.photoService.deleteImage(image);
 }
 }
