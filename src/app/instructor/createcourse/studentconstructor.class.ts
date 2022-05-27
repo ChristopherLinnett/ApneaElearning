@@ -23,11 +23,13 @@ export class CourseConstructor {
   courseType: string
   courseInstructor: string
   students: string[]
+  courseIndex: number
   constructor(courseIndex: number, courseDate: string, courseType: string, courseInstructor: string, students: string[]=null){
   this.courseDate = courseDate
   this.courseType = courseType
   this.courseInstructor = courseInstructor
   this.students = students
+  this.courseIndex = courseIndex
   }
 
 
