@@ -6,6 +6,7 @@ import { SwiperComponent } from 'swiper/angular';
 import { IonRadioGroup } from '@ionic/angular';
 import { AfterContentChecked } from '@angular/core';
 import { CurrentModuleService } from "../../content/detail-content/current-module.service"
+import { CourseService } from 'src/app/course-landing/course.service';
 SwiperCore.use([EffectCoverflow]);
 
 @Component({
@@ -20,9 +21,11 @@ export class InProgressPage {
   quiz: Question[];
   allQuestionsAnswered: boolean = true
   chapterIndex: number
+  courseIndex: number
   
-  constructor(private currentModuleService: CurrentModuleService) {
-    this.chapterIndex =this.currentModuleService.currentModuleIndex
+  constructor(private currentModuleService: CurrentModuleService, private courseService:CourseService) {
+    this.courseIndex =this.courseService.getCourse().index
+    this.chapterIndex = this.currentModuleService.currentModuleIndex
     this.quiz = this.createQuiz(this.chapterIndex)
   }
 

@@ -26,15 +26,11 @@ export class UserService {
       role: 'Instructor',
       courses: [],
       availableCourses: [
-        new CourseConstructor('25/05/2022', 'AIDA1', this.getUsername()),
-        new CourseConstructor('25/05/2022', 'AIDA2', this.getUsername()),
-        new CourseConstructor('25/05/2022', 'AIDA3', this.getUsername()),
-        new CourseConstructor('25/05/2022', 'AIDA4', this.getUsername()),
-        new CourseConstructor(
-          '25/05/2022',
-          'AIDA Instructor',
-          this.getUsername()
-        ),
+        new CourseConstructor(0,'25/05/2022', 'AIDA1', this.getUsername()),
+        new CourseConstructor(1,'25/05/2022', 'AIDA2', this.getUsername()),
+        new CourseConstructor(2,'25/05/2022', 'AIDA3', this.getUsername()),
+        new CourseConstructor(3,'25/05/2022', 'AIDA4', this.getUsername()),
+        new CourseConstructor(4,'25/05/2022','AIDA Instructor',this.getUsername()),
       ],
     },
     {
@@ -45,7 +41,7 @@ export class UserService {
       role: 'Student',
       courses: [],
       availableCourses: [
-        new CourseConstructor('25/05/2022', 'AIDA2', 'Instructor'),
+        new CourseConstructor(1,'25/05/2022', 'AIDA2', 'Instructor'),
       ],
     },
   ];

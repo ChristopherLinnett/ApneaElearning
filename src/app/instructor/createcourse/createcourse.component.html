@@ -86,9 +86,9 @@
               <h1>Course Type: {{selectedCourse}}</h1>
             </ion-label>
           </ion-list-header>
-          <ion-item class="ion-margin-top" class="ion-text-center" *ngFor="let courseOption of courseOptions">
+          <ion-item class="ion-margin-top" class="ion-text-center" *ngFor="let courseOption of courseOptions, index as i">
             <ion-label>{{ courseOption }}</ion-label>
-            <ion-radio (click)="closeModal(courseTypeModal)" value="{{courseOption}}" slot="end"></ion-radio>
+            <ion-radio (click)="closeModal(courseTypeModal)" value="{{[courseOption, i]}}" slot="end"></ion-radio>
           </ion-item>
         </ion-radio-group>
         <ion-grid>

@@ -18,6 +18,7 @@ export class CreatecourseComponent implements OnInit {
   courseStudents: StudentConstructor[];
   courseDate;
   selectedCourse;
+  courseIndex;
   firstname;
   lastname;
   email;
@@ -44,12 +45,12 @@ export class CreatecourseComponent implements OnInit {
     var studentsToSave = []
     var studentIdsToSave = []
     for (let student of this.courseStudents) {
-      student.availableCourses.push(new CourseConstructor(this.courseDate,this.selectedCourse, this.userService.getUsername()))
+      student.availableCourses.push(new CourseConstructor(this.selectedCourse[0],this.courseDate,this.selectedCourse[1], this.userService.getUsername()))
       studentIdsToSave.push(`${student.firstName} ${student.lastName}`)
       studentsToSave.push(student)
     }
     await this.userService.addUsers(studentsToSave)
-    await this.userService.addCourse(new CourseConstructor(this.courseDate, this.selectedCourse, "self", studentIdsToSave))
+    await this.userService.addCourse(new CourseConstructor(this.selectedCourse[0],this.courseDate, this.selectedCourse[1], "self", studentIdsToSave))
     this.modalController.dismiss()
   }
   closeModal(modal:IonModal){

@@ -22,7 +22,7 @@ import { DatastorageService } from '../datastorage.service';
 })
 export class LandingPage implements OnInit, OnDestroy {
   private loggedInSubscribed: Subscription;
-  availableCourses: { title: string; description: string }[] = [];
+  availableCourses: { index: number, title: string; description: string }[] = [];
   username: string;
   loggedIn: boolean;
   userRole: string;

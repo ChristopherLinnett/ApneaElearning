@@ -38,12 +38,9 @@
     </div>
     </ion-row>
     <swiper #swiper [config]="config">
-      <ng-template swiperSlide *ngFor="let course of availableCourses; index as i">
-              <ion-card >
-                <!-- <ion-card-title class="ion-text-center">{{course.title}}</ion-card-title> -->
-                <!-- <ion-card-content class="ion-text-center"> -->
-                  <img src="./assets/img/{{course.title.toLowerCase()}}image.png" alt="" [routerLink]="['/course-landing']" (click)="onSelectCourse(course.title)">
-              <!-- </ion-card-content> -->
+      <ng-template swiperSlide *ngFor="let course of availableCourses;">
+              <ion-card *ngIf="availableCourses.length>0">
+                  <img src="./assets/img/aida{{course.index+1}}image.png" alt="" [routerLink]="['/course-landing']" (click)="onSelectCourse(course.title)">
               </ion-card>
       </ng-template>
     </swiper>
