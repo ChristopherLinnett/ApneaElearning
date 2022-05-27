@@ -7,19 +7,17 @@
 
 <ion-content>
     <ng-container>Prifle PIct</ng-container>
-    <ion-item class="ion-no-padding">
       <ion-item class="ion-no-margin">
-        <ion-label position="floating">First Name</ion-label>
-        <ion-input [(ngModel)]="firstname" type="text"></ion-input>
+        <ion-label position="fixed">First Name:</ion-label>
+        <ion-input [(ngModel)]="firstname" placeholder="{{olduser.firstname}}" type="text"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Last Name</ion-label>
-        <ion-input [(ngModel)]="lastname" type="text"></ion-input>
-      </ion-item>
+        <ion-label position="fixed">Last Name:</ion-label>
+        <ion-input [(ngModel)]="lastname" placeholder="{{olduser.lastname}}" type="text"></ion-input>
       </ion-item>
       <ion-item class="ion-margin-top">
-        <ion-label position="floating">Phone Number</ion-label>
-        <ion-input [(ngModel)]="phonenum" type="tel"></ion-input>
+        <ion-label position="fixed">Phone:</ion-label>
+        <ion-input [(ngModel)]="phonenum" placeholder="{{olduser.phonenum}}" type="tel"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label class="ion-margin-top" position="floating">Current Password</ion-label>
