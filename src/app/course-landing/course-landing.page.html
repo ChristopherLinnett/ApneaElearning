@@ -3,7 +3,7 @@
     <ion-back-button slot="start" defaultHref=""></ion-back-button>
     <ion-title>{{thisCourse.title}} Course</ion-title>
     <ion-button
-      (click)="logout()"
+      (click)="showUserOptions()"
       size="small"
       color="dark"
       fill="clear"
@@ -43,7 +43,7 @@
         >
       </ion-col>
       <ion-col size="6" *ngIf="quizAvailable">
-        <ion-button expand="block" (click)="launchQuiz()">Quiz</ion-button>
+        <ion-button expand="block" (click)="launchQuiz(0)">Quiz</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

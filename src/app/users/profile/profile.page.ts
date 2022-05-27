@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { DatastorageService } from 'src/app/datastorage.service';
+import { PhotoService } from '../photo.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -16,7 +17,7 @@ oldpassword;
 phonenum;
 newpassword;
 olduser;
-  constructor(private userService: UserService, private dataStorage: DatastorageService, private alertController: AlertController) {
+  constructor(private userService: UserService, private dataStorage: DatastorageService, private alertController: AlertController, public photoService: PhotoService) {
     this.olduser = this.userService.getUser()
   }
 

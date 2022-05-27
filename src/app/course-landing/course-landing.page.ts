@@ -31,8 +31,8 @@ export class CourseLandingPage implements OnInit {
     this.router.navigate(['/app-landing']); //move to quiz in progress page
   }
 
-  logout() {
+  async showUserOptions() {
     //logs out  user
-    this.userService.logout();
+    this.userService.showUserOptions();
   }
 }

@@ -6,7 +6,9 @@
 </ion-header>
 
 <ion-content>
-    <ng-container>Prifle PIct</ng-container>
+      <ion-button expand="full" color="light" (click)="photoService.selectImage()">upload image</ion-button>
+
+
       <ion-item class="ion-no-margin">
         <ion-label position="fixed">First Name:</ion-label>
         <ion-input [(ngModel)]="firstname" placeholder="{{olduser.firstname}}" type="text"></ion-input>

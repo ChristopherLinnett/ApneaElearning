@@ -59,8 +59,8 @@ export class OverviewPage implements OnInit {
     modal.onDidDismiss().then(() => {});
     return modal.present();
   }
-  logout() {
+  showUserOptions() {
     //logs user out
-    this.userService.logout();
+    this.userService.showUserOptions();
   }
 }

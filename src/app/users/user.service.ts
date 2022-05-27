@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActionSheetController } from '@ionic/angular';
 import { DatastorageService } from '../datastorage.service';
 import { CourseConstructor } from '../instructor/createcourse/studentconstructor.class';
 
@@ -47,6 +48,7 @@ export class UserService {
   ];
   loggedIn: boolean = false;
   constructor(
+    private actionSheetController: ActionSheetController,
     private router: Router,
     private dataStorageService: DatastorageService
   ) {}
@@ -68,6 +70,44 @@ export class UserService {
       await this.dataStorageService.save('users', this.existingUsers);
     }
   }
+  async showUserOptions() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Options',
+      cssClass: 'my-custom-class',
+      buttons: [
+        {
+          text: 'Logout',
+          role: 'destructive',
+          icon: 'trash',
+          id: 'remove-circle-sharp',
+          data: {
+            type: 'delete',
+          },
+          handler: () => {
+            this.logout();
+          },
+        },
+        {
+          text: 'Profile',
+          icon: 'person-circle-outline',
+          handler: () => {
+            this.router.navigate(['/profile']);
+          },
+        },
+        {
+          text: 'Cancel',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => { },
+        },
+      ],
+    });
+    await actionSheet.present();
+
+    const { role, data } = await actionSheet.onDidDismiss();
+    console.log('', role, data);
+  }
+
 
   getUser() {
     if (this.user) {

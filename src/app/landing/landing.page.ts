@@ -5,10 +5,7 @@ import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { EffectCoverflow } from 'swiper';
 SwiperCore.use([EffectCoverflow]);
 import { Router } from '@angular/router';
-import {
-  ActionSheetController,
-  ModalController,
-} from '@ionic/angular';
+import { ModalController} from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { CourseService } from '../course-landing/course.service';
 import { CreatecourseComponent } from '../instructor/createcourse/createcourse.component';
@@ -37,7 +34,6 @@ export class LandingPage implements OnInit, OnDestroy {
   @ViewChild('swiper') swiper: SwiperComponent;
   config: SwiperOptions = { slidesPerView: 'auto', effect: 'coverflow' };
   constructor(
-    private actionSheetController: ActionSheetController,
     private dataStorageService: DatastorageService,
     private modalController: ModalController,
     private userService: UserService,
@@ -53,42 +49,9 @@ export class LandingPage implements OnInit, OnDestroy {
       this.swiper.updateSwiper({});
     }
   }
-  async presentActionSheet() {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Options',
-      cssClass: 'my-custom-class',
-      buttons: [
-        {
-          text: 'Logout',
-          role: 'destructive',
-          icon: 'trash',
-          id: 'remove-circle-sharp',
-          data: {
-            type: 'delete',
-          },
-          handler: () => {
-            this.logout();
-          },
-        },
-        {
-          text: 'Profile',
-          icon: 'person-circle-outline',
-          handler: () => {
-            this.router.navigate(['/profile']);
-          },
-        },
-        {
-          text: 'Cancel',
-          icon: 'close',
-          role: 'cancel',
-          handler: () => { },
-        },
-      ],
-    });
-    await actionSheet.present();
 
-    const { role, data } = await actionSheet.onDidDismiss();
-    console.log('', role, data);
+  async showUserOptions() {
+    this.userService.showUserOptions()
   }
 
   onSelectCourse(course) {
