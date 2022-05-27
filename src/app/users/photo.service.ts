@@ -32,7 +32,7 @@ export class PhotoService {
     const loading = await this.loadingCtrl.create({
       message: 'Loading data...',
     });
-    // await loading.present();
+    await loading.present();
 
     Filesystem.readdir({
       directory: Directory.Data,
@@ -46,10 +46,9 @@ export class PhotoService {
         directory: Directory.Data,
         path: IMAGE_DIR
       })
+    }).then(_ => {
+      loading.dismiss();
     })
-    // .then(_ => {
-      // loading.dismiss();
-    // })
   }
 
   async loadFileData(fileNames: string[]) {
