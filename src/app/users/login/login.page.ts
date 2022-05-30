@@ -7,12 +7,13 @@ import { UserService } from '../user.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
+/* It's a login page that saves the user's login details if they want to. */
 export class LoginPage implements OnInit {
   incorrectPassword: string;
   incorrectCount: number = 0;
   username: string = '';
   password: string = '';
-  savelogin: boolean;
+  savelogin: boolean = false;
   constructor(
     private userService: UserService,
     private router: Router,
@@ -53,7 +54,11 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/landing'], { replaceUrl: true });
   }
 
+  /**
+   * If the user has saved their login details, then load them into the login form.
+   */
   async ngOnInit() {
+    await this.dataStorage.init()
     var details = await this.dataStorage.lookup('saveduserdetails');
     if (details && details != { username: '', password: '' }) {
       this.username = details.username;

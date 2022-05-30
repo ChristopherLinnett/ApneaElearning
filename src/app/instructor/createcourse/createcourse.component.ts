@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertController, IonModal, ModalController } from '@ionic/angular';
+import { loadingController } from '@ionic/core';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { UserService } from 'src/app/users/user.service';
 import { StudentConstructor } from './studentconstructor.class';
@@ -16,12 +17,12 @@ export class CreatecourseComponent implements OnInit {
   @ViewChild('courseTypeModal') courseTypeModal:IonModal;
   courseOptions = ['AIDA1', 'AIDA2', 'AIDA3', 'AIDA4']
   courseStudents: StudentConstructor[];
-  courseDate;
-  selectedCourse;
+  courseDate = "";
+  selectedCourse = "none";
   courseIndex;
-  firstname;
-  lastname;
-  email;
+  firstname = "";
+  lastname = "";
+  email = "";
   constructor(private modalController:ModalController, private alertController: AlertController, private userService: UserService, private dataStorageService: DatastorageService) {
     this.courseStudents = [];
 
@@ -29,12 +30,13 @@ export class CreatecourseComponent implements OnInit {
 
   addEmptyStudent() {
     //adds a new student to be edited in this page's form
-    var studentEntry = new StudentConstructor("", "", "");
+    var studentEntry = new StudentConstructor(0,"", "", "");
     this.courseStudents.push(studentEntry);
   }
 
-  addStudentToCourse(firstname:string, lastname: string, email:string, modal:IonModal) {
-    let studentEntry = new StudentConstructor(firstname.toLowerCase(), lastname.toLowerCase(), email.toLowerCase())
+  async addStudentToCourse(firstname:string, lastname: string, email:string, modal:IonModal) {
+    let totalStudents = await this.dataStorageService.lookup('users')
+    let studentEntry = new StudentConstructor(totalStudents.length,firstname.toLowerCase(), lastname.toLowerCase(), email.toLowerCase())
     this.courseStudents.push(studentEntry)
     this.firstname = ""
     this.lastname = ""
@@ -44,7 +46,19 @@ export class CreatecourseComponent implements OnInit {
   async saveCourse() {
     var studentsToSave = []
     var studentIdsToSave = []
+    var existingStudents = await this.dataStorageService.lookup('users')
     for (let student of this.courseStudents) {
+        for (let user of existingStudents) {
+          if (student.email == user.email){
+            student = user
+            for (let course of student.availableCourses){
+              if (course.courseIndex == this.courseIndex){
+
+              }
+            }
+            student.availableCourses.push(new CourseConstructor(this.courseIndex,this.courseDate,this.selectedCourse, this.userService.getUsername()))
+          }
+        }
       student.availableCourses.push(new CourseConstructor(this.courseIndex,this.courseDate,this.selectedCourse, this.userService.getUsername()))
       studentIdsToSave.push(`${student.firstName} ${student.lastName}`)
       studentsToSave.push(student)

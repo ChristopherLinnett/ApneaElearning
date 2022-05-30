@@ -7,7 +7,9 @@ export class StudentConstructor {
   availableCourses: any[]
   password: string
   courses: any[]
-  constructor(firstName: string, lastName: string,  email: string, role = "student", courses = null) {
+  index: number
+  constructor(index: number, firstName: string, lastName: string,  email: string, role = "student", courses = null) {
+    this.index = index;
     this.firstName = firstName;
     this.lastName = lastName;
     this.role = role

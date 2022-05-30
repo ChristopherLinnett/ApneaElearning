@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { DatastorageService } from 'src/app/datastorage.service';
+import { CourseConstructor } from 'src/app/instructor/createcourse/studentconstructor.class';
 import { PhotoService } from '../photo.service';
 import { UserService } from '../user.service';
 
@@ -10,12 +11,12 @@ import { UserService } from '../user.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-email;
-firstname;
-lastname;
-oldpassword;
-phonenum;
-newpassword;
+email = "";
+firstname = "";
+lastname = "";
+oldpassword = "";
+phonenum = "";
+newpassword = "";
 olduser;
   constructor(private userService: UserService, private dataStorage: DatastorageService, private alertController: AlertController, public photoService: PhotoService) {
     this.olduser = this.userService.getUser()

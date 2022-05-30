@@ -14,6 +14,7 @@ SwiperCore.use([EffectCoverflow]);
   templateUrl: './in-progress.page.html',
   styleUrls: ['./in-progress.page.scss'],
 })
+/* I'm trying to create a quiz with 5 questions, each with 5 answers. */
 export class InProgressPage {
   @ViewChild('swiper') swiper:SwiperComponent
   @ViewChild('quizquestions') quizquestions:IonRadioGroup;
@@ -23,12 +24,23 @@ export class InProgressPage {
   chapterIndex: number
   courseIndex: number
   
+  /**
+   * The function creates a quiz object based on the chapter index.
+   * @param {CurrentModuleService} currentModuleService - CurrentModuleService is a service that I
+   * created to keep track of the current module that the user is on.
+   * @param {CourseService} courseService - This is a service that contains the course object.
+   */
   constructor(private currentModuleService: CurrentModuleService, private courseService:CourseService) {
     this.courseIndex =this.courseService.getCourse().index
     this.chapterIndex = this.currentModuleService.currentModuleIndex
     this.quiz = this.createQuiz(this.chapterIndex)
   }
 
+  /**
+   * It creates a quiz with 5 questions, each question has 5 answers, one of which is correct.
+   * @param {number} chapter - number - the chapter number of the quiz
+   * @returns An array of Question objects.
+   */
   createQuiz(chapter:number){
     var quiz=[]
     for (let i = 0; i<5 ; i++){
@@ -45,6 +57,12 @@ export class InProgressPage {
     this.quizloaded = true
     return quiz
   }
+  /**
+   * For each question in the quiz, if the question has been answered and the answer is correct, add an
+   * object to the results array with a property of correct set to true. Otherwise, add an object to
+   * the results array with a property of correct set to false and a property of correctAnswer set to
+   * the correct answer.
+   */
   markQuiz(){
     var results = []
     for (let question of this.quiz){
@@ -55,6 +73,12 @@ export class InProgressPage {
       }
     }
   }
+  /**
+   * For each question in the quiz, if the question has been answered and the answer is correct, add an
+   * object to the results array with a property of correct set to true. Otherwise, add an object to
+   * the results array with a property of correct set to false and a property of correctAnswer set to
+   * the correct answer.
+   */
   checkQuestionsAnswered(){
     for (let question of this.quiz){
       if (question.questionAnswered != null){

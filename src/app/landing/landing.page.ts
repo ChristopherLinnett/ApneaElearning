@@ -17,6 +17,7 @@ import { DatastorageService } from '../datastorage.service';
   templateUrl: './landing.page.html',
   styleUrls: ['./landing.page.scss'],
 })
+/* It's a class that displays a list of courses that a user can select. */
 export class LandingPage implements OnInit, OnDestroy {
   private loggedInSubscribed: Subscription;
   availableCourses: { index: number, title: string; description: string }[] = [];
@@ -24,7 +25,7 @@ export class LandingPage implements OnInit, OnDestroy {
   loggedIn: boolean;
   userRole: string;
   firstname: string;
-  studentView: Boolean;
+  studentView: Boolean = false;
   user;
   userCourses = [];
   courseDate = '';
@@ -33,6 +34,15 @@ export class LandingPage implements OnInit, OnDestroy {
 
   @ViewChild('swiper') swiper: SwiperComponent;
   config: SwiperOptions = { slidesPerView: 'auto', effect: 'coverflow' };
+  /**
+   * The above function is a constructor function that takes in the following parameters:
+   * dataStorageService, modalController, userService, courseService, and router.
+   * @param {DatastorageService} dataStorageService - DatastorageService,
+   * @param {ModalController} modalController - ModalController,
+   * @param {UserService} userService - UserService
+   * @param {CourseService} courseService - CourseService,
+   * @param {Router} router - Router
+   */
   constructor(
     private dataStorageService: DatastorageService,
     private modalController: ModalController,
@@ -43,6 +53,9 @@ export class LandingPage implements OnInit, OnDestroy {
     this.username = this.userService.getfirstname();
     this.loggedIn = this.userService.loggedIn;
   }
+  /**
+   * When the page loads, synchronise the user, then update the swiper.
+   */
   async ngOnInit() {
     await this.synchroniseUser();
     if (this.swiper) {
@@ -50,18 +63,30 @@ export class LandingPage implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * The showUserOptions() function is called when the user clicks on the user icon in the header. It
+   * calls the showUserOptions() function in the userService, which is a service that handles all user
+   * related functions.
+   */
   async showUserOptions() {
     this.userService.showUserOptions()
   }
 
+  /**
+   * When a course button is pressed, the course's state is updated to show that as the current course
+   * @param course - the course that was selected
+   */
   onSelectCourse(course) {
-    //when pressing course button, updates course's state to show that as the current course
     this.courseService.setCourse(course);
   }
 
 
+  /**
+   * It takes the courses from the userService and compares them to the courses from the courseService.
+   * If they match, it pushes the course from the courseService into the availableCourses array.
+   * @returns the value of the last expression in the function.
+   */
   async synchroniseUser() {
-    //sets component variables to match the application's state
     var availableCourseNames = await this.userService.getCourses();
     for (let course of this.courseService.getAllCourses()) {
       for (let testCourse of availableCourseNames) {
@@ -87,14 +112,22 @@ export class LandingPage implements OnInit, OnDestroy {
       this.studentList = this.userCourses[0].students;
     }
   }
+
+  /**
+   * The function is called when the user clicks the logout button. The function sets the studentView
+   * variable to false and calls the logout function in the userService.
+   */
   logout() {
-    //logout button
     this.studentView = false;
     this.userService.logout();
   }
 
+  /**
+   * It launches a modal, and when the modal is dismissed, it updates the user's courses and then
+   * updates the courseDate, courseType, and studentList variables.
+   * @returns The modal.present() is returning a promise.
+   */
   async onCreateCourse() {
-    //launches modal for instructor to add new courses
     const modal = await this.modalController.create({
       component: CreatecourseComponent,
       componentProps: {},
