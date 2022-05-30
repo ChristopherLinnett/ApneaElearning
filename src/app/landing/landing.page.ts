@@ -12,6 +12,7 @@ import { CreatecourseComponent } from '../instructor/createcourse/createcourse.c
 import { UserService } from '../users/user.service';
 import { OnDestroy } from '@angular/core';
 import { DatastorageService } from '../datastorage.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.page.html',
@@ -141,7 +142,7 @@ export class LandingPage implements OnInit, OnDestroy {
               this.userCourses = this.userService.getUser().courses;
               this.userCourses = this.userCourses.sort((a, b) => {
                 return a.courseDate - b.courseDate;
-              });
+              }).reverse();
 
               if (this.userCourses.length > 0) {
                 this.courseDate = this.userCourses[0].courseDate;
@@ -154,6 +155,19 @@ export class LandingPage implements OnInit, OnDestroy {
       });
     });
     return modal.present();
+  }
+
+  async launchDashboard(course) {
+    const dashboardModal = await this.modalController.create({
+      component: DashboardComponent,
+      cssClass: 'dashboardmodal',
+      componentProps: {studentList: course.students, courseDate: course.courseDate,courseType: course.courseType },
+    });
+    dashboardModal.onDidDismiss().then(() => {
+      
+      
+    });
+    return dashboardModal.present();
   }
 
   ngOnDestroy() { }

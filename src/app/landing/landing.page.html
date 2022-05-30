@@ -49,9 +49,9 @@
 
 <ion-content *ngIf="!studentView && userRole=='Instructor'">
   <ion-grid>
-    <ion-row>
+        <ion-row>
       <ion-col>
-        <ion-card>
+        <ion-card (click)="launchDashboard(userCourses[0])">
           <ion-card-header class="ion-text-center">
             <ion-card-title>Upcoming Course</ion-card-title>
           </ion-card-header>
@@ -83,7 +83,7 @@
               <ion-label>Upcoming Courses</ion-label>
             </ion-item>
             <ion-list slot="content">
-              <ion-item  *ngFor="let course of userCourses.slice(1,-1)">
+              <ion-item  *ngFor="let course of userCourses.slice(1,-1)" (click)="launchDashboard(course)">
                 <ion-label>{{course.courseType}} {{course.courseDate | date: 'dd/MM/yyyy'}}</ion-label>
               </ion-item>
             </ion-list>

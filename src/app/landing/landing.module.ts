@@ -10,11 +10,12 @@ import { LandingPageRoutingModule } from './landing-routing.module';
 import { LandingPage } from './landing.page';
 import { CreatecourseComponent } from '../instructor/createcourse/createcourse.component';
 import { AfterContentChecked } from '@angular/core';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
-  entryComponents: [CreatecourseComponent],
+  entryComponents: [CreatecourseComponent, DashboardComponent],
   imports: [CommonModule, FormsModule, IonicModule, LandingPageRoutingModule, SwiperModule],
-  declarations: [LandingPage, CreatecourseComponent],
+  declarations: [LandingPage, CreatecourseComponent, DashboardComponent],
 })
 export class LandingPageModule{
 
