@@ -17,13 +17,15 @@ SwiperCore.use([EffectCoverflow]);
   styleUrls: ['./in-progress.page.scss'],
 })
 /* I'm trying to create a quiz with 5 questions, each with 5 answers. */
-export class InProgressPage {
+export class InProgressPage implements OnInit{
   @ViewChild('swiper') swiper:SwiperComponent
   quizloaded = false
   quiz: Question[];
   allQuestionsAnswered: boolean = true
   chapterIndex: number
   courseIndex: number
+  thisCourseInUserIndex;
+
   quizAnswered: any[] = []
   
   /**
@@ -35,7 +37,18 @@ export class InProgressPage {
   constructor(private modalController:ModalController ,private dataStorageService: DatastorageService, private currentModuleService: CurrentModuleService, private courseService:CourseService, private userService: UserService) {
     this.courseIndex =this.courseService.thisCourse.index
     this.chapterIndex = this.currentModuleService.currentModuleIndex
-    this.quiz = this.createQuiz(this.chapterIndex)
+
+    let userCourseIndexes = this.userService.user.availableCourses.map(x => x.courseIndex)
+    for (let i = 0; i <userCourseIndexes.length ; i++){
+      if (userCourseIndexes[i] == this.courseIndex){
+        this.thisCourseInUserIndex = i
+      }
+    }
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.quiz = await this.createQuiz(this.chapterIndex)
+
   }
 
   /**
@@ -43,7 +56,16 @@ export class InProgressPage {
    * @param {number} chapter - number - the chapter number of the quiz
    * @returns An array of Question objects.
    */
-  createQuiz(chapter:number){
+  async createQuiz(chapter:number){
+    if (this.currentModuleService.currentModuleIndex !in this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedQuizzes){
+      this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedQuizzes.push(this.currentModuleService.currentModuleIndex)
+      var allUsers = await this.dataStorageService.lookup('users')
+      let allUsersEmail = allUsers.map(x => x.email)
+      let userIndex = allUsersEmail.indexOf(this.userService.user.email)
+    allUsers[userIndex] = this.userService.user
+    await this.dataStorageService.save('users', allUsers)
+    }
+
     var quiz=[]
     for (let i = 0; i<1 ; i++){
       let question = new Question("In which continent are Chile, Argentina and Brazil?", 0, 0,[],3)
@@ -71,13 +93,7 @@ export class InProgressPage {
     let correctAnswers = this.quiz.map(x => x.correctAnswer)
     var userScore = 0
     var corrections = []
-    var thisCourseInUserIndex;
-    let userCourseIndexes = this.userService.user.availableCourses.map(x => x.courseIndex)
-    for (let i = 0; i <userCourseIndexes.length ; i++){
-      if (userCourseIndexes[i] == this.courseIndex){
-        thisCourseInUserIndex = i
-      }
-    }
+    
     
     for (let i = 0 ; i<correctAnswers.length ; i++){
       if (studentAnswers[0] == correctAnswers[0]){
@@ -88,7 +104,7 @@ export class InProgressPage {
       }
     }
     if (userScore/correctAnswers.length > 0.75){
-      this.userService.user.availableCourses[thisCourseInUserIndex].unlockedChapters.push(this.courseIndex+1)
+      this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedChapters.push(this.courseIndex+1)
      var allUsers = await this.dataStorageService.lookup('users')
     let allUsersEmail = allUsers.map(x => x.email)
     let userIndex = allUsersEmail.indexOf(this.userService.user.email)

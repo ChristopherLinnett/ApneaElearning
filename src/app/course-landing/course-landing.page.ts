@@ -15,7 +15,7 @@ export class CourseLandingPage implements OnInit {
   quizAvailable = true;
   constructor(
     public courseService: CourseService,
-    private userService: UserService,
+    public userService: UserService,
     private router: Router,
     private modalController: ModalController
   ) {}
