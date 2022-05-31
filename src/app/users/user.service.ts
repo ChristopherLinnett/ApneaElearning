@@ -46,6 +46,7 @@ export class UserService {
       ],
     },
   ];
+  userIndexInDB;
   loggedIn: boolean = false;
   constructor(
     private actionSheetController: ActionSheetController,
@@ -64,6 +65,8 @@ export class UserService {
         ) {
           this.user = user;
           this.loggedIn = true;
+          var userlistEmails = userlist.map(x => x.email)
+          this.userIndexInDB = userlistEmails.indexOf(user.email)
         }
       }
     } else {
