@@ -32,7 +32,7 @@
     </ion-row>
   </ion-grid>
   <ion-list></ion-list>
-  <ion-button expand="block" *ngFor="let chapter of this.userService.user.availableCourses[this.userService.userIndexInDB].unlockedChapters, index as i" (click)="launchModule(chapter)">Chapter {{chapter+1}}</ion-button>
+  <ion-button expand="block" *ngFor="let chapter of this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters, index as i" (click)="launchModule(chapter)">Chapter {{chapter+1}}</ion-button>
 </ion-content>
 <ion-footer>
       <ion-col size="6" *ngIf="this.userService.user.availableCourses[0].unlockedQuizzes.length>0">

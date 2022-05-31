@@ -47,6 +47,7 @@ export class CourseService implements OnInit {
   thisCourse: { index: number, title: string; description: string };
   courseDate;
   courseChange: Subject<{ title: string; description: string }>;
+  currentCourseSelectionIndex;
   constructor() {}
 
   ngOnInit() {}

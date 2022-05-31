@@ -25,7 +25,7 @@ export class CourseLandingPage implements OnInit {
 
   ngOnInit() {
     this.thisCourse = this.courseService.getCourse();
-    console.log(this.userService.user.availableCourses[0].unlockedQuizzes)
+    console.log(this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedQuizzes)
   }
   onClickModule() {
     //move to course overview page

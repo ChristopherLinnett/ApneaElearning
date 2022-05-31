@@ -77,8 +77,9 @@ export class LandingPage implements OnInit, OnDestroy {
    * When a course button is pressed, the course's state is updated to show that as the current course
    * @param course - the course that was selected
    */
-  onSelectCourse(course) {
+  onSelectCourse(course,index) {
     this.courseService.setCourse(course);
+    this.courseService.currentCourseSelectionIndex = index;
   }
 
 
