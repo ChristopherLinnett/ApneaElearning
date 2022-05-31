@@ -31,8 +31,19 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-list></ion-list>
-  <ion-button expand="block" *ngFor="let chapter of this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters, index as i" (click)="launchModule(chapter)">Chapter {{chapter+1}}</ion-button>
+<ion-button expand="block" (click)="launchModule(this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters[this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters.length-1])">{{this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters.length > 1 ? "Continue Course" : "Start Course"}}</ion-button>
+  <ion-accordion-group>
+    <ion-accordion>
+      <ion-item slot="header">
+        <ion-label>Chapter Selection</ion-label>
+      </ion-item>
+      <ion-list slot="content">
+        <ion-item  *ngFor="let chapter of this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters, index as i" (click)="launchModule(chapter)">
+          <ion-label>Chapter {{chapter+1}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-accordion>
+  </ion-accordion-group>
 </ion-content>
 <ion-footer>
       <ion-col size="6" *ngIf="this.userService.user.availableCourses[0].unlockedQuizzes.length>0">
