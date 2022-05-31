@@ -3,10 +3,12 @@ import { Answer, Question } from '../question';
 import SwiperCore, { EffectCoverflow } from 'swiper';
 import { ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
-import { IonRadioGroup } from '@ionic/angular';
+import { IonRadioGroup, ModalController } from '@ionic/angular';
 import { AfterContentChecked } from '@angular/core';
 import { CurrentModuleService } from "../../content/detail-content/current-module.service"
 import { CourseService } from 'src/app/course-landing/course.service';
+import { UserService } from 'src/app/users/user.service';
+import { DatastorageService } from 'src/app/datastorage.service';
 SwiperCore.use([EffectCoverflow]);
 
 @Component({
@@ -17,12 +19,12 @@ SwiperCore.use([EffectCoverflow]);
 /* I'm trying to create a quiz with 5 questions, each with 5 answers. */
 export class InProgressPage {
   @ViewChild('swiper') swiper:SwiperComponent
-  @ViewChild('quizquestions') quizquestions:IonRadioGroup;
   quizloaded = false
   quiz: Question[];
   allQuestionsAnswered: boolean = true
   chapterIndex: number
   courseIndex: number
+  quizAnswered: any[] = []
   
   /**
    * The function creates a quiz object based on the chapter index.
@@ -30,8 +32,8 @@ export class InProgressPage {
    * created to keep track of the current module that the user is on.
    * @param {CourseService} courseService - This is a service that contains the course object.
    */
-  constructor(private currentModuleService: CurrentModuleService, private courseService:CourseService) {
-    this.courseIndex =this.courseService.getCourse().index
+  constructor(private modalController:ModalController ,private dataStorageService: DatastorageService, private currentModuleService: CurrentModuleService, private courseService:CourseService, private userService: UserService) {
+    this.courseIndex =this.courseService.thisCourse.index
     this.chapterIndex = this.currentModuleService.currentModuleIndex
     this.quiz = this.createQuiz(this.chapterIndex)
   }
@@ -43,10 +45,11 @@ export class InProgressPage {
    */
   createQuiz(chapter:number){
     var quiz=[]
-    for (let i = 0; i<5 ; i++){
+    for (let i = 0; i<1 ; i++){
       let question = new Question("In which continent are Chile, Argentina and Brazil?", 0, 0,[],3)
       for (let j = 0; j<5 ; j++){
       question.answers.push(new Answer(`answer${j}`,j%4==0, j))
+      this.quizAnswered.push(9)
     }
     console.log(question)
       quiz.push(question)
@@ -63,15 +66,37 @@ export class InProgressPage {
    * the results array with a property of correct set to false and a property of correctAnswer set to
    * the correct answer.
    */
-  markQuiz(){
-    var results = []
-    for (let question of this.quiz){
-      if (question.questionAnswered && question.questionAnswered == question.correctAnswer){
-        results.push({correct: true})
-      } else {
-        results.push({correct: false, correctAnswer: question.answers[question.correctAnswer]})
+  async markQuiz(){
+    let studentAnswers = this.quizAnswered
+    let correctAnswers = this.quiz.map(x => x.correctAnswer)
+    var userScore = 0
+    var corrections = []
+    var thisCourseInUserIndex;
+    let userCourseIndexes = this.userService.user.availableCourses.map(x => x.courseIndex)
+    for (let i = 0; i <userCourseIndexes.length ; i++){
+      if (userCourseIndexes[i] == this.courseIndex){
+        thisCourseInUserIndex = i
       }
     }
+    
+    for (let i = 0 ; i<correctAnswers.length ; i++){
+      if (studentAnswers[0] == correctAnswers[0]){
+        userScore++
+      }
+      else {
+        corrections.push(this.quiz[0])
+      }
+    }
+    if (userScore/correctAnswers.length > 0.75){
+      this.userService.user.availableCourses[thisCourseInUserIndex].unlockedChapters.push(this.courseIndex+1)
+     var allUsers = await this.dataStorageService.lookup('users')
+    let allUsersEmail = allUsers.map(x => x.email)
+    let userIndex = allUsersEmail.indexOf(this.userService.user.email)
+    allUsers[userIndex] = this.userService.user
+    await this.dataStorageService.save('users',allUsers)
+    this.modalController.dismiss()
+    }
+
   }
   /**
    * For each question in the quiz, if the question has been answered and the answer is correct, add an

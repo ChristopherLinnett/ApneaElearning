@@ -14,6 +14,7 @@ export class OverviewPage implements OnInit {
     completed: boolean;
     innerModules: { completed: boolean; content: string; title: string }[];
     title: string;
+    
   }[];
 
   constructor(
@@ -22,7 +23,11 @@ export class OverviewPage implements OnInit {
     private modalController: ModalController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
+
+
   async showModules() {
     //creates a modal that prompts for start point in course content from dropdowns
     this.moduleList = this.courseService.AIDA2Default;

@@ -63,7 +63,6 @@ export class CourseService implements OnInit {
     for (let item of this.allCourses) {
       if (item.title == course) {
         this.thisCourse = item;
-        return;
       }
     }
   }

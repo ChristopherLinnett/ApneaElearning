@@ -69,6 +69,7 @@ export class DetailContentPage implements OnInit {
       ].title;
   }
   async launchModuleQuiz(moduleNo){
+    this.modalController.dismiss()
       const quizmodal = await this.modalController.create({
         component: InProgressPage,
         cssClass: 'my-custom-class'

@@ -16,7 +16,7 @@
       <ion-item-divider>
       </ion-item-divider>
         <ion-item-divider color="clear" class="divider-quiz-question"></ion-item-divider>
-        <ion-radio-group #quizquestions class="pushLower">
+        <ion-radio-group [(ngModel)]="quizAnswered[i]" class="pushLower">
               <ion-item>
                 <ion-label>{{question.answers[0].text}}</ion-label>
                 <ion-radio slot="end" [value]="question.answers[0].num"></ion-radio>
@@ -38,7 +38,7 @@
     <ng-template swiperSlide class="verticalcenter">
       <ion-card>
         <img src="./assets/img/aida{{courseIndex+1}}image.png">
-        <ion-button expand="block">Submit Quiz</ion-button>
+        <ion-button (click)="markQuiz()" expand="block">Submit Quiz</ion-button>
       </ion-card>
     </ng-template>
 
