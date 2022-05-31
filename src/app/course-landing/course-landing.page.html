@@ -31,7 +31,9 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-<ion-button expand="block" (click)="launchModule(this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters[this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters.length-1])">{{this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters.length > 1 ? "Continue Course" : "Start Course"}}</ion-button>
+
+</ion-content>
+<ion-footer>
   <ion-accordion-group>
     <ion-accordion>
       <ion-item slot="header">
@@ -44,9 +46,9 @@
       </ion-list>
     </ion-accordion>
   </ion-accordion-group>
-</ion-content>
-<ion-footer>
-      <ion-col size="6" *ngIf="this.userService.user.availableCourses[0].unlockedQuizzes.length>0">
+  <ion-button expand="block" (click)="launchModule(this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters[this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters.length-1])">{{this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters.length > 1 ? "Continue Course" : "Start Course"}}</ion-button>
+
+      <ion-col size="6" *ngIf="this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedQuizzes.length>0">
         <ion-button expand="block" (click)="launchQuiz()">Quiz</ion-button>
       </ion-col>
 </ion-footer>
