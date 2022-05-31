@@ -26,12 +26,16 @@ export class CourseConstructor {
   courseInstructor: string
   students: string[]
   courseIndex: number
+  unlockedChapters: any[]
+  unlockedQuizzes: any[]
   constructor(courseIndex: number, courseDate: string, courseType: string, courseInstructor: string, students: string[]=null){
   this.courseDate = courseDate
   this.courseType = courseType
   this.courseInstructor = courseInstructor
   this.students = students
   this.courseIndex = courseIndex
+  this.unlockedChapters = [0]
+  this.unlockedQuizzes = []
   }
 
 

@@ -83,7 +83,7 @@
               <ion-label>Upcoming Courses</ion-label>
             </ion-item>
             <ion-list slot="content">
-              <ion-item  *ngFor="let course of userCourses.slice(1,-1)" (click)="launchDashboard(course)">
+              <ion-item  *ngFor="let course of userCourses" (click)="launchDashboard(course)">
                 <ion-label>{{course.courseType}} {{course.courseDate | date: 'dd/MM/yyyy'}}</ion-label>
               </ion-item>
             </ion-list>

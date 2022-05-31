@@ -2,8 +2,5 @@
 	"appId": "com.linnettchristopher.apneaelearning",
 	"appName": "ApneaElearning",
 	"webDir": "www",
-	"bundledWebRuntime": false,
-	"server": {
-		"url": "http://192.168.20.11:8100"
-	}
+	"bundledWebRuntime": false
 }
