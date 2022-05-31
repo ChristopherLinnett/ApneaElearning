@@ -33,7 +33,7 @@ export class DetailContentPage implements OnInit {
   ngOnInit() {
     this.selection = this.navParams.get('selection');
     if (this.selection == 'start') {
-      this.startModules(0, 0);
+      this.startModules(this.currentModuleService.currentModuleIndex, 0);
     }
     if (this.selection == 'continue') {
     }

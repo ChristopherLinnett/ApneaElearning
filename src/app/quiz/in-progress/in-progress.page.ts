@@ -57,7 +57,9 @@ export class InProgressPage implements OnInit{
    * @returns An array of Question objects.
    */
   async createQuiz(chapter:number){
-    if (this.currentModuleService.currentModuleIndex !in this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedQuizzes){
+    var unlockedQuizzes = this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedQuizzes
+    if (!unlockedQuizzes.includes(this.currentModuleService.currentModuleIndex)){
+      console.log('run')
       this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedQuizzes.push(this.currentModuleService.currentModuleIndex)
       var allUsers = await this.dataStorageService.lookup('users')
       let allUsersEmail = allUsers.map(x => x.email)
@@ -104,12 +106,17 @@ export class InProgressPage implements OnInit{
       }
     }
     if (userScore/correctAnswers.length > 0.75){
-      this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedChapters.push(this.courseIndex+1)
+      console.log(this.chapterIndex+1, this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedChapters,!this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedChapters.includes(this.chapterIndex+1))
+      if (!this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedChapters.includes(this.chapterIndex+1)){
+        if (this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedChapters.length < this.currentModuleService.moduleCount){
+      this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedChapters.push(this.chapterIndex+1)
      var allUsers = await this.dataStorageService.lookup('users')
     let allUsersEmail = allUsers.map(x => x.email)
     let userIndex = allUsersEmail.indexOf(this.userService.user.email)
     allUsers[userIndex] = this.userService.user
     await this.dataStorageService.save('users',allUsers)
+      }
+    }
     this.modalController.dismiss()
     }
 
