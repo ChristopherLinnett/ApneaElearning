@@ -12,9 +12,9 @@ import { DetailContentPage } from '../detail-content/detail-content.page';
 export class OverviewPage implements OnInit {
   moduleList: {
     completed: boolean;
-    innerModules: { completed: boolean; content: string; title: string }[];
+    innerModules: { image: string; content: string; title: string, videoLink: string }[];
     title: string;
-    
+
   }[];
 
   constructor(
