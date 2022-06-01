@@ -56,16 +56,18 @@ export class CreatecourseComponent implements OnInit {
 
               }
             }
-            student.availableCourses.push(new CourseConstructor(this.courseIndex,this.courseDate,this.selectedCourse, this.userService.getUsername()))
+            var courseID = `${new Date()}${this.userService.getUser().email}`
+
+            student.availableCourses.push(new CourseConstructor(courseID, this.courseIndex,this.courseDate,this.selectedCourse, this.userService.getUsername()))
           }
         }
-      student.availableCourses.push(new CourseConstructor(this.courseIndex,this.courseDate,this.selectedCourse, this.userService.getUsername()))
-      studentIdsToSave.push(`${student.firstName} ${student.lastName}`)
+      student.availableCourses.push(new CourseConstructor(courseID, this.courseIndex,this.courseDate,this.selectedCourse, this.userService.getUsername()))
+      studentIdsToSave.push(`${student.email}`)
       studentsToSave.push(student)
       console.log(student.availableCourses)
     }
     await this.userService.addUsers(studentsToSave)
-    await this.userService.addCourse(new CourseConstructor(this.courseIndex,this.courseDate, this.selectedCourse, "self", studentIdsToSave))
+    await this.userService.addCourse(new CourseConstructor(courseID, this.courseIndex,this.courseDate, this.selectedCourse, "self", studentIdsToSave))
     this.modalController.dismiss()
   }
   closeModal(modal:IonModal, index?: number){

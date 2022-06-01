@@ -1,3 +1,5 @@
+
+
 export class StudentConstructor {
   //basic datastructure for a student
   firstName: string;
@@ -21,6 +23,7 @@ export class StudentConstructor {
 }
 
 export class CourseConstructor {
+  courseID;
   courseDate: string
   courseType: string
   courseInstructor: string
@@ -28,8 +31,9 @@ export class CourseConstructor {
   courseIndex: number
   unlockedChapters: any[]
   unlockedQuizzes: any[]
-  constructor(courseIndex: number, courseDate: string, courseType: string, courseInstructor: string, students: string[]=null){
-  this.courseDate = courseDate
+  constructor(courseID: string, courseIndex: number, courseDate: string, courseType: string, courseInstructor: string, students: string[]=null){
+  this.courseID = courseID
+    this.courseDate = courseDate
   this.courseType = courseType
   this.courseInstructor = courseInstructor
   this.students = students

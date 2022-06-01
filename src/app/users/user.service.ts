@@ -8,6 +8,7 @@ import { CourseConstructor } from '../instructor/createcourse/studentconstructor
   providedIn: 'root',
 })
 export class UserService {
+  userlist;
   user: {
     firstname: string;
     lastname: string;
@@ -27,11 +28,11 @@ export class UserService {
       role: 'Instructor',
       courses: [],
       availableCourses: [
-        new CourseConstructor(0,'25/05/2022', 'AIDA1', this.getUsername()),
-        new CourseConstructor(1,'25/05/2022', 'AIDA2', this.getUsername()),
-        new CourseConstructor(2,'25/05/2022', 'AIDA3', this.getUsername()),
-        new CourseConstructor(3,'25/05/2022', 'AIDA4', this.getUsername()),
-        new CourseConstructor(4,'25/05/2022','AIDA Instructor',this.getUsername()),
+        new CourseConstructor('0',0,'25/05/2022', 'AIDA1', this.getUsername()),
+        new CourseConstructor('0',1,'25/05/2022', 'AIDA2', this.getUsername()),
+        new CourseConstructor('0',2,'25/05/2022', 'AIDA3', this.getUsername()),
+        new CourseConstructor('0',3,'25/05/2022', 'AIDA4', this.getUsername()),
+        new CourseConstructor('0',4,'25/05/2022','AIDA Instructor',this.getUsername()),
       ],
     },
     {
@@ -42,7 +43,7 @@ export class UserService {
       role: 'Student',
       courses: [],
       availableCourses: [
-        new CourseConstructor(1,'25/05/2022', 'AIDA2', 'Instructor'),
+        new CourseConstructor("0",1,'25/05/2022', 'AIDA2', 'Instructor'),
       ],
     },
   ];
@@ -56,16 +57,16 @@ export class UserService {
 
   async login(inputUser: String, inputPass: String) {
     //authenticates login, updates info then returns
-    var userlist = await this.dataStorageService.lookup('users');
-    if (userlist) {
-      for (let user of userlist) {
+    this.userlist= await this.dataStorageService.lookup('users');
+    if (this.userlist) {
+      for (let user of this.userlist) {
         if (
           user.email == inputUser.trim().toLowerCase() &&
           user.password == inputPass.trim().toLowerCase()
         ) {
           this.user = user;
           this.loggedIn = true;
-          var userlistEmails = userlist.map(x => x.email)
+          var userlistEmails = this.userlist.map(x => x.email)
           this.userIndexInDB = userlistEmails.indexOf(user.email)
         }
       }
@@ -123,22 +124,22 @@ export class UserService {
   }
 
   async addUsers(usersArray: any[]) {
-    var userlist = await this.dataStorageService.lookup('users');
-    if (userlist) {
-      let saveme = userlist.concat(usersArray);
-      console.log(userlist[userlist.length - 1]);
+    this.userlist= await this.dataStorageService.lookup('users');
+    if (this.userlist) {
+      let saveme = this.userlist.concat(usersArray);
+      console.log(this.userlist[this.userlist.length - 1]);
       await this.dataStorageService.save('users', saveme);
     } else {
       await this.dataStorageService.save('users', this.existingUsers);
     }
   }
   async addCourse(course: CourseConstructor) {
-    var userList = await this.dataStorageService.lookup('users');
-    if (userList) {
-      for (let user of userList) {
+    this.userlist= await this.dataStorageService.lookup('users');
+    if (this.userlist) {
+      for (let user of this.userlist) {
         if (user.email == this.getUsername()) {
           user.courses.push(course);
-          this.dataStorageService.save('users', userList);
+          this.dataStorageService.save('users',this.userlist);
           return;
         }
       }
