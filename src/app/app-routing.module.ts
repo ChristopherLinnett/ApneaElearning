@@ -26,13 +26,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'overview',
-    loadChildren: () =>
-      import('./content/overview/overview.module').then(
-        (m) => m.OverviewPageModule
-      ),
-  },
-  {
     path: 'landing',
     loadChildren: () =>
       import('./landing/landing.module').then((m) => m.LandingPageModule),
@@ -44,7 +37,8 @@ const routes: Routes = [
       import('./course-landing/course-landing.module').then(
         (m) => m.CourseLandingPageModule
       ),
-  },  {
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./users/profile/profile.module').then( m => m.ProfilePageModule)
   },
