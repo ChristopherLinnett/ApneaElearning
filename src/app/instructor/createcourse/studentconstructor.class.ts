@@ -17,7 +17,7 @@ export class StudentConstructor {
     this.role = role
     this.email = email;
     this.availableCourses = []
-    this.password = `${email.toUpperCase()}`
+    this.password = `${email.toLowerCase()}`
     this.courses = courses
   }
 }

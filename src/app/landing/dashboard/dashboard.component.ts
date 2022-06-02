@@ -178,7 +178,8 @@ async deleteStudent(studentEmail,studentListIndex){
   console.log(studentIndex)
   this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students.splice(studentIndex,1) //remove student from course in instructor
   console.log(this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students)
-  this.chart.update()
   await this.dataStorageService.save('users',this.userService.userlist)
+  this.chart.update()
+
 }
 }

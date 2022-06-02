@@ -18,15 +18,13 @@
         <ion-button (click)="deleteStudentAlert(student,i)" fill="clear" size="small" slot="end"><ion-icon slot="icon-only" name="close-outline"></ion-icon></ion-button>
       </ion-item>
       <ion-item>
-        <ion-label class="ion-text-right ion-no-padding ion-no-margin">Add Student</ion-label>
-        <ion-button slot="end" fill="clear" class="ion-no-margin"><ion-icon slot="icon-only" name="add-outline"></ion-icon></ion-button>
+        <ion-button slot="end" fill="clear" class="ion-no-margin">Add Student<ion-icon slot="end" name="add-outline"></ion-icon></ion-button>
       </ion-item>
       <ion-item-divider></ion-item-divider>
-
-      <ion-buttons>
-      <ion-button slot="start" (click)="cancelCourseAlert()">Cancel Course</ion-button>
-      </ion-buttons>
-</ion-col>
+      <ion-item>
+      <ion-button slot="start" fill="clear" (click)="cancelCourseAlert()">Cancel Course<ion-icon name="trash-outline"></ion-icon></ion-button>
+</ion-item>
+    </ion-col>
     </ion-row>
         </ion-grid>
       </ion-content>
