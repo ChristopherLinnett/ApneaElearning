@@ -168,13 +168,16 @@ async deleteStudent(studentEmail,studentListIndex){
   const allUsersEmail = this.userService.userlist.map(x=>x.email)
   const thisUserIndex = allUsersEmail.indexOf(this.userService.user.email)
 
-  let studentIndex = allUsersEmail.indexOf(studentEmail)
+  var studentIndex = allUsersEmail.indexOf(studentEmail)
   let thisStudentsCourseIDs = this.userService.userlist[studentIndex].availableCourses.map(x=>x.courseID)
   let thisStudentCourseIndex = thisStudentsCourseIDs.indexOf(this.courseID)
   this.userService.userlist[studentIndex].availableCourses.splice(thisStudentCourseIndex,1)
   this.studentList.splice(studentListIndex,1)       //course removed from student
-
+  studentIndex = this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students.indexOf(studentEmail)
+  console.log(this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students)
+  console.log(studentIndex)
   this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students.splice(studentIndex,1) //remove student from course in instructor
+  console.log(this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students)
   this.chart.update()
   await this.dataStorageService.save('users',this.userService.userlist)
 }
