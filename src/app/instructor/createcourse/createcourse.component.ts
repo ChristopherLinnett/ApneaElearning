@@ -20,9 +20,8 @@ export class CreatecourseComponent implements OnInit {
   courseDate = "";
   selectedCourse = "none";
   courseIndex;
-  firstname = "";
-  lastname = "";
   email = "";
+  invalidEntry = false;
   constructor(private modalController:ModalController, private alertController: AlertController, private userService: UserService, private dataStorageService: DatastorageService) {
     this.courseStudents = [];
 
@@ -30,18 +29,21 @@ export class CreatecourseComponent implements OnInit {
 
   addEmptyStudent() {
     //adds a new student to be edited in this page's form
-    var studentEntry = new StudentConstructor(0,"", "", "");
+    var studentEntry = new StudentConstructor(0, "");
     this.courseStudents.push(studentEntry);
   }
 
-  async addStudentToCourse(firstname:string, lastname: string, email:string, modal:IonModal) {
+  async addStudentToCourse(email:string, modal:IonModal) {
+    this.invalidEntry = false
+
+    if (this.email.length > 5 && this.email.includes("@")){
     let totalStudents = await this.dataStorageService.lookup('users')
-    let studentEntry = new StudentConstructor(totalStudents.length,firstname.toLowerCase(), lastname.toLowerCase(), email.toLowerCase())
+    let studentEntry = new StudentConstructor(totalStudents.length, email.toLowerCase())
     this.courseStudents.push(studentEntry)
-    this.firstname = ""
-    this.lastname = ""
     this.email = ""
     this.closeModal(modal)
+    }
+    else {setTimeout(()=> {this.invalidEntry=true},100)}
   }
   async saveCourse() {
     var studentsToSave = []

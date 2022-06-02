@@ -10,14 +10,14 @@ export class StudentConstructor {
   password: string
   courses: any[]
   index: number
-  constructor(index: number, firstName: string, lastName: string,  email: string, role = "student", courses = []) {
+  constructor(index: number,  email: string, role = "student", courses = []) {
     this.index = index;
-    this.firstName = firstName;
-    this.lastName = lastName;
+    this.firstName = "";
+    this.lastName = "";
     this.role = role
     this.email = email;
     this.availableCourses = []
-    this.password = `${firstName.toLowerCase()}${lastName.toLowerCase()}`
+    this.password = `${email.toUpperCase()}`
     this.courses = courses
   }
 }

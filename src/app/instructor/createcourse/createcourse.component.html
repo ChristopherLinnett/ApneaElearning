@@ -66,7 +66,7 @@
 
 
   <!-- Modal for choosing the Date of the course -->
-  <ion-modal class="less-width" #courseDateModal [breakpoints]="[0.0, 0.55, 0.7]" [initialBreakpoint]="0.55">
+  <ion-modal class="calendarModal" #courseDateModal >
     <ng-template>
       <ion-content>
         <ion-card>
@@ -99,7 +99,7 @@
   </ion-modal>
 
   <!-- Modal for Adding an individual Student -->
-  <ion-modal class="less-width" #addStudentModal [breakpoints]="[0.0, 0.35,0.4,0.6,0.7]" [initialBreakpoint]="0.35">
+  <ion-modal class="enterStudentModal" [showBackdrop]="true" [backdropDismiss]="true" #addStudentModal>
     <ng-template>
       <ion-list class="ion-text-center">
         <ion-list-header>
@@ -108,18 +108,16 @@
           </ion-label>
         </ion-list-header>
         <ion-item>
-          <ion-label position="floating">First Name</ion-label>
-          <ion-input [(ngModel)]="firstname"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Last Name</ion-label>
-          <ion-input [(ngModel)]="lastname"></ion-input>
-        </ion-item>
-        <ion-item>
           <ion-label position="floating">Email</ion-label>
           <ion-input [(ngModel)]="email" type="email"></ion-input>
+        </ion-item><ion-buttons slot="end">
+        <ion-button expand="block" (click)="addStudentToCourse(email, addStudentModal)">Add</ion-button>
+        <div style="width: 50%;" class="ion-align-items-end">
+          <ion-item>
+          <ion-label style="color: red;" class="ion-text-right" *ngIf="invalidEntry">Invalid Email</ion-label>
         </ion-item>
-        <ion-button expand="block" (click)="addStudentToCourse(firstname, lastname, email, addStudentModal)">Add</ion-button>
+        </div>
+      </ion-buttons>
 
       </ion-list>
 
