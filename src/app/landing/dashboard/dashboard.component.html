@@ -15,7 +15,7 @@
   <ion-col>
       <ion-item class="ion-no-margin" *ngFor="let student of studentList, index as i">
         <ion-label class="ion-no-padding">{{i+1}}. {{student}}</ion-label>
-        <ion-button fill="clear" size="small" slot="end"><ion-icon slot="icon-only" name="close-outline"></ion-icon></ion-button>
+        <ion-button (click)="deleteStudentAlert(student,i)" fill="clear" size="small" slot="end"><ion-icon slot="icon-only" name="close-outline"></ion-icon></ion-button>
       </ion-item>
       <ion-item>
         <ion-label class="ion-text-right ion-no-padding ion-no-margin">Add Student</ion-label>

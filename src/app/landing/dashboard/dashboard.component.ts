@@ -93,12 +93,37 @@ chartConfig;
   closeModal(){
     this.modalController.dismiss()
   }
+  async deleteStudentAlert(studentEmail,studentListIndex) {
+    //alert to have user confirm they want to close their course content
+    let alert = await this.alertCtrl.create({
+      header: `Delete Student`,
+      message: `Are you sure you want to remove ${studentEmail}? this cannot be undone`,
+      buttons: [
+        {
+          text: 'Yes',
+          cssClass: 'primary',
+          id: 'confirm-button',
+          handler:async () => {
+            await this.deleteStudent(studentEmail, studentListIndex)
+          },
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+        },
+      ],
+    });
+    alert.present();
+  }
+
 
   async cancelCourseAlert() {
     //alert to have user confirm they want to close their course content
     let alert = await this.alertCtrl.create({
-      header: `Close`,
-      message: `Are you sure you want to cancel this course? You cannot undo this action`,
+      header: `Cancel Course`,
+      message: `Are you sure you want to cancel this course? This cannot be undone`,
       buttons: [
         {
           text: 'Yes',
@@ -110,7 +135,7 @@ chartConfig;
           },
         },
         {
-          text: 'Cancel',
+          text: "Don't Cancel",
           role: 'cancel',
           cssClass: 'secondary',
           id: 'cancel-button',
@@ -129,15 +154,28 @@ const allUsersEmail = this.userService.userlist.map(x=>x.email)
 const thisUserIndex = allUsersEmail.indexOf(this.userService.user.email)
 this.userService.userlist[thisUserIndex].courses.splice(thisCourseIndex,1); //remove course from instructor
 for (let student of this.studentList){
-  console.log(student)
   let studentIndex = allUsersEmail.indexOf(student)
   let thisStudentsCourseIDs = this.userService.userlist[studentIndex].availableCourses.map(x=>x.courseID)
   let thisStudentCourseIndex = thisStudentsCourseIDs.indexOf(this.courseID)
   this.userService.userlist[studentIndex].availableCourses.splice(thisStudentCourseIndex,1)
 }
 await this.dataStorageService.save('users',this.userService.userlist)
+}
+async deleteStudent(studentEmail,studentListIndex){
+  const thisCourseID = this.courseID;
+  const allThisUserCourseIDs = this.userService.user.courses.map(x=> x.courseID);   //get CourseIds by index for matching
+  const thisCourseIndex = allThisUserCourseIDs.indexOf(thisCourseID)
+  const allUsersEmail = this.userService.userlist.map(x=>x.email)
+  const thisUserIndex = allUsersEmail.indexOf(this.userService.user.email)
 
+  let studentIndex = allUsersEmail.indexOf(studentEmail)
+  let thisStudentsCourseIDs = this.userService.userlist[studentIndex].availableCourses.map(x=>x.courseID)
+  let thisStudentCourseIndex = thisStudentsCourseIDs.indexOf(this.courseID)
+  this.userService.userlist[studentIndex].availableCourses.splice(thisStudentCourseIndex,1)
+  this.studentList.splice(studentListIndex,1)       //course removed from student
 
-
+  this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students.splice(studentIndex,1) //remove student from course in instructor
+  this.chart.update()
+  await this.dataStorageService.save('users',this.userService.userlist)
 }
 }
