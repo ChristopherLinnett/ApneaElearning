@@ -1,8 +1,9 @@
 import { Input } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import Chart from 'Chart.js/auto'
+import { DatastorageService } from 'src/app/datastorage.service';
 import { UserService } from 'src/app/users/user.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit {
 @Input('courseDate') courseDate;
 @Input('courseType') courseType;
 @Input('studentList') studentList = [];
+@Input('courseID') courseID;
 
 @ViewChild('chartCanvas', { static: true }) canvas;
 chart: any;
@@ -26,7 +28,7 @@ borderColour = 'rgba(54, 162, 235, 1)';
 chartConfig;
 
 
-  constructor(private modalController: ModalController, public userService: UserService) { 
+  constructor(private dataStorageService: DatastorageService ,private modalController: ModalController, public userService: UserService, private alertCtrl: AlertController) { 
  
   }
 
@@ -91,5 +93,51 @@ chartConfig;
   closeModal(){
     this.modalController.dismiss()
   }
-}
 
+  async cancelCourseAlert() {
+    //alert to have user confirm they want to close their course content
+    let alert = await this.alertCtrl.create({
+      header: `Close`,
+      message: `Are you sure you want to cancel this course? You cannot undo this action`,
+      buttons: [
+        {
+          text: 'Yes',
+          cssClass: 'primary',
+          id: 'confirm-button',
+          handler:async () => {
+            await this.cancelCourse()
+            this.closeModal();
+          },
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          id: 'cancel-button',
+        },
+      ],
+    });
+    alert.present();
+  }
+
+
+async cancelCourse(){
+const thisCourseID = this.courseID;
+const allThisUserCourseIDs = this.userService.user.courses.map(x=> x.courseID);   //get CourseIds by index for matching
+const thisCourseIndex = allThisUserCourseIDs.indexOf(thisCourseID)
+const allUsersEmail = this.userService.userlist.map(x=>x.email)
+const thisUserIndex = allUsersEmail.indexOf(this.userService.user.email)
+this.userService.userlist[thisUserIndex].courses.splice(thisCourseIndex,1); //remove course from instructor
+for (let student of this.studentList){
+  console.log(student)
+  let studentIndex = allUsersEmail.indexOf(student)
+  let thisStudentsCourseIDs = this.userService.userlist[studentIndex].availableCourses.map(x=>x.courseID)
+  let thisStudentCourseIndex = thisStudentsCourseIDs.indexOf(this.courseID)
+  this.userService.userlist[studentIndex].availableCourses.splice(thisStudentCourseIndex,1)
+}
+await this.dataStorageService.save('users',this.userService.userlist)
+
+
+
+}
+}

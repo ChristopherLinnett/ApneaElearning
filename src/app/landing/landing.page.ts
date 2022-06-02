@@ -58,9 +58,9 @@ export class LandingPage implements OnInit, OnDestroy {
    * When the page loads, synchronise the user, then update the swiper.
    */
   async ngOnInit() {
-    await this.synchroniseUser();
+    await this.synchroniseUser()
     if (this.swiper) {
-      this.swiper.updateSwiper({});
+      this.swiper.updateSwiper({})
     }
   }
 
@@ -99,7 +99,10 @@ export class LandingPage implements OnInit, OnDestroy {
     }
     this.username = this.userService.getfirstname();
     this.userRole = this.userService.getUserRole();
-    if (this.userService.getUser().courses.length == 0) {
+    if (this.userService.user.courses.length == 0) {
+      this.courseDate = ""
+      this.courseType = ""
+      this.studentList = []
       return;
     } else {
       this.userCourses = this.userService.getUser().courses;
@@ -165,15 +168,12 @@ export class LandingPage implements OnInit, OnDestroy {
       showBackdrop: false,
       backdropDismiss: true,
       canDismiss: true,
-      swipeToClose: true,
-
-
-
-      componentProps: {studentList: course.students, courseDate: course.courseDate,courseType: course.courseType },
+      componentProps: {studentList: course.students, courseDate: course.courseDate,courseType: course.courseType, courseID: course.courseID },
     });
     dashboardModal.onDidDismiss().then(() => {
-      
-      
+      this.synchroniseUser()
+      console.log('dismissed')
+
     });
     return dashboardModal.present();
   }
