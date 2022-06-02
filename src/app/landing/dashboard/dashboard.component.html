@@ -1,18 +1,17 @@
 <ion-toolbar>
-  <canvas #chartCanvas height="150"></canvas>
+  <canvas class="ion-padding" #chartCanvas height="150"></canvas>
 
-  <ion-button fill="clear" slot="end" (click)="closeModal()"><ion-icon slot="icon-only" name="close-outline"></ion-icon></ion-button>
   <ion-card-title>{{courseType}} Course</ion-card-title>
   <ion-card-subtitle >{{courseDate | date: 'dd/MM/yyyy'}}</ion-card-subtitle>
 </ion-toolbar>
 
-<ion-content class="ion-text-center">
-
-     <ion-list class="ion-text-center">
-      <ion-item *ngFor="let student of studentList, index as i">
-        <ion-label>{{i+1}}. {{student}}</ion-label>
+<ion-content class="ion-no-margin">
+      <ion-item class="ion-no-margin" *ngFor="let student of studentList, index as i">
+        <ion-label class="ion-no-padding">{{i+1}}. {{student}}</ion-label>
         <ion-button fill="clear" size="small" slot="end"><ion-icon slot="icon-only" name="close-outline"></ion-icon></ion-button>
       </ion-item>
-    </ion-list>
-    <ion-button>Cancel Course</ion-button>
+        <ion-toolbar>
+          <ion-button slot="start">Cancel Course</ion-button>
+          <ion-button slot="end" (click)="closeModal()">Close</ion-button>
+      </ion-toolbar>
   </ion-content>
