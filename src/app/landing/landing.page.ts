@@ -162,6 +162,13 @@ export class LandingPage implements OnInit, OnDestroy {
     const dashboardModal = await this.modalController.create({
       component: DashboardComponent,
       cssClass: 'dashboardmodal',
+      showBackdrop: false,
+      backdropDismiss: true,
+      canDismiss: true,
+      swipeToClose: true,
+
+
+
       componentProps: {studentList: course.students, courseDate: course.courseDate,courseType: course.courseType },
     });
     dashboardModal.onDidDismiss().then(() => {

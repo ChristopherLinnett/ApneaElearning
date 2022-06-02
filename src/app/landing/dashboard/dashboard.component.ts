@@ -39,21 +39,21 @@ chartConfig;
     }
     console.log(studentUserIndexes)
 
-    this.chartData = studentUserIndexes.map(x => this.userService.userlist[x].availableCourses[0].unlockedChapters.length)
+    this.chartData = studentUserIndexes.map(x => this.userService.userlist[x].availableCourses[0].unlockedChapters.length-1)
     this.chartConfig = {
       type: this.chartType,
       data: {
         labels: this.labels,
         datasets: [{
-          label: '',
+          label: 'Completed Modules',
           data: this.chartData,
           backgroundColor: this.backgroundColour,
           borderColor: this.borderColour,
-          borderWidth: 2
+          borderWidth: 1
         }]
       },
       options: {
-        
+                
         indexAxis: 'y',
         // Elements options apply to all of the options unless overridden in a dataset
         // In this case, we are setting the border of each horizontal bar to be 2px wide
@@ -66,7 +66,16 @@ chartConfig;
         plugins: {
           legend: {
             display: false,
-          }
+          },
+          title: {
+            display: true,
+            text: "Student Chapter Progression",
+            position: 'bottom',
+            alignment: 'center',
+            font: {
+              size: 12
+            }
+          },
         }
       }
     }

@@ -1,17 +1,32 @@
-<ion-toolbar>
-  <canvas class="ion-padding" #chartCanvas height="150"></canvas>
 
+<ion-header class="ion-margin-top"><ion-toolbar>
   <ion-card-title>{{courseType}} Course</ion-card-title>
   <ion-card-subtitle >{{courseDate | date: 'dd/MM/yyyy'}}</ion-card-subtitle>
-</ion-toolbar>
+  <ion-button slot="end" fill="clear" (click)="closeModal()"><ion-icon slot="icon-only" name="close-outline"></ion-icon></ion-button>
 
-<ion-content class="ion-no-margin">
+
+</ion-toolbar>
+</ion-header>
+<ion-content>
+  <canvas class="ion-padding" #chartCanvas height="200"></canvas>
+
+  <ion-grid>
+<ion-row>
+  <ion-col>
       <ion-item class="ion-no-margin" *ngFor="let student of studentList, index as i">
         <ion-label class="ion-no-padding">{{i+1}}. {{student}}</ion-label>
         <ion-button fill="clear" size="small" slot="end"><ion-icon slot="icon-only" name="close-outline"></ion-icon></ion-button>
       </ion-item>
-        <ion-toolbar>
-          <ion-button slot="start">Cancel Course</ion-button>
-          <ion-button slot="end" (click)="closeModal()">Close</ion-button>
-      </ion-toolbar>
-  </ion-content>
+      <ion-item>
+        <ion-label class="ion-text-right ion-no-padding ion-no-margin">Add Student</ion-label>
+        <ion-button slot="end" fill="clear" class="ion-no-margin"><ion-icon slot="icon-only" name="add-outline"></ion-icon></ion-button>
+      </ion-item>
+      <ion-item-divider></ion-item-divider>
+
+      <ion-buttons>
+      <ion-button slot="start">Cancel Course</ion-button>
+      </ion-buttons>
+</ion-col>
+    </ion-row>
+        </ion-grid>
+      </ion-content>
