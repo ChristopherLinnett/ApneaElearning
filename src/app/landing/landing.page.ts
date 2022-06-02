@@ -27,7 +27,7 @@ export class LandingPage implements OnInit, OnDestroy {
   userRole: string;
   firstname: string;
   studentView: Boolean = false;
-  user;
+  user;  
   userCourses = [];
   courseDate = '';
   courseType = '';
@@ -97,6 +97,7 @@ export class LandingPage implements OnInit, OnDestroy {
         }
       }
     }
+
     this.username = this.userService.getfirstname();
     this.userRole = this.userService.getUserRole();
     if (this.userService.user.courses.length == 0) {
@@ -110,8 +111,7 @@ export class LandingPage implements OnInit, OnDestroy {
       {this.userCourses = this.userCourses
         .sort((a, b) => {
           return a.courseDate - b.courseDate;
-        })
-        .reverse();}
+        }).reverse();}
       this.courseDate = this.userCourses[0].courseDate;
       this.courseType = this.userCourses[0].courseType;
       this.studentList = this.userCourses[0].students;
