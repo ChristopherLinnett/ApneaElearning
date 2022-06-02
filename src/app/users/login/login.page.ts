@@ -9,7 +9,7 @@ import { UserService } from '../user.service';
 })
 /* It's a login page that saves the user's login details if they want to. */
 export class LoginPage implements OnInit {
-  incorrectPassword: string;
+  incorrectPassword= false;
   incorrectCount: number = 0;
   username: string = '';
   password: string = '';
@@ -28,15 +28,17 @@ export class LoginPage implements OnInit {
   /* Authenticating the user login, returning a message if it fails, and navigating the router to
   the landing page if it is successful. */
   async login() {
+    this.incorrectPassword=false
     await this.userService.login(this.username, this.password);
     if (!this.userService.loggedIn) {
+      setTimeout(()=>{
       this.incorrectCount++;
-      this.incorrectPassword = `Incorrect details, please try again
-      (${this.incorrectCount} attempts)`;
+      this.incorrectPassword = true;
+      },100)
       return;
     }
     this.incorrectCount = 0;
-    this.incorrectPassword = '';
+    this.incorrectPassword = false;
     if (this.savelogin) {
       await this.dataStorage.save('saveduserdetails', {
         username: this.username,

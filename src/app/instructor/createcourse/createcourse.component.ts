@@ -58,7 +58,7 @@ export class CreatecourseComponent implements OnInit {
 
               }
             }
-            var courseID = `${new Date()}${this.userService.getUser().email}`
+            var courseID = `${String(new Date())}${this.userService.getUser().email}`
 
             student.availableCourses.push(new CourseConstructor(courseID, this.courseIndex,this.courseDate,this.selectedCourse, this.userService.getUsername()))
           }
