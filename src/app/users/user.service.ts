@@ -9,17 +9,8 @@ import { CourseConstructor } from '../instructor/createcourse/studentconstructor
 })
 export class UserService {
   userlist;
-  user: {
-    firstname: string;
-    lastname: string;
-    email: string;
-    phonenum: string;
-    password: string;
-    role: string;
-    courses: any[];
-    availableCourses: CourseConstructor[];
-  };
-  existingUsers = [
+  user;
+  existingUsers = {instructor:
     {
       firstname: 'none',
       lastname: 'none',
@@ -27,14 +18,13 @@ export class UserService {
       password: 'password',
       role: 'Instructor',
       courses: [],
-      availableCourses: [
-        new CourseConstructor('0',0,'25/05/2022', 'AIDA1', this.getUsername()),
-        new CourseConstructor('0',1,'25/05/2022', 'AIDA2', this.getUsername()),
-        new CourseConstructor('0',2,'25/05/2022', 'AIDA3', this.getUsername()),
-        new CourseConstructor('0',3,'25/05/2022', 'AIDA4', this.getUsername()),
-        new CourseConstructor('0',4,'25/05/2022','AIDA Instructor',this.getUsername()),
-      ],
-    },
+      availableCourses: { aida1: new CourseConstructor('0',0,'25/05/2022', 'AIDA1', this.getUsername()),
+        aida2: new CourseConstructor('0',1,'25/05/2022', 'AIDA2', this.getUsername()),
+        aida3: new CourseConstructor('0',2,'25/05/2022', 'AIDA3', this.getUsername()),
+        aida4: new CourseConstructor('0',3,'25/05/2022', 'AIDA4', this.getUsername()),
+        aida5: new CourseConstructor('0',4,'25/05/2022','AIDA Instructor',this.getUsername()),
+      },
+    },newStudent: 
     {
       firstname: 'none',
       lastname: 'none',
@@ -42,11 +32,10 @@ export class UserService {
       password: 'password',
       role: 'Student',
       courses: [],
-      availableCourses: [
-        new CourseConstructor("0",1,'25/05/2022', 'AIDA2', 'Instructor'),
-      ],
+      availableCourses: { aida2: new CourseConstructor("0",1,'25/05/2022', 'AIDA2', 'Instructor'),
+      },
     },
-  ];
+  };
   userIndexInDB;
   loggedIn: boolean = false;
   constructor(
@@ -55,7 +44,25 @@ export class UserService {
     private dataStorageService: DatastorageService
   ) {}
 
-  async login(inputUser: String, inputPass: String) {
+  async updateUserlist() {
+    this.userlist = await this.dataStorageService.lookup('users')
+  }
+
+  async login(inputUser: string, inputPass: string){
+    inputUser = inputUser.toLowerCase().trim()
+    inputPass = inputPass.toLowerCase().trim()
+    await this.updateUserlist()
+    if (!this.userlist.instructor){
+      await this.dataStorageService.save('users', this.existingUsers);
+    }
+    if (this.userlist.inputUser && this.userlist.inputUser.password == inputPass) {
+      this.user = this.userlist.inputUser
+      this.loggedIn = true
+    }
+  }
+
+
+  async login(inputUser: string, inputPass: string) {
     //authenticates login, updates info then returns
     this.userlist= await this.dataStorageService.lookup('users');
     if (this.userlist) {
@@ -72,6 +79,7 @@ export class UserService {
       }
     } else {
       await this.dataStorageService.save('users', this.existingUsers);
+      this.login(inputUser, inputPass)
     }
   }
   async showUserOptions() {
