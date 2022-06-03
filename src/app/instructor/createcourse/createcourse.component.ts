@@ -15,8 +15,8 @@ export class CreatecourseComponent implements OnInit {
   @ViewChild('addStudentModal') addStudentModal:IonModal;
   @ViewChild('courseDateModal') courseDateModal:IonModal;
   @ViewChild('courseTypeModal') courseTypeModal:IonModal;
-  courseOptions = ['AIDA1', 'AIDA2', 'AIDA3', 'AIDA4']
-  courseStudents: StudentConstructor[];
+  courseOptions = ['AIDA1', 'AIDA2', 'AIDA3', 'AIDA4','AIDA5']
+  courseStudents;
   courseDate = "";
   selectedCourse = "none";
   courseIndex;
@@ -46,27 +46,14 @@ export class CreatecourseComponent implements OnInit {
     else {setTimeout(()=> {this.invalidEntry=true},100)}
   }
   async saveCourse() {
+    const courseID = `${String(new Date())}${this.userService.getUser().email}`
     var studentsToSave = []
     var studentIdsToSave = []
-    var existingStudents = await this.dataStorageService.lookup('users')
     for (let student of this.courseStudents) {
-        for (let user of existingStudents) {
-          if (student.email == user.email){
-            student = user
-            for (let course of student.availableCourses){
-              if (course.courseIndex == this.courseIndex){
-
-              }
-            }
-            var courseID = `${String(new Date())}${this.userService.getUser().email}`
-
-            student.availableCourses.push(new CourseConstructor(courseID, this.courseIndex,this.courseDate,this.selectedCourse, this.userService.getUsername()))
-          }
-        }
-      student.availableCourses.push(new CourseConstructor(courseID, this.courseIndex,this.courseDate,this.selectedCourse, this.userService.getUsername()))
+      console.log(student)
+      student['availableCourses'][`${courseID}`]= new CourseConstructor(courseID, this.courseIndex,this.courseDate,this.selectedCourse, this.userService.getUsername())
       studentIdsToSave.push(`${student.email}`)
       studentsToSave.push(student)
-      console.log(student.availableCourses)
     }
     await this.userService.addUsers(studentsToSave)
     await this.userService.addCourse(new CourseConstructor(courseID, this.courseIndex,this.courseDate, this.selectedCourse, "self", studentIdsToSave))

@@ -36,18 +36,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.labels = this.studentList.map((x) => this.studentList.indexOf(x) + 1);
-    var allUsersEmail = this.userService.userlist.map((x) => x.email);
-    var studentUserIndexes = [];
-    for (let student of this.studentList) {
-      studentUserIndexes.push(allUsersEmail.indexOf(student));
-    }
-    console.log(studentUserIndexes);
-
-    this.chartData = studentUserIndexes.map(
-      (x) =>
-        this.userService.userlist[x].availableCourses[0].unlockedChapters
-          .length - 1
-    );
+    for (let student in this.studentList){
+    console.log(this.userService.userlist[`${student}`])}
+    this.chartData = this.studentList.map((x) => this.userService.userlist[`${x}`].availableCourses[`${this.courseID}`].unlockedChapters.length)
     this.chartConfig = {
       type: this.chartType,
       data: {

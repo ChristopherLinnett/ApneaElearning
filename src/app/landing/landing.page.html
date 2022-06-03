@@ -40,7 +40,7 @@
     <swiper #swiper [config]="config">
       <ng-template swiperSlide *ngFor="let course of availableCourses, index as i">
               <ion-card *ngIf="availableCourses.length>0">
-                  <img src="./assets/img/aida{{course.index+1}}image.png" alt="" [routerLink]="['/course-landing']" (click)="onSelectCourse(course.title,i)">
+                  <img src="./assets/img/{{course['courseType'].toLowerCase()}}image.png" alt="" [routerLink]="['/course-landing']" (click)="onSelectCourse(course.title,i)">
               </ion-card>
       </ng-template>
     </swiper>

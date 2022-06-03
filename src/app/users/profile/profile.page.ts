@@ -39,8 +39,7 @@ olduser;
     if (this.oldpassword == currentUser.password && this.newpassword && this.newpassword.length> 5){
         currentUser.password = this.newpassword.toLowerCase()
     var userlist = await this.dataStorage.lookup('users')
-    var thisuserIndex = userlist.map(user => user.email).indexOf(`${currentUser.email}`)
-    userlist[thisuserIndex] = currentUser
+    userlist[`${this.olduser.email}`] = currentUser
     await this.dataStorage.save('users', userlist)
     this.saveAlert(true)
     this.userService.user = currentUser

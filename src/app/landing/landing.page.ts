@@ -21,13 +21,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 /* It's a class that displays a list of courses that a user can select. */
 export class LandingPage implements OnInit, OnDestroy {
   private loggedInSubscribed: Subscription;
-  availableCourses: { index: number, title: string; description: string }[] = [];
+  availableCourses = [];
   username: string;
   loggedIn: boolean;
   userRole: string;
   firstname: string;
   studentView: Boolean = false;
-  user;  
   userCourses = [];
   courseDate = '';
   courseType = '';
@@ -35,15 +34,7 @@ export class LandingPage implements OnInit, OnDestroy {
 
   @ViewChild('swiper') swiper: SwiperComponent;
   config: SwiperOptions = { slidesPerView: 'auto', effect: 'coverflow' };
-  /**
-   * The above function is a constructor function that takes in the following parameters:
-   * dataStorageService, modalController, userService, courseService, and router.
-   * @param {DatastorageService} dataStorageService - DatastorageService,
-   * @param {ModalController} modalController - ModalController,
-   * @param {UserService} userService - UserService
-   * @param {CourseService} courseService - CourseService,
-   * @param {Router} router - Router
-   */
+
   constructor(
     private dataStorageService: DatastorageService,
     private modalController: ModalController,
@@ -54,9 +45,7 @@ export class LandingPage implements OnInit, OnDestroy {
     this.username = this.userService.getfirstname();
     this.loggedIn = this.userService.loggedIn;
   }
-  /**
-   * When the page loads, synchronise the user, then update the swiper.
-   */
+
   async ngOnInit() {
     await this.synchroniseUser()
     if (this.swiper) {
@@ -64,74 +53,50 @@ export class LandingPage implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * The showUserOptions() function is called when the user clicks on the user icon in the header. It
-   * calls the showUserOptions() function in the userService, which is a service that handles all user
-   * related functions.
-   */
+
   async showUserOptions() {
     this.userService.showUserOptions()
   }
 
-  /**
-   * When a course button is pressed, the course's state is updated to show that as the current course
-   * @param course - the course that was selected
-   */
+ 
   onSelectCourse(course,index) {
     this.courseService.setCourse(course);
     this.courseService.currentCourseSelectionIndex = index;
   }
 
 
-  /**
-   * It takes the courses from the userService and compares them to the courses from the courseService.
-   * If they match, it pushes the course from the courseService into the availableCourses array.
-   * @returns the value of the last expression in the function.
-   */
+
   async synchroniseUser() {
-    var availableCourseNames = await this.userService.getCourses();
-    for (let course of this.courseService.getAllCourses()) {
-      for (let testCourse of availableCourseNames) {
-        if (testCourse.courseType == course.title) {
-          this.availableCourses.push(course);
-        }
-      }
-    }
+    this.availableCourses = Object.values(this.userService.userlist[`${this.userService.user.email}`].availableCourses)
+    console.log(this.availableCourses)
+    
 
     this.username = this.userService.getfirstname();
     this.userRole = this.userService.getUserRole();
-    if (this.userService.user.courses.length == 0) {
+    if (Object.keys(this.userService.user.courses).length == 0) {
       this.courseDate = ""
       this.courseType = ""
       this.studentList = []
       return;
     } else {
-      this.userCourses = this.userService.getUser().courses;
-      if (this.userCourses.length > 1)
-      {this.userCourses = this.userCourses
+      this.userCourses = Object.values(this.userService.user['courses'])
+      if (Object.keys(this.userService.user.courses).length > 1){
+        this.userCourses = this.userCourses
         .sort((a, b) => {
           return a.courseDate - b.courseDate;
         }).reverse();}
-      this.courseDate = this.userCourses[0].courseDate;
-      this.courseType = this.userCourses[0].courseType;
-      this.studentList = this.userCourses[0].students;
+      this.courseDate = this.userCourses[0]['courseDate'];
+      this.courseType = this.userCourses[0]['courseType'];
+      this.studentList = this.userCourses[0]['students'];
     }
   }
 
-  /**
-   * The function is called when the user clicks the logout button. The function sets the studentView
-   * variable to false and calls the logout function in the userService.
-   */
+
   logout() {
     this.studentView = false;
     this.userService.logout();
   }
 
-  /**
-   * It launches a modal, and when the modal is dismissed, it updates the user's courses and then
-   * updates the courseDate, courseType, and studentList variables.
-   * @returns The modal.present() is returning a promise.
-   */
   async onCreateCourse() {
     const modal = await this.modalController.create({
       component: CreatecourseComponent,
@@ -139,11 +104,11 @@ export class LandingPage implements OnInit, OnDestroy {
     });
     modal.onDidDismiss().then(() => {
       this.dataStorageService.lookup('users').then((userlist) => {
-        for (let user of userlist) {
-          if (user.email == this.userService.getUsername()) {
+        for (let user of Object.values(userlist)) {
+          if (user['email'] == this.userService.getUsername()) {
             this.userService.user = user;
             this.synchroniseUser().then((_) => {
-              this.userCourses = this.userService.getUser().courses;
+              this.userCourses = Object.values(this.userService.user['courses'])
               this.userCourses = this.userCourses.sort((a, b) => {
                 return a.courseDate - b.courseDate;
               }).reverse();
