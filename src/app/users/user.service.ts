@@ -44,8 +44,16 @@ export class UserService {
     private dataStorageService: DatastorageService
   ) {}
 
+async updateUser(){
+  this.user = this.userlist[`${this.user.email}`]
+}
+
   async updateUserlist() {
     this.userlist = await this.dataStorageService.lookup('users')
+    if(this.isLoggedIn) {
+      this.updateUser()
+    }
+
   }
 
   async login(inputUser: string, inputPass: string){
@@ -125,15 +133,9 @@ export class UserService {
   }
   async addCourse(course: CourseConstructor) {
     this.userlist= await this.dataStorageService.lookup('users');
-    if (this.userlist) {
-
           this.userlist[`${this.user.email}`].courses[`${course.courseID}`] = course
           this.dataStorageService.save('users',this.userlist);
           return;
-    } else {
-      await this.dataStorageService.save('users', this.existingUsers);
-      this.addCourse(course);
-    }
   }
 
   getCourses() {

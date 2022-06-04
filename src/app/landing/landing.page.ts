@@ -44,6 +44,7 @@ export class LandingPage implements OnInit, OnDestroy {
   ) {
     this.username = this.userService.getfirstname();
     this.loggedIn = this.userService.loggedIn;
+    this.userRole = this.userService.getUserRole()
   }
 
   async ngOnInit() {
@@ -51,6 +52,7 @@ export class LandingPage implements OnInit, OnDestroy {
     if (this.swiper) {
       this.swiper.updateSwiper({})
     }
+    console.log(this.availableCourses)
   }
 
 
@@ -59,9 +61,8 @@ export class LandingPage implements OnInit, OnDestroy {
   }
 
  
-  onSelectCourse(course,index) {
+  onSelectCourse(course) {
     this.courseService.setCourse(course);
-    this.courseService.currentCourseSelectionIndex = index;
   }
 
 
@@ -69,8 +70,6 @@ export class LandingPage implements OnInit, OnDestroy {
   async synchroniseUser() {
     this.availableCourses = Object.values(this.userService.userlist[`${this.userService.user.email}`].availableCourses)
     console.log(this.availableCourses)
-    
-
     this.username = this.userService.getfirstname();
     this.userRole = this.userService.getUserRole();
     if (Object.keys(this.userService.user.courses).length == 0) {
@@ -127,6 +126,7 @@ export class LandingPage implements OnInit, OnDestroy {
   }
 
   async launchDashboard(course) {
+    if (this.courseDate == "") {return}
     const dashboardModal = await this.modalController.create({
       component: DashboardComponent,
       cssClass: 'dashboardmodal',

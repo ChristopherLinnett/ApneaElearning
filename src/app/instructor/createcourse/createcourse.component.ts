@@ -50,11 +50,16 @@ export class CreatecourseComponent implements OnInit {
     var studentsToSave = []
     var studentIdsToSave = []
     for (let student of this.courseStudents) {
-      console.log(student)
+      if (student['email'] in Object.keys(this.userService.userlist) == false){
       student['availableCourses'][`${courseID}`]= new CourseConstructor(courseID, this.courseIndex,this.courseDate,this.selectedCourse, this.userService.getUsername())
-      studentIdsToSave.push(`${student.email}`)
       studentsToSave.push(student)
     }
+    else {
+      this.userService.userlist[`${student.email}`].availableCourses[`${courseID}`] = new CourseConstructor(courseID, this.courseIndex,this.courseDate,this.selectedCourse, this.userService.getUsername())
+    }
+    studentIdsToSave.push(`${student.email}`)
+
+  }
     await this.userService.addUsers(studentsToSave)
     await this.userService.addCourse(new CourseConstructor(courseID, this.courseIndex,this.courseDate, this.selectedCourse, "self", studentIdsToSave))
     this.modalController.dismiss()

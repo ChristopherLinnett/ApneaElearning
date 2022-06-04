@@ -1,3 +1,4 @@
+import { StudentConstructor } from './../../instructor/createcourse/studentconstructor.class';
 import { Input } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
@@ -36,9 +37,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.labels = this.studentList.map((x) => this.studentList.indexOf(x) + 1);
-    for (let student in this.studentList){
-    console.log(this.userService.userlist[`${student}`])}
-    this.chartData = this.studentList.map((x) => this.userService.userlist[`${x}`].availableCourses[`${this.courseID}`].unlockedChapters.length)
+    this.chartData = this.studentList.map((x) => this.userService.userlist[`${x}`].availableCourses[`${this.courseID}`].unlockedChapters.length-1)
     this.chartConfig = {
       type: this.chartType,
       data: {
@@ -101,7 +100,7 @@ export class DashboardComponent implements OnInit {
           cssClass: 'primary',
           id: 'confirm-button',
           handler: async () => {
-            await this.deleteStudent(studentEmail, studentListIndex);
+           await this.deleteStudent(studentEmail, studentListIndex);
           },
         },
         {
@@ -141,69 +140,82 @@ export class DashboardComponent implements OnInit {
     alert.present();
   }
 
-  async cancelCourse() {
-    const thisCourseID = this.courseID;
-    const allThisUserCourseIDs = this.userService.user.courses.map(
-      (x) => x.courseID
-    ); //get CourseIds by index for matching
-    const thisCourseIndex = allThisUserCourseIDs.indexOf(thisCourseID);
-    const allUsersEmail = this.userService.userlist.map((x) => x.email);
-    const thisUserIndex = allUsersEmail.indexOf(this.userService.user.email);
-    this.userService.userlist[thisUserIndex].courses.splice(thisCourseIndex, 1); //remove course from instructor
-    for (let student of this.studentList) {
-      let studentIndex = allUsersEmail.indexOf(student);
-      let thisStudentsCourseIDs = this.userService.userlist[
-        studentIndex
-      ].availableCourses.map((x) => x.courseID);
-      let thisStudentCourseIndex = thisStudentsCourseIDs.indexOf(this.courseID);
-
-      if (this.userService.userlist[studentIndex].availableCourses.length < 2) {
-        this.userService.userlist.splice(studentIndex, 1); //remove the student
-      } else {
-        this.userService.userlist[studentIndex].availableCourses.splice(thisStudentCourseIndex,1); //remove the course from student
+  async cancelCourse() {          //for each student, remove course with same courseID, for Instructor. Rebuild without that in courses
+    var studentsToClear = []
+    var studentsToEdit = []
+    for (let student of this.studentList){
+      if (Object.keys(this.userService.userlist[`${student}`].availableCourses).length<2){
+        studentsToClear.push(student)
       }
-      await this.dataStorageService.save('users', this.userService.userlist);
+      else {
+        studentsToEdit.push(student)
+      }
     }
-  }
-  async deleteStudent(studentEmail, studentListIndex) {
-    const thisCourseID = this.courseID;
-    const allThisUserCourseIDs = this.userService.user.courses.map(
-      (x) => x.courseID
-    ); //get CourseIds by index for matching
-    const thisCourseIndex = allThisUserCourseIDs.indexOf(thisCourseID);
-    const allUsersEmail = this.userService.userlist.map((x) => x.email);
-    const thisUserIndex = allUsersEmail.indexOf(this.userService.user.email);
+    var newUserList = {}
+    for (let user of Object.keys(this.userService.userlist)){
+      if (user !in studentsToClear && user !in studentsToEdit && user != this.userService.user.email){
+        newUserList[`${user}`]= this.userService.userlist[`${user}`]
+      }
+      else {
+        if (user !in studentsToClear && user != this.userService.user.email){
+          const thisUser = this.userService.userlist[`${user}`]
+          const newAvailableCourses = {}
+          for (let course of Object.keys(thisUser.availableCourses)){
+            if (course != this.courseID){
+              newAvailableCourses[`${course}`]= thisUser.availableCourses[`${course}`]
+            }
+          }
+          const newUser = new StudentConstructor(thisUser.index,thisUser.email,thisUser.role,thisUser.courses,newAvailableCourses,thisUser.firstName,thisUser.lastName,thisUser.password)
+          newUserList[`${newUser.email}`] = newUser
+        }       //students now cleared of courses or deleted
+        else {
+          if (user == this.userService.user.email){
+            const thisUser = this.userService.userlist[`${user}`]
+            var newCourses = {}
+            for (let course of Object.keys(thisUser.courses)){
+              if (course != this.courseID){
+                newCourses[`${course}`]=thisUser.courses[`${course}`]
+              }
+            }
+            const newTeacher = new StudentConstructor(thisUser.index,thisUser.email,thisUser.role,newCourses,thisUser.availableCourses,thisUser.firstName,thisUser.lastName,thisUser.password)
+          newUserList[`${newTeacher.email}`] = newTeacher
+          }
+        }
+      }    
+      await this.dataStorageService.save('users',newUserList)
+      await this.userService.updateUserlist()
+    }
+  
 
-    var studentIndex = allUsersEmail.indexOf(studentEmail);
-    let thisStudentsCourseIDs = this.userService.userlist[
-      studentIndex
-    ].availableCourses.map((x) => x.courseID);
-    let thisStudentCourseIndex = thisStudentsCourseIDs.indexOf(this.courseID);
-    if (this.userService.userlist[studentIndex].availableCourses.length < 2) {
-      this.userService.userlist.splice(studentIndex, 1);
-    } else {
-      this.userService.userlist[studentIndex].availableCourses.splice(
-        thisStudentCourseIndex,
-        1
-      );
-      this.studentList.splice(studentListIndex, 1);
-    } //course removed from student
-    studentIndex =
-      this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students.indexOf(studentEmail);
-    console.log(
-      this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students
-    );
-    console.log(studentIndex);
-    this.userService.userlist[thisUserIndex].courses[
-      thisCourseIndex
-    ].students.splice(studentIndex, 1); //remove student from course in instructor
-    console.log(
-      this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students
-    );
-    await this.dataStorageService.save('users', this.userService.userlist);
+  }
+  async deleteStudent(studentEmail, studentListIndex) {     //delete email from local, update userservice file, save userservice
+    this.studentList.splice(studentListIndex, 1)
+    var thisUserlist= await this.dataStorageService.lookup('users');
+    var myUserlist = {}
+    for (let student of Object.keys(thisUserlist)){
+      if (thisUserlist[`${student}`].email != studentEmail){
+        const thisUser = thisUserlist[`${student}`]
+        myUserlist[`${student}`] = new StudentConstructor(thisUser.index, thisUser.email, thisUser.role, thisUser.courses, thisUser.availableCourses,thisUser.firstName, thisUser.lastName, thisUser.password)
+      } else {
+        const thisUser = thisUserlist[`${student}`]
+        if (Object.keys(thisUser.availableCourses).length > 1) {
+        const newAvailableCourses = {}
+        for (let course of Object.keys(thisUser.availableCourses)){
+          if (course != this.courseID){
+            newAvailableCourses[`${course}`] = thisUser.availableCourses[`${course}`]
+          }
+        }
+        myUserlist[`${student}`] = new StudentConstructor(thisUser.index, thisUser.email, thisUser.role, thisUser.courses, newAvailableCourses,thisUser.firstName, thisUser.lastName, thisUser.password)
+      }
+    }
+      if (student == this.userService.user.email){
+        const thisUser = thisUserlist[`${student}`]
+        myUserlist[`${thisUser.email}`].courses[`${this.courseID}`].students = this.studentList
+      }
+    }
+    await this.dataStorageService.save('users', myUserlist);
+    await this.userService.updateUserlist()
     this.chart.destroy()
      this.ngOnInit()
-
-
   }
 }

@@ -44,7 +44,7 @@ export class CourseService implements OnInit {
   The theory sessions will include: Physics - Dalton's Law, Boyle's Law, Henry's law, Decompression Sickness, Nitrogen Narcosis, Failure Depth and how to increase VC and decrease RV, FRC Diving, Mouth-Fill, Packing, Fitness and Training, Nutrition and Diet for Freedivers.`,
     },
   ];
-  thisCourse: { index: number, title: string; description: string };
+  thisCourse;
   courseDate;
   courseChange: Subject<{ title: string; description: string }>;
   currentCourseSelectionIndex;
@@ -62,8 +62,11 @@ export class CourseService implements OnInit {
   setCourse(course) {
     //takes a course title, sets current course to the course that contains that title
     for (let item of this.allCourses) {
-      if (item.title == course) {
-        this.thisCourse = item;
+      if (item.title == course.courseType) {
+        this.thisCourse = course
+        this.thisCourse.title = item.title
+        this.thisCourse.description = item.description
+        this.thisCourse.index = item.description
       }
     }
   }

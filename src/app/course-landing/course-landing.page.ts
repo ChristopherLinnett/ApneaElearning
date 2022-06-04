@@ -13,18 +13,23 @@ import { CourseService } from './course.service';
   styleUrls: ['./course-landing.page.scss'],
 })
 export class CourseLandingPage implements OnInit {
-  thisCourse: { title: String; description: String };
+  thisCourse;
   quizAvailable = true;
+  thisAvailableChapters;
   constructor(
     private currentModuleService: CurrentModuleService,
     public courseService: CourseService,
     public userService: UserService,
     private router: Router,
     private modalController: ModalController
-  ) {}
+  ) {
+    this.thisCourse = this.courseService.getCourse();
+    this.thisAvailableChapters = this.thisCourse.unlockedChapters
+  }
 
   ngOnInit() {
-    this.thisCourse = this.courseService.getCourse();
+    console.log(this.thisCourse)
+
   }
   onClickModule() {
     //move to course overview page

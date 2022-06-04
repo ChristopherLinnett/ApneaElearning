@@ -23,7 +23,7 @@ export class InProgressPage implements OnInit{
   quiz: Question[];
   allQuestionsAnswered: boolean = true
   chapterIndex: number
-  courseIndex: number
+  course;
   thisCourseInUserIndex;
 
   quizAnswered: any[] = []
@@ -35,15 +35,8 @@ export class InProgressPage implements OnInit{
    * @param {CourseService} courseService - This is a service that contains the course object.
    */
   constructor(private modalController:ModalController ,private dataStorageService: DatastorageService, private currentModuleService: CurrentModuleService, private courseService:CourseService, private userService: UserService) {
-    this.courseIndex =this.courseService.thisCourse.index
     this.chapterIndex = this.currentModuleService.currentModuleIndex
-
-    let userCourseIndexes = this.userService.user.availableCourses.map(x => x.courseIndex)
-    for (let i = 0; i <userCourseIndexes.length ; i++){
-      if (userCourseIndexes[i] == this.courseIndex){
-        this.thisCourseInUserIndex = i
-      }
-    }
+    this.course = courseService.getCourse()
   }
 
   async ngOnInit(): Promise<void> {
@@ -57,14 +50,12 @@ export class InProgressPage implements OnInit{
    * @returns An array of Question objects.
    */
   async createQuiz(chapter:number){
-    var unlockedQuizzes = this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedQuizzes
+    var unlockedQuizzes = this.userService.user.availableCourses[`${this.course.courseID}`].unlockedQuizzes
     if (!unlockedQuizzes.includes(this.currentModuleService.currentModuleIndex)){
       console.log('run')
-      this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedQuizzes.push(this.currentModuleService.currentModuleIndex)
+      this.userService.user.availableCourses[`${this.course.courseID}`].unlockedQuizzes.push(this.currentModuleService.currentModuleIndex)
       var allUsers = await this.dataStorageService.lookup('users')
-      let allUsersEmail = allUsers.map(x => x.email)
-      let userIndex = allUsersEmail.indexOf(this.userService.user.email)
-    allUsers[userIndex] = this.userService.user
+    allUsers[`${this.userService.user.email}`] = this.userService.user
     await this.dataStorageService.save('users', allUsers)
     }
 
@@ -106,17 +97,10 @@ export class InProgressPage implements OnInit{
       }
     }
     if (userScore/correctAnswers.length > 0.75){
-      console.log(this.chapterIndex+1, this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedChapters,!this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedChapters.includes(this.chapterIndex+1))
-      if (!this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedChapters.includes(this.chapterIndex+1)){
-        if (this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedChapters.length < this.currentModuleService.moduleCount){
-      this.userService.user.availableCourses[this.thisCourseInUserIndex].unlockedChapters.push(this.chapterIndex+1)
+      this.userService.user.availableCourses[`${this.course.courseID}`].unlockedChapters.push(this.chapterIndex+1)
      var allUsers = await this.dataStorageService.lookup('users')
-    let allUsersEmail = allUsers.map(x => x.email)
-    let userIndex = allUsersEmail.indexOf(this.userService.user.email)
-    allUsers[userIndex] = this.userService.user
+    allUsers[`${this.userService.user.email}`] = this.userService.user
     await this.dataStorageService.save('users',allUsers)
-      }
-    }
     this.modalController.dismiss()
     }
 

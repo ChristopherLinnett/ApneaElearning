@@ -40,15 +40,15 @@
         <ion-label>Chapter Selection</ion-label>
       </ion-item>
       <ion-list slot="content">
-        <ion-item  *ngFor="let chapter of this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters, index as i" (click)="launchModule(chapter)">
+        <ion-item  *ngFor="let chapter of thisAvailableChapters, index as i" (click)="launchModule(chapter)">
           <ion-label>Chapter {{chapter+1}}</ion-label>
         </ion-item>
       </ion-list>
     </ion-accordion>
   </ion-accordion-group>
-  <ion-button expand="block" (click)="launchModule(this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters[this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters.length-1])">{{this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters.length > 1 ? "Continue Course" : "Start Course"}}</ion-button>
+  <ion-button expand="block" (click)="launchModule(thisCourse.unlockedChapters.length-1)">{{thisCourse.unlockedChapters.length > 1 ? "Continue Course" : "Start Course"}}</ion-button>
 
-      <ion-col size="6" *ngIf="this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedQuizzes.length>0">
+      <ion-col size="6" *ngIf="thisCourse.unlockedQuizzes.length>0">
         <ion-button expand="block" (click)="launchQuiz()">Quiz</ion-button>
       </ion-col>
 </ion-footer>
