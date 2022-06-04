@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
     this.username = '';
     this.password = '';
     this.savelogin = false;
-    this.router.navigate(['/landing'], { replaceUrl: true });
+      this.router.navigate(['/landing'], { replaceUrl: true });
   }
 
   /**

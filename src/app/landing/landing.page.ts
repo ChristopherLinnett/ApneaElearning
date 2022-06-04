@@ -42,9 +42,10 @@ export class LandingPage implements OnInit, OnDestroy {
     private courseService: CourseService,
     private router: Router
   ) {
-    this.username = this.userService.getfirstname();
+    this.username = this.userService.user.firstName
     this.loggedIn = this.userService.loggedIn;
-    this.userRole = this.userService.getUserRole()
+    this.userRole = this.userService.user.userRole
+    this.availableCourses = Object.values(this.userService.userlist[`${this.userService.user.email}`].availableCourses)
   }
 
   async ngOnInit() {
@@ -52,7 +53,6 @@ export class LandingPage implements OnInit, OnDestroy {
     if (this.swiper) {
       this.swiper.updateSwiper({})
     }
-    console.log(this.availableCourses)
   }
 
 
@@ -68,6 +68,7 @@ export class LandingPage implements OnInit, OnDestroy {
 
 
   async synchroniseUser() {
+    await this.userService.updateUserlist()
     this.availableCourses = Object.values(this.userService.userlist[`${this.userService.user.email}`].availableCourses)
     console.log(this.availableCourses)
     this.username = this.userService.getfirstname();
@@ -137,7 +138,8 @@ export class LandingPage implements OnInit, OnDestroy {
     });
     dashboardModal.onDidDismiss().then(() => {
       this.synchroniseUser()
-      console.log('dismissed')
+      console.log(this.userCourses)
+      this.ngOnInit()
 
     });
     return dashboardModal.present();

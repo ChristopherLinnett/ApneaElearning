@@ -32,7 +32,7 @@ export class CreatecourseComponent implements OnInit {
     var studentEntry = new StudentConstructor(0, "");
     this.courseStudents.push(studentEntry);
   }
-
+  
   async addStudentToCourse(email:string, modal:IonModal) {
     this.invalidEntry = false
 

@@ -17,24 +17,14 @@ export class UserService {
       email: 'instructor',
       password: 'password',
       role: 'Instructor',
-      courses: [],
-      availableCourses: { aida1: new CourseConstructor('0',0,'25/05/2022', 'AIDA1', this.getUsername()),
-        aida2: new CourseConstructor('0',1,'25/05/2022', 'AIDA2', this.getUsername()),
-        aida3: new CourseConstructor('1',2,'25/05/2022', 'AIDA3', this.getUsername()),
-        aida4: new CourseConstructor('2',3,'25/05/2022', 'AIDA4', this.getUsername()),
-        aida5: new CourseConstructor('3',4,'25/05/2022','AIDA5',this.getUsername()),
-      },
-    },newStudent: 
-    {
-      firstname: 'none',
-      lastname: 'none',
-      email: 'newstudent',
-      password: 'password',
-      role: 'Student',
-      courses: [],
-      availableCourses: { aida2: new CourseConstructor("4",1,'25/05/2022', 'AIDA2', 'Instructor'),
-      },
-    },
+      courses: {},
+      availableCourses: {0: new CourseConstructor('0', 0,String(new Date()),'AIDA1', 'none'),
+          1: new CourseConstructor('1', 0,String(new Date()),'AIDA2', 'none'),
+          2: new CourseConstructor('2', 0,String(new Date()),'AIDA3', 'none'),
+          3: new CourseConstructor('3', 0,String(new Date()),'AIDA4', 'none'),
+          4: new CourseConstructor('4', 0,String(new Date()),'AIDA5', 'none')
+        }
+    }
   };
   userIndexInDB;
   loggedIn: boolean = false;
@@ -44,30 +34,29 @@ export class UserService {
     private dataStorageService: DatastorageService
   ) {}
 
+
 async updateUser(){
   this.user = this.userlist[`${this.user.email}`]
 }
 
   async updateUserlist() {
     this.userlist = await this.dataStorageService.lookup('users')
-    if(this.isLoggedIn) {
-      this.updateUser()
-    }
-
+  this.updateUser()
   }
 
   async login(inputUser: string, inputPass: string){
     inputUser = inputUser.toLowerCase().trim()
     inputPass = inputPass.toLowerCase().trim()
-    await this.updateUserlist()
-    if (this.userlist === null){
+    if (this.userlist == null){
       await this.dataStorageService.save('users', this.existingUsers);
-    }
-    console.log(inputUser, inputPass, this.userlist)
-    if (this.userlist[`${inputUser}`] && this.userlist[`${inputUser}`].password == inputPass) {
+      this.userlist = await this.dataStorageService.lookup('users')
+    } else {
+    if (Object.keys(this.userlist).includes(inputUser) && this.userlist[`${inputUser}`].password == inputPass) {
       this.user = this.userlist[`${inputUser}`]
       this.loggedIn = true
+      return
     }
+  }
   }
   async showUserOptions() {
     const actionSheet = await this.actionSheetController.create({
@@ -103,8 +92,6 @@ async updateUser(){
     });
     await actionSheet.present();
 
-    const { role, data } = await actionSheet.onDidDismiss();
-    console.log('', role, data);
   }
 
 
@@ -125,7 +112,6 @@ async updateUser(){
       for (let user of usersArray) {
         this.userlist[`${user.email}`] = user
       }
-      console.log(this.userlist[this.userlist.length - 1]);
       await this.dataStorageService.save('users', this.userlist);
     } else {
       await this.dataStorageService.save('users', this.existingUsers);

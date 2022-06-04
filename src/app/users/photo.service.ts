@@ -44,7 +44,6 @@ export class PhotoService {
       directory: Directory.Data,
       path: IMAGE_DIR
     }).then(result => {
-      console.log('HERE: ', result)
       this.loadFileData(result.files);
     }, async err => {
       console.log('err: ', err);
@@ -96,15 +95,13 @@ export class PhotoService {
 
   async saveImage(photo: Photo) {
     const base64Data = await this.readAsBase64(photo);
-
     const fileName = `${this.userService.user.email}` + '.jpeg';
     const savedFile = await Filesystem.writeFile({
       directory: Directory.Data,
       path: `${IMAGE_DIR}/${fileName}`,
       data: base64Data,
     });
-    console.log('saved: ', savedFile);
-    this.loadFiles();
+        this.loadFiles();
   }
 
  async readAsBase64(photo: Photo) {
