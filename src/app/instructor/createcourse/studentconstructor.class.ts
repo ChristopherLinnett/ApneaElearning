@@ -10,7 +10,8 @@ export class StudentConstructor {
   password: string
   courses;
   index: number
-  constructor(index: number,  email: string, role = "student", courses = {}, availableCourses = {}, firstName = "", lastName= "", password= `${email.toLowerCase()}`){
+  photo;
+  constructor(index: number,  email: string, role = "student", courses = {}, availableCourses = {}, firstName = "", lastName= "", password= `${email.toLowerCase()}`, photo = ""){
     this.index = index;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -19,6 +20,7 @@ export class StudentConstructor {
     this.availableCourses = availableCourses
     this.password = password
     this.courses = courses
+    this.photo = photo
   }
 }
 

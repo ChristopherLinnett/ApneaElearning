@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/users/user.service';
 import { Injectable, OnInit } from '@angular/core';
 import {
   Camera,
@@ -22,7 +23,7 @@ interface LocalFile {
 })
 export class PhotoService {
   images: LocalFile[] = []
-  constructor(private platform: Platform, private loadingCtrl: LoadingController){
+  constructor(private platform: Platform, private loadingCtrl: LoadingController, private userService: UserService){
   }
   async deleteImage(file: LocalFile){
     await Filesystem.deleteFile({
@@ -58,6 +59,7 @@ export class PhotoService {
 
   async loadFileData(fileNames: string[]) {
     for (let f of fileNames) {
+      if (f =  `${this.userService.user.email}.jpeg`){
       const filePath = `${IMAGE_DIR}/${f}`;
 
       const readFile = await Filesystem.readFile({
@@ -69,6 +71,7 @@ export class PhotoService {
         path: filePath,
         data: `data:image/jpeg;base64,${readFile.data}`
       });
+    }
     }
   }
 
@@ -90,11 +93,11 @@ export class PhotoService {
     await this.selectImage();
   }
 
+
   async saveImage(photo: Photo) {
     const base64Data = await this.readAsBase64(photo);
-    console.log(base64Data);
 
-    const fileName = new Date().getTime() + '.jpeg';
+    const fileName = `${this.userService.user.email}` + '.jpeg';
     const savedFile = await Filesystem.writeFile({
       directory: Directory.Data,
       path: `${IMAGE_DIR}/${fileName}`,
