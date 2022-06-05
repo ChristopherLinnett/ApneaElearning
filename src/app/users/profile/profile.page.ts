@@ -50,6 +50,8 @@ export class ProfilePage implements OnInit {
    */
   async saveProfile() {
     var currentUser = this.olduser;
+    if (this.oldpassword.toLowerCase() == currentUser.password) {
+
     if (this.email && this.email.length > 5) {
       currentUser.email = this.email.toLowerCase();
     }
@@ -66,7 +68,6 @@ export class ProfilePage implements OnInit {
     if (this.newpassword && this.newpassword.length > 5) {
       currentUser.password = this.newpassword.toLowerCase();
     }
-    if (this.oldpassword == this.olduser.password) {
       var userlist = await this.dataStorage.lookup('users');
       userlist[`${this.olduser.email}`] = currentUser;
       await this.dataStorage.save('users', userlist);
