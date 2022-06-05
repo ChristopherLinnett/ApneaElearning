@@ -719,14 +719,14 @@ export class CourseService {
         {
           content:
             'After the relaxation phase and the one full breath, the duck dive is the next skill of a freedive. It enables you to start a dive and move underwater in the most efficient way. A strong duck dive can get your head as deep as five meters, before you even start using your fins. This is a depth where you would usually have to equalise your ears to not experience pain in your eardrums. But as your hands are busy during the duck dive, you cannot equalise without compromising the technique. The solution is to equalise once before you do your duck dive. In fact it means to over pressurise your ears to give yourself more time until you are able to perform the first equalisation under water.',
-          image: 'fullsequencefreedive',
+          image: 'fullsequencefreedive.png',
           title: 'Duck dive',
           videoLink: '',
         },
         {
           content:
             'After taking your one full breath, removing the snorkel from your mouth and optionally equalising (over pressurising) you are ready to start your duck dive. The sequence of a duck dive is above',
-          image: 'duckdivesequence',
+          image: 'duckdivesequence.png',
           title: 'Duck dive sequence',
           videoLink: '',
         },
@@ -1648,7 +1648,7 @@ export class CourseService {
         },
         {
           content: '',
-          image: 'dynamicapnea.png',
+          image: 'dynamic apnea.png',
           title: 'Dynamic Apnea (DYN, DNF)',
           videoLink: 'https://player.vimeo.com/video/84857817?h=452c9e01a6',
         },
