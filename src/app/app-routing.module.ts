@@ -14,11 +14,6 @@ const routes: Routes = [
       import('./users/login/login.module').then((m) => m.LoginPageModule),
   },
   {
-    path: 'quizlanding',
-    loadChildren: () =>
-      import('./quiz/landing/landing.module').then((m) => m.LandingPageModule),
-  },
-  {
     path: 'in-progress',
     loadChildren: () =>
       import('./quiz/in-progress/in-progress.module').then(

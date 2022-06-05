@@ -27,6 +27,15 @@ export class CourseLandingPage implements OnInit {
     this.thisAvailableChapters = this.thisCourse.unlockedChapters
   }
 
+  async launchModuleQuiz(moduleNo){
+    this.currentModuleService.currentModuleIndex = moduleNo
+      const quizmodal = await this.modalController.create({
+        component: InProgressPage,
+        cssClass: 'my-custom-class'
+      });
+      return await quizmodal.present();
+    }
+
   ngOnInit() {
     console.log(this.thisCourse)
 
@@ -46,10 +55,6 @@ export class CourseLandingPage implements OnInit {
       modal.onDidDismiss().then(() => {});
       return modal.present();
     }
-      
-  launchQuiz() {
-    this.router.navigate(['/app-landing']); //move to quiz in progress page
-  }
 
   async showUserOptions() {
     //logs out  user

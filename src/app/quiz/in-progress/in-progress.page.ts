@@ -3,7 +3,7 @@ import { Answer, Question } from '../question';
 import SwiperCore, { EffectCoverflow } from 'swiper';
 import { ViewChild } from '@angular/core';
 import { SwiperComponent } from 'swiper/angular';
-import { IonRadioGroup, ModalController } from '@ionic/angular';
+import { AlertController, IonRadioGroup, ModalController } from '@ionic/angular';
 import { AfterContentChecked } from '@angular/core';
 import { CurrentModuleService } from "../../content/detail-content/current-module.service"
 import { CourseService } from 'src/app/course-landing/course.service';
@@ -34,7 +34,7 @@ export class InProgressPage implements OnInit{
    * created to keep track of the current module that the user is on.
    * @param {CourseService} courseService - This is a service that contains the course object.
    */
-  constructor(private modalController:ModalController ,private dataStorageService: DatastorageService, private currentModuleService: CurrentModuleService, private courseService:CourseService, private userService: UserService) {
+  constructor(private alertController: AlertController, private modalController:ModalController ,private dataStorageService: DatastorageService, private currentModuleService: CurrentModuleService, private courseService:CourseService, private userService: UserService) {
     this.chapterIndex = this.currentModuleService.currentModuleIndex
     this.course = courseService.getCourse()
   }
@@ -97,14 +97,32 @@ export class InProgressPage implements OnInit{
       }
     }
     if (userScore/correctAnswers.length > 0.75){
+      if (!this.userService.user.availableCourses[`${this.course.courseID}`].unlockedChapters.includes(this.chapterIndex+1)){
       this.userService.user.availableCourses[`${this.course.courseID}`].unlockedChapters.push(this.chapterIndex+1)
      var allUsers = await this.dataStorageService.lookup('users')
     allUsers[`${this.userService.user.email}`] = this.userService.user
     await this.dataStorageService.save('users',allUsers)
-    this.modalController.dismiss()
+      }
+      await this.finishedQuiz(true)
+    } else {
+      await this.finishedQuiz(false)
     }
+    this.modalController.dismiss()
+  }
+  async finishedQuiz(success: boolean) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Quiz Completed',
+      subHeader: success ? 'Nice Work' : 'sorry, that did not go as planned',
+      message: success ? 'You successfully completed the quiz, you have unlocked the next chapter' : 'Please review this chapter, and retry the quiz from there',
+      buttons: ['OK']
+    });
+
+    await alert.present();
 
   }
+
+
   /**
    * For each question in the quiz, if the question has been answered and the answer is correct, add an
    * object to the results array with a property of correct set to true. Otherwise, add an object to
@@ -118,8 +136,5 @@ export class InProgressPage implements OnInit{
       }
     }
     this.allQuestionsAnswered = true
-  }
-
-  ngAfterContentChanged() {
   }
 }
