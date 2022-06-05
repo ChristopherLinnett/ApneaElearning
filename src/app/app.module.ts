@@ -10,9 +10,13 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DetailContentPage } from './content/detail-content/detail-content.page';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { SwipernavComponent } from './shared/swipernav/swipernav.component';
+import { InProgressPageModule } from './quiz/in-progress/in-progress.module';
+import { InProgressPage } from './quiz/in-progress/in-progress.page';
+
 @NgModule({
-  declarations: [AppComponent, DetailContentPage],
-  entryComponents: [DetailContentPage],
+  declarations: [AppComponent, DetailContentPage,SwipernavComponent, InProgressPage],
+  entryComponents: [DetailContentPage, SwipernavComponent, InProgressPage],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -20,7 +24,10 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     FormsModule,
     CommonModule,
     SwiperModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+  ],
+  exports: [
+    SwipernavComponent
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

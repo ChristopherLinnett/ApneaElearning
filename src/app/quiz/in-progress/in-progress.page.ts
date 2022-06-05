@@ -8,7 +8,6 @@ import {
   IonRadioGroup,
   ModalController,
 } from '@ionic/angular';
-import { AfterContentChecked } from '@angular/core';
 import { CurrentModuleService } from '../../content/detail-content/current-module.service';
 import { CourseService } from 'src/app/course-landing/course.service';
 import { UserService } from 'src/app/users/user.service';
@@ -452,6 +451,24 @@ export class InProgressPage implements OnInit {
   async ngOnInit(): Promise<void> {
     this.quiz = await this.createQuiz(this.chapterIndex);
   }
+
+
+/**
+   * The function above is a function that is called when the user clicks on the next button. The
+   * function moves the content forward one section.
+   */
+ onNextClick(value?:'string') {
+  //moves content forward one section
+    this.swiper.swiperRef.slideNext()
+
+}
+/**
+ * The above function is used to navigate to the previous slide in the swiper.
+ */
+onBackClick(value?:'string') {
+  this.swiper.swiperRef.slidePrev()
+}
+
 
   /**
    * It creates a quiz with 5 questions, each question has 5 answers, one of which is correct.

@@ -99,6 +99,27 @@ export class LandingPage implements OnInit, OnDestroy {
     }
   }
 
+
+/**
+   * The function above is a function that is called when the user clicks on the next button. The
+   * function moves the content forward one section.
+   */
+ onNextClick(value?:'string') {
+  //moves content forward one section
+    this.swiper.swiperRef.slideNext()
+
+}
+/**
+ * The above function is used to navigate to the previous slide in the swiper.
+ */
+onBackClick(value?:'string') {
+  this.swiper.swiperRef.slidePrev()
+}
+
+
+
+
+
   /**
    * The function is called when the user clicks the logout button. The function sets the studentView
    * variable to false and calls the logout function in the userService.

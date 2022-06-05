@@ -101,11 +101,13 @@
   </ion-grid>
 </ion-content>
 
-<ion-footer *ngIf="userRole=='Instructor'">
+<ion-footer >
+  <div *ngIf="userRole=='Instructor'">
   <ion-toolbar class="ion-align-items-center">
     <ion-item>
       <ion-label>Student View</ion-label>
       <ion-toggle [(ngModel)]="studentView" color="primary"></ion-toggle>
     </ion-item>
   </ion-toolbar>
+  </div>
 </ion-footer>
