@@ -50,7 +50,7 @@ export class InProgressPage implements OnInit{
       {text: '3', num: 2},
       {text: '4', num: 3}
     ], 
-    correctAnswer: 2, 
+    correctAnswer: 1, 
     
     },
     {
@@ -465,13 +465,14 @@ correctAnswer: 0,
     for (let i = 0 ; i<correctAnswers.length ; i++){
       if (studentAnswers[i] == correctAnswers[i]){
         userScore++
+        console.log(studentAnswers[i], 'correct')
       }
       else {
         corrections.push(this.quiz[i])
+        console.log(studentAnswers[i], 'incorrect', correctAnswers[i])
       }
     }
-    if (userScore/correctAnswers.length > 0.75){
-      console.log(this.quizAnswered)
+    if (userScore/correctAnswers.length > 0.75 && this.currentModuleService.currentModuleIndex< this.currentModuleService.moduleCount){
       if (!this.userService.user.availableCourses[`${this.course.courseID}`].unlockedChapters.includes(this.chapterIndex+1)){
       this.userService.user.availableCourses[`${this.course.courseID}`].unlockedChapters.push(this.chapterIndex+1)
      var allUsers = await this.dataStorageService.lookup('users')
@@ -480,10 +481,29 @@ correctAnswer: 0,
       }
       await this.finishedQuiz(true)
     } else {
-      await this.finishedQuiz(false)
+      if (this.currentModuleService.currentModuleIndex == this.currentModuleService.moduleCount){
+        await this.finishedCourse()
+      }
+      else {
+      await this.finishedQuiz(false)}
     }
     this.modalController.dismiss()
   }
+
+
+  async finishedCourse() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Course Completed',
+      subHeader: 'You have completed this online learning',
+      message: 'Next step is the theory sessions, it will take a deeper delve into the content, then assess your learning',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+  }
+
   async finishedQuiz(success: boolean) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
