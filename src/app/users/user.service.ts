@@ -25,7 +25,37 @@ export class UserService implements OnInit{
           3: new CourseConstructor('3', 0,String(new Date()),'AIDA4', 'none'),
           4: new CourseConstructor('4', 0,String(new Date()),'AIDA5', 'none')
         }
-    }
+    },
+    instructor2:
+    {
+      firstname: 'none',
+      lastname: 'none',
+      email: 'instructor2',
+      password: 'password',
+      role: 'Instructor',
+      courses: {},
+      availableCourses: {0: new CourseConstructor('0', 0,String(new Date()),'AIDA1', 'none'),
+          1: new CourseConstructor('1', 0,String(new Date()),'AIDA2', 'none'),
+          2: new CourseConstructor('2', 0,String(new Date()),'AIDA3', 'none'),
+          3: new CourseConstructor('3', 0,String(new Date()),'AIDA4', 'none'),
+          4: new CourseConstructor('4', 0,String(new Date()),'AIDA5', 'none')
+        }
+    },
+    instructor3:
+    {
+      firstname: 'none',
+      lastname: 'none',
+      email: 'instructor3',
+      password: 'password',
+      role: 'Instructor',
+      courses: {},
+      availableCourses: {0: new CourseConstructor('0', 0,String(new Date()),'AIDA1', 'none'),
+          1: new CourseConstructor('1', 0,String(new Date()),'AIDA2', 'none'),
+          2: new CourseConstructor('2', 0,String(new Date()),'AIDA3', 'none'),
+          3: new CourseConstructor('3', 0,String(new Date()),'AIDA4', 'none'),
+          4: new CourseConstructor('4', 0,String(new Date()),'AIDA5', 'none')
+        }
+    },
   };
   userIndexInDB;
   loggedIn: boolean = false;
@@ -36,7 +66,7 @@ export class UserService implements OnInit{
   ) {}
 
 ngOnInit(){
-  this.updateUserlist
+  this.updateUserlist()
 }
 
 async updateUser(){
@@ -167,8 +197,5 @@ async updateUser(){
   getfirstname() {
     return this.user.firstname;
   }
-}
-function ngOnInit() {
-  throw new Error('Function not implemented.');
 }
 
