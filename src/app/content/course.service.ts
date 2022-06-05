@@ -940,384 +940,455 @@ export class CourseService {
           videoLink: '',
         },
         {
-          content: 'The main task for static buddying is to make sure that the diver is ok at any time. You and your buddy will agree on a checking procedure and communication before the first dive. These are possible ways of checking:',
+          content:
+            'The main task for static buddying is to make sure that the diver is ok at any time. You and your buddy will agree on a checking procedure and communication before the first dive. These are possible ways of checking:',
           image: '',
           title: 'Safety check',
           videoLink: '',
         },
         {
-          content: 'Ask the diver to raise the index finger of one hand (or agree on any other hand sign). There is no need to move the hand out of the water as the sign can be seen clearly from above the surface.',
+          content:
+            'Ask the diver to raise the index finger of one hand (or agree on any other hand sign). There is no need to move the hand out of the water as the sign can be seen clearly from above the surface.',
           image: '',
           title: 'Verbal',
           videoLink: '',
         },
         {
-          content: 'Ask the diver to hold up fingers for simple questions, e.g. 5+3-4=? or "How many children do you have?"',
+          content:
+            'Ask the diver to hold up fingers for simple questions, e.g. 5+3-4=? or "How many children do you have?"',
           image: '',
           title: 'Verbal',
           videoLink: '',
         },
         {
-          content: 'Give the diver a little squeeze on the right shoulder, which should be answered by a outstretched index finger of the right hand',
+          content:
+            'Give the diver a little squeeze on the right shoulder, which should be answered by a outstretched index finger of the right hand',
           image: '',
           title: 'Non-Verbal',
           videoLink: '',
         },
         {
-          content: 'Agree with your buddy on your own checking procedure if none of the above suits you. As a buddy you will always confirm the actions of the diver. That way you can reassure your diver that you have everything under control and he or she can let go of any worries. Again, the confirmation can be done verbally on non-verbally: Verbal confirmation: “Thank you, I’ve seen that ok sign, you look great, go on!” Non-verbal confirmation: Repeat the agreed check-sign twice, e.g. double-squeeze on the shoulder again. Doubling the agreed signal avoids confusion of checks and confirmations',
+          content:
+            'Agree with your buddy on your own checking procedure if none of the above suits you. As a buddy you will always confirm the actions of the diver. That way you can reassure your diver that you have everything under control and he or she can let go of any worries. Again, the confirmation can be done verbally on non-verbally: Verbal confirmation: “Thank you, I’ve seen that ok sign, you look great, go on!” Non-verbal confirmation: Repeat the agreed check-sign twice, e.g. double-squeeze on the shoulder again. Doubling the agreed signal avoids confusion of checks and confirmations',
           image: 'staticchecks.png',
           title: 'Static Buddying- continued',
           videoLink: '',
         },
         {
-          content: 'Answering checks by signalling the “OK-sign” by forming a ring with your index finger and thumb can be confusing because a completely relaxed hand looks already very similar. Thus it can be hard to tell if a freediver is just relaxing or actually forming the OK-sign',
+          content:
+            'Answering checks by signalling the “OK-sign” by forming a ring with your index finger and thumb can be confusing because a completely relaxed hand looks already very similar. Thus it can be hard to tell if a freediver is just relaxing or actually forming the OK-sign',
           image: '',
           title: 'Tip',
           videoLink: '',
         },
         {
-          content: 'Before starting a session of static freediving, it is important to communicate within the buddy team. Tell each other what you like, do not like and what you expect from your buddy. The more clear you are about your expectations, the easier you make it for your buddy to be of his/her best service to you',
+          content:
+            'Before starting a session of static freediving, it is important to communicate within the buddy team. Tell each other what you like, do not like and what you expect from your buddy. The more clear you are about your expectations, the easier you make it for your buddy to be of his/her best service to you',
           image: '',
           title: 'Buddy Team Plan',
           videoLink: '',
-        },        {
+        },
+        {
           content: 'Agree on how to do safety checks',
           image: '',
           title: 'Check',
           videoLink: '',
-        },        {
-          content: 'Even in the calmest pool there are little currents from the water jets. One of the tasks of your buddy is to keep you in place, with your head about one hand span away from the edge of the pool. Tell your buddy how you would like to have this done: Do you like to be firmly touched with one hand between your shoulder blades? Or do you want to be held in position by absolute minimal physical contact, e.g. by holding just the zipper of your wetsuit?',
+        },
+        {
+          content:
+            'Even in the calmest pool there are little currents from the water jets. One of the tasks of your buddy is to keep you in place, with your head about one hand span away from the edge of the pool. Tell your buddy how you would like to have this done: Do you like to be firmly touched with one hand between your shoulder blades? Or do you want to be held in position by absolute minimal physical contact, e.g. by holding just the zipper of your wetsuit?',
           image: '',
           title: 'Touch',
           videoLink: '',
-        },        {
-          content: 'Do you want to be constantly informed about the length of your static - and if yes, in what intervals? If you are doing a target dive to a certain breath hold time it is quite popular to announce the time to go until the defined target',
+        },
+        {
+          content:
+            'Do you want to be constantly informed about the length of your static - and if yes, in what intervals? If you are doing a target dive to a certain breath hold time it is quite popular to announce the time to go until the defined target',
           image: '',
           title: 'Time',
           videoLink: '',
-        },        {
-          content: 'Some freedivers like to be constantly talked to during a static breath hold, while others need their total silence. Tell our buddy what you expect!',
+        },
+        {
+          content:
+            'Some freedivers like to be constantly talked to during a static breath hold, while others need their total silence. Tell our buddy what you expect!',
           image: '',
           title: 'Talk',
           videoLink: '',
-        },        {
-          content: 'How will your buddy team go through the session? It is recommended that you keep one role – diver or buddy – for a whole sequence before switching. Announce your sequence of A41 to your buddy, finish your dives and then switch roles',
+        },
+        {
+          content:
+            'How will your buddy team go through the session? It is recommended that you keep one role – diver or buddy – for a whole sequence before switching. Announce your sequence of A41 to your buddy, finish your dives and then switch roles',
           image: '',
           title: 'Sequence',
           videoLink: '',
         },
         {
-          content: 'Buddying in static freediving can be a demanding task. It is a good idea to bring a pencil and a waterproof board, e.g. a dive slate, to write down the sequence of dives exactly the way your diver expects you to guide him / her though. Always take your buddying as seriously as your own freediving and you will quickly become a popular freediver to have on the team',
+          content:
+            'Buddying in static freediving can be a demanding task. It is a good idea to bring a pencil and a waterproof board, e.g. a dive slate, to write down the sequence of dives exactly the way your diver expects you to guide him / her though. Always take your buddying as seriously as your own freediving and you will quickly become a popular freediver to have on the team',
           image: 'reliability.png',
           title: 'Reliability',
           videoLink: '',
         },
         {
-          content: 'In freediving, trouble usually does not turn up suddenly. A freediver who has stayed down too long will gradually get low on Oxygen and the consequences of this are visible to the observing eye. You as a buddy can anticipate trouble by looking out for the following signs',
+          content:
+            'In freediving, trouble usually does not turn up suddenly. A freediver who has stayed down too long will gradually get low on Oxygen and the consequences of this are visible to the observing eye. You as a buddy can anticipate trouble by looking out for the following signs',
           image: '',
           title: 'Signs of a freediver in need of help',
           videoLink: '',
         },
         {
-          content: 'When a diver with a usually strong kick all of a sudden becomes sloppy in his/her movements, it should be interpreted as a sign of trouble. A diver that stops kicking on ascent at an inappropriate time or while swimming horizontally without any obvious reason (e.g. watching marine life) should be suspected to be in trouble',
+          content:
+            'When a diver with a usually strong kick all of a sudden becomes sloppy in his/her movements, it should be interpreted as a sign of trouble. A diver that stops kicking on ascent at an inappropriate time or while swimming horizontally without any obvious reason (e.g. watching marine life) should be suspected to be in trouble',
           image: '',
           title: 'Change of finning style',
           videoLink: '',
         },
         {
-          content: 'A freediver returning from depth close or beyond his/her personal maximum should always be escorted on the last few meters of his/her ascent. As a safety diver you will stay face to face with the freediver in such a way that you can always see his/her eyes. If these get unfocused – “the lights are on but no one’s home” – and the diver looks right through you, it is a strong indication that the freediver is in trouble',
+          content:
+            'A freediver returning from depth close or beyond his/her personal maximum should always be escorted on the last few meters of his/her ascent. As a safety diver you will stay face to face with the freediver in such a way that you can always see his/her eyes. If these get unfocused – “the lights are on but no one’s home” – and the diver looks right through you, it is a strong indication that the freediver is in trouble',
           image: '',
           title: 'Unfocused Eyes',
           videoLink: '',
         },
         {
-          content: 'in an uncontrolled way: An ascending diver who tries to grab the rope in an uncontrolled way may indicate that he or she is in trouble. Note that uncontrolled grabbing of the rope will look different from a diver at depth suffering from leg cramp and thus holding on to the rope to ascent with strong arm pulls. It is an expression of full control, while uncoordinated grabbing at the rope is clearly not.',
+          content:
+            'in an uncontrolled way: An ascending diver who tries to grab the rope in an uncontrolled way may indicate that he or she is in trouble. Note that uncontrolled grabbing of the rope will look different from a diver at depth suffering from leg cramp and thus holding on to the rope to ascent with strong arm pulls. It is an expression of full control, while uncoordinated grabbing at the rope is clearly not.',
           image: '',
           title: 'Grabbing the Rope',
           videoLink: '',
         },
         {
-          content: 'at the end of a dive: Towards the end of a dive, your buddy might have accumulated a lot of CO2. The well trained and in-control freediver will slow down at this point in order to avoid wasting any Oxygen and producing excessive amounts of CO2. Speeding up to be able to breathe as soon as possible is unwise and thus a sign of a freediver losing control.',
+          content:
+            'at the end of a dive: Towards the end of a dive, your buddy might have accumulated a lot of CO2. The well trained and in-control freediver will slow down at this point in order to avoid wasting any Oxygen and producing excessive amounts of CO2. Speeding up to be able to breathe as soon as possible is unwise and thus a sign of a freediver losing control.',
           image: '',
           title: 'Speeding Up',
           videoLink: '',
         },
         {
-          content: 'A freediver never exhales under water. In freediving to depth you still might see a few bubbles around your buddy’s head on ascent. These come from the expanding air and are perfectly normal. But if your buddy clearly exhales, you know that he or she is losing Oxygen and buoyancy and is thus more likely to black out. ',
+          content:
+            'A freediver never exhales under water. In freediving to depth you still might see a few bubbles around your buddy’s head on ascent. These come from the expanding air and are perfectly normal. But if your buddy clearly exhales, you know that he or she is losing Oxygen and buoyancy and is thus more likely to black out. ',
           image: '',
           title: 'Escaping Air',
           videoLink: '',
         },
         {
-          content: '(after surfacing): This is a clear sign that your buddy is in a low Oxygen state. The same is the case your buddy shows uncontrollable twitches and/or reduced responsiveness. All these signs indicate that your buddy needs your immediate support.',
+          content:
+            '(after surfacing): This is a clear sign that your buddy is in a low Oxygen state. The same is the case your buddy shows uncontrollable twitches and/or reduced responsiveness. All these signs indicate that your buddy needs your immediate support.',
           image: '',
           title: 'Inability to keep the head above water',
           videoLink: '',
         },
         {
-          content: 'Pretty quickly you will develop a feeling for what looks like a normal dive and what is a sign of trouble. This is true in general, but especially when looking at your buddy for a few dives in a row. If there is any unexpected change in the way your buddy dives that makes you uncomfortable, you are most likely right to step in and help.',
+          content:
+            'Pretty quickly you will develop a feeling for what looks like a normal dive and what is a sign of trouble. This is true in general, but especially when looking at your buddy for a few dives in a row. If there is any unexpected change in the way your buddy dives that makes you uncomfortable, you are most likely right to step in and help.',
           image: '',
           title: 'Anything Abnormal',
           videoLink: '',
         },
         {
-          content: 'After finishing your first AIDA Freedive Course you will already be well educated about best practice in freediving. If you think you should act – then act! There are still not that many trained freedivers around, so the non-reaction from other people in a certain situation that looks dangerous to you is actually not a reason for you not to step in! Support a snorkeler or freediver if you feel it is needed. Better help one time too many than not.',
+          content:
+            'After finishing your first AIDA Freedive Course you will already be well educated about best practice in freediving. If you think you should act – then act! There are still not that many trained freedivers around, so the non-reaction from other people in a certain situation that looks dangerous to you is actually not a reason for you not to step in! Support a snorkeler or freediver if you feel it is needed. Better help one time too many than not.',
           image: 'actshouldact.png',
           title: 'If you think you should act \u2013 act!',
           videoLink: '',
         },
         {
-          content: 'Loss of Motor Control, or LMC, is a hypoxic fit that occurs after surfacing if Oxygen levels are too low. A LMC happens only after a dive. It is not the same as a black out, it can be described as the red zone of low Oxygen before falling unconscious',
+          content:
+            'Loss of Motor Control, or LMC, is a hypoxic fit that occurs after surfacing if Oxygen levels are too low. A LMC happens only after a dive. It is not the same as a black out, it can be described as the red zone of low Oxygen before falling unconscious',
           image: '',
           title: 'Loss of Motor Control (LMC)',
           videoLink: '',
         },
         {
-          content: 'A clear indicator that your buddy suffers from LMC are jerky movements with the limbs or the head. This is why a LMC also often referred to as “Samba”. A light LMC will just last a few seconds and will mainly induce light uncontrolled eye and/or head movements, while severe LMC can affect your whole body and leads to an inability to maintain your airways out of the water',
+          content:
+            'A clear indicator that your buddy suffers from LMC are jerky movements with the limbs or the head. This is why a LMC also often referred to as “Samba”. A light LMC will just last a few seconds and will mainly induce light uncontrolled eye and/or head movements, while severe LMC can affect your whole body and leads to an inability to maintain your airways out of the water',
           image: '',
           title: 'Jerky movements of limbs and head',
           videoLink: '',
         },
         {
-          content: 'A LMC may or may not result in a full black out. The cause of a LMC is a lowered level of Oxygen in your blood that has reached the point where normal cell function cannot occur. This means the metabolism is disturbed and normal functioning is reduced, hence the jerky movements and lack of responsiveness.A LMC can result in a full black out or not – this depends largely on correct application of recovery breathing as explained in chapter Error: Reference source not found. When suffering from a LMC you are not able to think straight and your body will do what you trained it for. As already mentioned, make recovery breathing an imperative habit after every breath hold to condition your body to that special technique. In other words, a freedive is not over when you surface, it is over after at least three recovery breaths.After recovery from a LMC, you may not be aware of what just happened. Trust your buddy, he or she will tell you',
+          content:
+            'A LMC may or may not result in a full black out. The cause of a LMC is a lowered level of Oxygen in your blood that has reached the point where normal cell function cannot occur. This means the metabolism is disturbed and normal functioning is reduced, hence the jerky movements and lack of responsiveness.A LMC can result in a full black out or not – this depends largely on correct application of recovery breathing as explained in chapter Error: Reference source not found. When suffering from a LMC you are not able to think straight and your body will do what you trained it for. As already mentioned, make recovery breathing an imperative habit after every breath hold to condition your body to that special technique. In other words, a freedive is not over when you surface, it is over after at least three recovery breaths.After recovery from a LMC, you may not be aware of what just happened. Trust your buddy, he or she will tell you',
           image: '',
           title: 'Last warning signal',
           videoLink: '',
         },
         {
-          content: 'As a consequence of a LMC you should stop freediving for the rest of the day.',
+          content:
+            'As a consequence of a LMC you should stop freediving for the rest of the day.',
           image: '',
           title: 'Stop diving for the day',
           videoLink: '',
         },
         {
-          content: 'It is of utmost importance to find out why you suffered from a LMC. There may be many reasons: Hyperventilation, stress, feeling unwell or bad finning technique just to mention a few. Most likely it is even a combination of several of these reasons. If you cannot point out for sure why you suffered from LMC, seek coaching from an AIDA Freedive Instructor. Discuss the dive in detail and provide video footage if available. Together with your buddy, find out what went wrong, learn from your mistakes and change your freediving accordingly.',
+          content:
+            'It is of utmost importance to find out why you suffered from a LMC. There may be many reasons: Hyperventilation, stress, feeling unwell or bad finning technique just to mention a few. Most likely it is even a combination of several of these reasons. If you cannot point out for sure why you suffered from LMC, seek coaching from an AIDA Freedive Instructor. Discuss the dive in detail and provide video footage if available. Together with your buddy, find out what went wrong, learn from your mistakes and change your freediving accordingly.',
           image: '',
           title: 'Find out why it happened',
           videoLink: '',
         },
         {
-          content: 'A Black Out or BO is the loss of consciousness caused by lack of Oxygen (O2) towards the end of a breath hold or immediately after.',
+          content:
+            'A Black Out or BO is the loss of consciousness caused by lack of Oxygen (O2) towards the end of a breath hold or immediately after.',
           image: '',
           title: 'Blackout (BO): Loss of consciousness',
           videoLink: '',
         },
         {
-          content: 'During a dive you may have used up Oxygen until the point where there is not enough left for the body to function normally. At this point your brain enters into a state of “survival mode” and you fall unconscious. The brain gradually shuts down all processes that are not needed for immediate survival.If you push your limits too far, this can happen in a swimming pool during your static or dynamic training, in a dive to depth, or during a dry breath hold. It can happen everywhere and this is why you must always have a trained buddy supervising you when holding your breath in water.',
+          content:
+            'During a dive you may have used up Oxygen until the point where there is not enough left for the body to function normally. At this point your brain enters into a state of “survival mode” and you fall unconscious. The brain gradually shuts down all processes that are not needed for immediate survival.If you push your limits too far, this can happen in a swimming pool during your static or dynamic training, in a dive to depth, or during a dry breath hold. It can happen everywhere and this is why you must always have a trained buddy supervising you when holding your breath in water.',
           image: '',
           title: 'Hypoxia',
           videoLink: '',
         },
         {
-          content: 'A black out will not hit you without warning while your holding your breath. You can detect an oncoming blackout by these symptoms:',
+          content:
+            'A black out will not hit you without warning while your holding your breath. You can detect an oncoming blackout by these symptoms:',
           image: '',
           title: 'Symptoms of an oncoming blackout',
           videoLink: '',
         },
         {
-          content: 'It can also be a humming or hissing noise. It slowly builds up until it drowns all external sounds',
+          content:
+            'It can also be a humming or hissing noise. It slowly builds up until it drowns all external sounds',
           image: '',
           title: 'Ear ringing',
           videoLink: '',
         },
         {
-          content: 'Some say it feels like someone is covering you with a very warm blanket, starting from the neck and the back of the head it gradually covers your whole body.',
+          content:
+            'Some say it feels like someone is covering you with a very warm blanket, starting from the neck and the back of the head it gradually covers your whole body.',
           image: '',
           title: 'Feeling of warmth',
           videoLink: '',
         },
         {
-          content: 'A demanding dive will be hardest towards its end. It is thus an indicator to you that your brain is not functioning normally when you all of a sudden feel that the dive becomes easy.',
+          content:
+            'A demanding dive will be hardest towards its end. It is thus an indicator to you that your brain is not functioning normally when you all of a sudden feel that the dive becomes easy.',
           image: '',
           title: 'The dive starts to feel easier',
           videoLink: '',
         },
         {
-          content: 'The field of vision starts to narrow gradually, until there is only a small point visible right in front of you – or vision might go away entirely',
+          content:
+            'The field of vision starts to narrow gradually, until there is only a small point visible right in front of you – or vision might go away entirely',
           image: '',
           title: 'Tunnel vision',
           videoLink: '',
         },
         {
-          content: 'This is closely connected to the feeling that the dive becomes easier – your are not thinking straight anymore and have a hard time to stay focused.',
+          content:
+            'This is closely connected to the feeling that the dive becomes easier – your are not thinking straight anymore and have a hard time to stay focused.',
           image: '',
           title: 'Fuzzy thoughts',
           videoLink: '',
         },
         {
-          content: 'Some freedivers reported to have a feeling of “ants crawling over my fingers, my arms, and then the whole body”.Surface immediately (in pool dives) or indicate to your buddy (coming up from an open water dive) if you experience any of these symptoms.In recreational freediving you should never come close to being hypoxic. Experiencing any of these symptoms is thus not acceptable practice for a safe freediver',
+          content:
+            'Some freedivers reported to have a feeling of “ants crawling over my fingers, my arms, and then the whole body”.Surface immediately (in pool dives) or indicate to your buddy (coming up from an open water dive) if you experience any of these symptoms.In recreational freediving you should never come close to being hypoxic. Experiencing any of these symptoms is thus not acceptable practice for a safe freediver',
           image: '',
           title: 'Tingling sensation',
           videoLink: '',
         },
         {
-          content: 'There is absolutely no benefit in blacking out. This must be clearly stated to oppose certain believes that training “to the edge” creates the greatest results. It does not.To hold your breath to significantly lowered Oxygen saturation is probably associated with a mildly increased cell death well before blacking out. In every situation that affects our brain negatively (like heading a football, being drunk or even sneezing), the significance of the damage is a question of dosage. Repeatedly experienced black outs will certainly have negative consequences and should thus be avoided.After recovery from a black out, a freediver may not be aware of what just happened and at times acts erratically. It is very important to supervise a freediver recovering from a black out until you as a helping buddy have the clear impression that the victim has regained full control over his/her mind and body.',
+          content:
+            'There is absolutely no benefit in blacking out. This must be clearly stated to oppose certain believes that training “to the edge” creates the greatest results. It does not.To hold your breath to significantly lowered Oxygen saturation is probably associated with a mildly increased cell death well before blacking out. In every situation that affects our brain negatively (like heading a football, being drunk or even sneezing), the significance of the damage is a question of dosage. Repeatedly experienced black outs will certainly have negative consequences and should thus be avoided.After recovery from a black out, a freediver may not be aware of what just happened and at times acts erratically. It is very important to supervise a freediver recovering from a black out until you as a helping buddy have the clear impression that the victim has regained full control over his/her mind and body.',
           image: '',
           title: 'Brain damage?',
           videoLink: '',
         },
         {
-          content: 'After suffering from a black out, a freediver should stop diving for the rest of the day to allow the body to fully recover from the incident. ',
+          content:
+            'After suffering from a black out, a freediver should stop diving for the rest of the day to allow the body to fully recover from the incident. ',
           image: '',
           title: 'Stop diving for the day',
           videoLink: '',
         },
         {
-          content: 'As after a LMC, it is very important to find out the reason(s) why you suffered from a black out. Seek coaching from an AIDA Instructor if you cannot clearly point out what went wrong. Once you found the reason, change your freediving behaviour accordingly in order to avoid the same incident to happen again.',
+          content:
+            'As after a LMC, it is very important to find out the reason(s) why you suffered from a black out. Seek coaching from an AIDA Instructor if you cannot clearly point out what went wrong. Once you found the reason, change your freediving behaviour accordingly in order to avoid the same incident to happen again.',
           image: '',
           title: 'Find out why it happened',
           videoLink: '',
         },
         {
-          content: 'If your buddy suffers from Loss of Motor Control (LMC): • Gently hold the freediver so his/her airways are out of the water • Remove facial equipment if needed • Reassure and coach him through his/her recovery breathing • Remind him to stop diving for the rest of the day • Check for any injuries as a result of the LMCThe jerky movements of a “Samba” can lead to serious injuries e.g. when hitting the edge of the pool with the teeth, nose or any other part of the body. This is why you as a buddy will have to be very close to the surfacing freediver, ready to move one of your arms as a bumper between the freediver and the pools edge',
+          content:
+            'If your buddy suffers from Loss of Motor Control (LMC): • Gently hold the freediver so his/her airways are out of the water • Remove facial equipment if needed • Reassure and coach him through his/her recovery breathing • Remind him to stop diving for the rest of the day • Check for any injuries as a result of the LMCThe jerky movements of a “Samba” can lead to serious injuries e.g. when hitting the edge of the pool with the teeth, nose or any other part of the body. This is why you as a buddy will have to be very close to the surfacing freediver, ready to move one of your arms as a bumper between the freediver and the pools edge',
           image: 'rescueafreediver.png',
           title: 'Rescue a Freediver: Support in LMC',
           videoLink: '',
         },
         {
-          content: 'If your buddy suffers from a black out (BO), you will act SAFE: Slower is faster, do every step correctly without haste, then follow up with....',
+          content:
+            'If your buddy suffers from a black out (BO), you will act SAFE: Slower is faster, do every step correctly without haste, then follow up with....',
           image: 'safeacronym.png',
           title: 'Rescue of a blackout: The SAFE-rule',
           videoLink: '',
         },
         {
-          content: 'This is how to approach the SAFE rule and the Blow – Tap – Talk cycle...',
+          content:
+            'This is how to approach the SAFE rule and the Blow – Tap – Talk cycle...',
           image: 'Blowtaptalk.png',
           title: 'Blow-Tap-Talk',
           videoLink: '',
-        },        {
-          content: 'Approach the unconscious diver from behind. Your right arm slides under his/her right arm to his/her face. Shut his/her mouth with your palm and secure his/her mask with your fingers. The left hand holds the back of his/her head. Keep the head straight in line with the body axis – no tilting back or forth. You should also rehearse to apply this grip with swapped hands and put the left hand to the face and the right hand to the back of the victims head. In a real situation you will use the one that is more available to you, depending on your relative position to the victim.After establishing this grip, get yourself in a position where you can use your fins: In a pool, roll yourself off the victim until your heels touch the bottom of the pool. Then you can push off and start the ascent towards the closest edge of the pool or any floating device. In open water, make the victim “look over your shoulder” first and then you twist away your whole body until the outside of your hip is in touch with the victim. In this position your fins are clear for kicking. Additionally you can lift the victim away from you by simply straightening your arms. Now ascend and bring the victim to the surface.End your ascent whenever possible next to a floating device to support the next steps. If you are using a flat-topped freedive float you can use the speed of the ascent to fly the victim’s torso onto the float, on his/her or her back.',
+        },
+        {
+          content:
+            'Approach the unconscious diver from behind. Your right arm slides under his/her right arm to his/her face. Shut his/her mouth with your palm and secure his/her mask with your fingers. The left hand holds the back of his/her head. Keep the head straight in line with the body axis – no tilting back or forth. You should also rehearse to apply this grip with swapped hands and put the left hand to the face and the right hand to the back of the victims head. In a real situation you will use the one that is more available to you, depending on your relative position to the victim.After establishing this grip, get yourself in a position where you can use your fins: In a pool, roll yourself off the victim until your heels touch the bottom of the pool. Then you can push off and start the ascent towards the closest edge of the pool or any floating device. In open water, make the victim “look over your shoulder” first and then you twist away your whole body until the outside of your hip is in touch with the victim. In this position your fins are clear for kicking. Additionally you can lift the victim away from you by simply straightening your arms. Now ascend and bring the victim to the surface.End your ascent whenever possible next to a floating device to support the next steps. If you are using a flat-topped freedive float you can use the speed of the ascent to fly the victim’s torso onto the float, on his/her or her back.',
           image: '',
           title: 'Surface',
           videoLink: '',
         },
         {
-          content: 'Once the airways (nose and mouth) are above the water line, they have to stay there. Use the buoyancy of the victim’s body and wetsuit and drop all weights from the victim and yourself if you have not done so already before',
+          content:
+            'Once the airways (nose and mouth) are above the water line, they have to stay there. Use the buoyancy of the victim’s body and wetsuit and drop all weights from the victim and yourself if you have not done so already before',
           image: '',
           title: 'Airways',
           videoLink: '',
         },
         {
-          content: 'Remove all Facial Equipment (mask, fluid goggles or nose clip) now. The skin around the airways is very sensitive to humidity. Once dry, this area of the skin will signal the unconscious body that there is air to breathe. This process is most effective in connection with air movement with all facial gear removed that could restrict the contact of the face with air',
+          content:
+            'Remove all Facial Equipment (mask, fluid goggles or nose clip) now. The skin around the airways is very sensitive to humidity. Once dry, this area of the skin will signal the unconscious body that there is air to breathe. This process is most effective in connection with air movement with all facial gear removed that could restrict the contact of the face with air',
           image: '',
           title: 'Facial Equipment',
           videoLink: '',
         },
         {
-          content: 'Blow on the skin below the eyes to dry the skin and signal thus to the unconscious body that there is now air to breathe. Tap alternatively both cheeks of the unconscious freediver with your open hand. This is not a hard slap, but should still be executed with enough strength. Talk to the still sub-consciously active mind of the victim: Tell him to breathe in and use the first name of the victim. For example “Peter, breathe in!” in a very directive tone',
+          content:
+            'Blow on the skin below the eyes to dry the skin and signal thus to the unconscious body that there is now air to breathe. Tap alternatively both cheeks of the unconscious freediver with your open hand. This is not a hard slap, but should still be executed with enough strength. Talk to the still sub-consciously active mind of the victim: Tell him to breathe in and use the first name of the victim. For example “Peter, breathe in!” in a very directive tone',
           image: '',
           title: 'Blow Tap Talk (BTT-Cycle)',
           videoLink: '',
         },
         {
-          content: 'Repeat the BTT-Cycle.If the victim does not resume breathing within 15 seconds or earlier, give up to five rescue breaths with the victims nose pinched and the head tilted back to open the airways.AIDA advises you to consider attending a first aid course. This is also a prerequisite for the AIDA4 Advance Freediver Course.',
+          content:
+            'Repeat the BTT-Cycle.If the victim does not resume breathing within 15 seconds or earlier, give up to five rescue breaths with the victims nose pinched and the head tilted back to open the airways.AIDA advises you to consider attending a first aid course. This is also a prerequisite for the AIDA4 Advance Freediver Course.',
           image: 'rescuesteps.png',
           title: 'BTT-Cycle',
           videoLink: '',
         },
         {
-          content: 'Although practicing the rescue techniques with your instructor will make you a reliable and confident buddy, it does not qualify you as a certified rescuer or emergency first responder. AIDA strongly recommends that you follow a complete first aid course as conducted by many specialised agencies. This will be particularly useful if you intend to continue your AIDA Education.Note that your instructor, as a fully qualified professional rescuer, has to update his/her rescue training every two years and must regularly practice these safety skills',
+          content:
+            'Although practicing the rescue techniques with your instructor will make you a reliable and confident buddy, it does not qualify you as a certified rescuer or emergency first responder. AIDA strongly recommends that you follow a complete first aid course as conducted by many specialised agencies. This will be particularly useful if you intend to continue your AIDA Education.Note that your instructor, as a fully qualified professional rescuer, has to update his/her rescue training every two years and must regularly practice these safety skills',
           image: 'btt.png',
           title: 'Remember',
           videoLink: '',
         },
         {
-          content: 'As a safe freediver, LMC and BO are unacceptable outcomes for your dives. Your main goal is to reduce all circumstances that lead to ending a dive in a hypoxic state to an absolute minimum by applying best practice of freediving as follows',
+          content:
+            'As a safe freediver, LMC and BO are unacceptable outcomes for your dives. Your main goal is to reduce all circumstances that lead to ending a dive in a hypoxic state to an absolute minimum by applying best practice of freediving as follows',
           image: '',
           title: 'Risk Reduction',
           videoLink: '',
         },
         {
-          content: 'Mental and physical relaxation means to preserve your energy. Especially in the last phase before a dive, relaxation is the most important task at hand, hence it is called relaxation phase. The more relaxed you are, the safer and more enjoyable freediving becomes',
+          content:
+            'Mental and physical relaxation means to preserve your energy. Especially in the last phase before a dive, relaxation is the most important task at hand, hence it is called relaxation phase. The more relaxed you are, the safer and more enjoyable freediving becomes',
           image: '',
           title: 'Relaxation',
           videoLink: '',
         },
         {
-          content: 'Never push your limits. There is a simple check for you: If you feel stressed or sense a rising feeling of panic, then you are exceeding your limits already. In this situation you should not dive. If already under water, abort your attempt and go back to your relaxation exercise until you feel ready, or change the goal of your dive.',
+          content:
+            'Never push your limits. There is a simple check for you: If you feel stressed or sense a rising feeling of panic, then you are exceeding your limits already. In this situation you should not dive. If already under water, abort your attempt and go back to your relaxation exercise until you feel ready, or change the goal of your dive.',
           image: '',
           title: 'Conservative Freediving',
           videoLink: '',
         },
         {
-          content: 'The safe way to achieve great freedives is by focusing on moving gracefully and relaxed, not by pushing. Application of good freediving technique as you learn it in every AIDA Freedive Course is key to the reduction of effort to move under water, and thus enhances your safety.',
+          content:
+            'The safe way to achieve great freedives is by focusing on moving gracefully and relaxed, not by pushing. Application of good freediving technique as you learn it in every AIDA Freedive Course is key to the reduction of effort to move under water, and thus enhances your safety.',
           image: '',
           title: 'Apply Good Technique',
           videoLink: '',
         },
         {
-          content: 'Always perform recovery breathing. Make it a habit that a dive is not over after surfacing, but after finishing at least three correct recovery breaths. This way you train your body to do it automatically in case of an emergency (e.g. in a hypoxic state).',
+          content:
+            'Always perform recovery breathing. Make it a habit that a dive is not over after surfacing, but after finishing at least three correct recovery breaths. This way you train your body to do it automatically in case of an emergency (e.g. in a hypoxic state).',
           image: '',
           title: 'Recovery Breathing',
           videoLink: '',
         },
         {
-          content: 'Stay well hydrated. Being physically active while swimming wrapped in a wetsuit makes us sweat. Also through “immersion diuresis” (effects of pressure changes on the kidneys – see AIDA3 Freediver Course) we lose a certain amount of liquid while freediving. In a tropical environment, the heat from the sun combined with the high water temperature may constitute another cause of fluid loss. Increased breathing rates also add to dehydration. The amount of fluids required is easily underestimated and thus re-hydration while or after freediving is important. Always bring a re-usable water bottle to your session and also have drinking water / electrolytes ready to start drinking immediately after the session. You need to drink even if you are not thirsty. This also means having drinking water available on boats is essential.',
+          content:
+            'Stay well hydrated. Being physically active while swimming wrapped in a wetsuit makes us sweat. Also through “immersion diuresis” (effects of pressure changes on the kidneys – see AIDA3 Freediver Course) we lose a certain amount of liquid while freediving. In a tropical environment, the heat from the sun combined with the high water temperature may constitute another cause of fluid loss. Increased breathing rates also add to dehydration. The amount of fluids required is easily underestimated and thus re-hydration while or after freediving is important. Always bring a re-usable water bottle to your session and also have drinking water / electrolytes ready to start drinking immediately after the session. You need to drink even if you are not thirsty. This also means having drinking water available on boats is essential.',
           image: '',
           title: 'Hydration',
           videoLink: '',
         },
         {
-          content: 'There is simply no excuse to omit the first rule of freediving: Always freedive with a buddy. If there is no buddy available it means no freediving for you. Being under water without a buddy is not freediving, it is being irresponsible. Sadly, even very experienced freedivers have ignored this basic rule at the highest possible cost. This clearly demonstrates that being aware of the risk does not minimise it. Only acting to minimise risks by having a buddy will increase your safety',
+          content:
+            'There is simply no excuse to omit the first rule of freediving: Always freedive with a buddy. If there is no buddy available it means no freediving for you. Being under water without a buddy is not freediving, it is being irresponsible. Sadly, even very experienced freedivers have ignored this basic rule at the highest possible cost. This clearly demonstrates that being aware of the risk does not minimise it. Only acting to minimise risks by having a buddy will increase your safety',
           image: '',
           title: 'Always freedive with a trained buddy',
           videoLink: '',
         },
         {
-          content: 'By correctly weighting yourself, you save energy while freediving and buddying. Also, you will not be “over weighted” in a case of emergency',
+          content:
+            'By correctly weighting yourself, you save energy while freediving and buddying. Also, you will not be “over weighted” in a case of emergency',
           image: 'correctweighting',
           title: 'Correct Weighting',
           videoLink: '',
         },
         {
-          content: 'Take the snorkel out of your mouth before you descend. This is probably the easiest difference to spot between a trained freediver and an untrained snorkeler who takes a casual breath-hold dive. In case of a black out the snorkel is an open water pipe to the victim’s airways, making an effective rescue much more challenging and complex.',
+          content:
+            'Take the snorkel out of your mouth before you descend. This is probably the easiest difference to spot between a trained freediver and an untrained snorkeler who takes a casual breath-hold dive. In case of a black out the snorkel is an open water pipe to the victim’s airways, making an effective rescue much more challenging and complex.',
           image: '',
           title: 'Snorkel out',
           videoLink: '',
         },
         {
-          content: 'You will learn and repeat rescue technique in every AIDA Course. As your level as a freediver increases, so will your level as a buddy and freedive rescuer. You will be able to perform rescues from greater depths, while the rescue technique itself stays the same.',
+          content:
+            'You will learn and repeat rescue technique in every AIDA Course. As your level as a freediver increases, so will your level as a buddy and freedive rescuer. You will be able to perform rescues from greater depths, while the rescue technique itself stays the same.',
           image: '',
           title: 'Rescue technique practice',
           videoLink: '',
         },
         {
-          content: 'Grab hold of something as soon as you reach the surface. If no freedive buoy is available, two life vests wrapped together or a lifebuoy from the boat can be used. While a float is of course essential in an open water training session, it is also very practical and a great safety device in a fun freedive session e.g. on a reef. It can carry snacks or a water bottle, as well as being visible to boats and providing a resting surface. Apply the rule of “one diver down, one up”!',
+          content:
+            'Grab hold of something as soon as you reach the surface. If no freedive buoy is available, two life vests wrapped together or a lifebuoy from the boat can be used. While a float is of course essential in an open water training session, it is also very practical and a great safety device in a fun freedive session e.g. on a reef. It can carry snacks or a water bottle, as well as being visible to boats and providing a resting surface. Apply the rule of “one diver down, one up”!',
           image: '',
           title: 'Bring a Float',
           videoLink: '',
-        },{
-          content: 'Use a lanyard for dives deeper than 20 meters or when freediving in visibility less than 10 meters. Here is another rule of thumb: Use a lanyard when diving out of sight of your buddy.',
+        },
+        {
+          content:
+            'Use a lanyard for dives deeper than 20 meters or when freediving in visibility less than 10 meters. Here is another rule of thumb: Use a lanyard when diving out of sight of your buddy.',
           image: '',
           title: 'Lanyard',
           videoLink: '',
         },
         {
-          content: 'Allow enough time between scuba diving and freediving. After diving with compressed air (scuba), the body has accumulated a certain amount of Nitrogen. When directly moving over to freediving, the quick pressure changes of freedives can then lead this gas to cause decompression sickness (DCS)',
+          content:
+            'Allow enough time between scuba diving and freediving. After diving with compressed air (scuba), the body has accumulated a certain amount of Nitrogen. When directly moving over to freediving, the quick pressure changes of freedives can then lead this gas to cause decompression sickness (DCS)',
           image: '',
           title: 'Freediving and Scuba',
           videoLink: '',
         },
         {
-          content: 'If you are using a dive computer, wait until it clears you to fly before freediving.',
+          content:
+            'If you are using a dive computer, wait until it clears you to fly before freediving.',
           image: '',
           title: 'No Fly Sign',
           videoLink: '',
         },
         {
-          content: 'If you do not use a dive computer, these two rules of thumb will give you a conservative estimation how much time you need to allow before flying or freediving:',
+          content:
+            'If you do not use a dive computer, these two rules of thumb will give you a conservative estimation how much time you need to allow before flying or freediving:',
           image: 'freedivingafterscubadiving.png',
           title: 'Freediving after SCUBA diving',
           videoLink: '',
         },
         {
-          content: 'The amount of Nitrogen you accumulate while recreational freediving is quite small, but existing. If you are going to scuba dive after freediving, your dive computer has no information about this residual Nitrogen in your system and might give you readings that are not conservative enough to be absolutely safe.At the moment there are no conclusive studies on how much time is safe to allow for scuba diving after freediving. However, the scientific community recommends a minimum of 12 hours if you want to scuba dive after freediving',
+          content:
+            'The amount of Nitrogen you accumulate while recreational freediving is quite small, but existing. If you are going to scuba dive after freediving, your dive computer has no information about this residual Nitrogen in your system and might give you readings that are not conservative enough to be absolutely safe.At the moment there are no conclusive studies on how much time is safe to allow for scuba diving after freediving. However, the scientific community recommends a minimum of 12 hours if you want to scuba dive after freediving',
           image: '',
           title: 'Scuba diving after freediving',
           videoLink: '',
         },
         {
-          content: 'When freediving do not accept air from a scuba diver underwater. Despite it being a popular diver joke to offer you the “octopus” to take a breath: Say “No t(h)anks”. The first breath of compressed air entering your lungs underwater switches your diving mode from freediving to scuba diving and you consequently have to end your dive as a scuba diver. If your mind cannot follow that switch, you put yourself in great danger',
+          content:
+            'When freediving do not accept air from a scuba diver underwater. Despite it being a popular diver joke to offer you the “octopus” to take a breath: Say “No t(h)anks”. The first breath of compressed air entering your lungs underwater switches your diving mode from freediving to scuba diving and you consequently have to end your dive as a scuba diver. If your mind cannot follow that switch, you put yourself in great danger',
           image: '',
           title: 'Do not accept air from a scuba diver',
           videoLink: '',
@@ -1329,157 +1400,183 @@ export class CourseService {
       completed: false,
       innerModules: [
         {
-          content: 'To start freediving you need a mask, a snorkel and a pair of fins. A wetsuit might also be needed, depending on where you go freediving. Some waters are very cold and make it necessary to wear neoprene. In other places the sun is so strong that you need a suit to protect your skin.Have you heard the quote “It is the photographer that takes the picture, not the camera”? Freediving is much the same. Acquiring a good freediving technique is more important than buying the latest gear. For example, it is easier to learn a proper fin kick with short fins, before moving on to longer freedive fins. Consequently many freedive schools will hand you snorkelling fins to start with. For other parts of gear, only the best is good enough. For example, when buying a mask, take the one that fits you best, regardless of the price. A compromise in fit will result in an unpleasant experience every time you use the mask. If you take good care of your mask you will have it for years, making it a good initial investment.Depending on what kind of diving you are planning, in the pool, the sea or in lakes, you may want to choose different equipment. In the following, we will indicate the most important points to consider when buying freedive gear for different purposes.',
+          content:
+            'To start freediving you need a mask, a snorkel and a pair of fins. A wetsuit might also be needed, depending on where you go freediving. Some waters are very cold and make it necessary to wear neoprene. In other places the sun is so strong that you need a suit to protect your skin.Have you heard the quote “It is the photographer that takes the picture, not the camera”? Freediving is much the same. Acquiring a good freediving technique is more important than buying the latest gear. For example, it is easier to learn a proper fin kick with short fins, before moving on to longer freedive fins. Consequently many freedive schools will hand you snorkelling fins to start with. For other parts of gear, only the best is good enough. For example, when buying a mask, take the one that fits you best, regardless of the price. A compromise in fit will result in an unpleasant experience every time you use the mask. If you take good care of your mask you will have it for years, making it a good initial investment.Depending on what kind of diving you are planning, in the pool, the sea or in lakes, you may want to choose different equipment. In the following, we will indicate the most important points to consider when buying freedive gear for different purposes.',
           image: 'freediveequipment.png',
           title: 'Introduction',
           videoLink: '',
         },
         {
-          content: 'It is important for the longevity of your equipment to keep it out of the sun. Most freediving equipment is made from materials sensitive to heat and UV light.All freedive gear will last longer if it is rinsed thoroughly in fresh water after every use. Fins usually come with small plastic shoe trees for the foot pockets. Do not throw these away and use them anytime you transport or store your fins. Always put your mask away in its box. If the mask came without a box, get one at your local dive shop.',
+          content:
+            'It is important for the longevity of your equipment to keep it out of the sun. Most freediving equipment is made from materials sensitive to heat and UV light.All freedive gear will last longer if it is rinsed thoroughly in fresh water after every use. Fins usually come with small plastic shoe trees for the foot pockets. Do not throw these away and use them anytime you transport or store your fins. Always put your mask away in its box. If the mask came without a box, get one at your local dive shop.',
           image: '',
           title: 'Delicate material',
           videoLink: '',
         },
         {
-          content: 'A freedive mask must enclose the nose. This enables you to equalise the rising pressure in the mask on descent. It is impossible to dive with other types of masks, e.g. swimming goggles, as they will lead to injury of the eyes when descending.',
+          content:
+            'A freedive mask must enclose the nose. This enables you to equalise the rising pressure in the mask on descent. It is impossible to dive with other types of masks, e.g. swimming goggles, as they will lead to injury of the eyes when descending.',
           image: 'mask.png',
           title: 'Mask: Enclose Nose',
           videoLink: '',
         },
         {
-          content: 'This is how you check at the dive shop if a mask is fitting perfectly:Flip the strap of the mask around so it is out of the way. Tilt your head back, look to the ceiling and place the mask on your face without any wiggling. Now try if you can suck the mask to the face by inhaling through the nose. If you can bring your head back to normal position and the mask stays in place, you have found a your mask.',
+          content:
+            'This is how you check at the dive shop if a mask is fitting perfectly:Flip the strap of the mask around so it is out of the way. Tilt your head back, look to the ceiling and place the mask on your face without any wiggling. Now try if you can suck the mask to the face by inhaling through the nose. If you can bring your head back to normal position and the mask stays in place, you have found a your mask.',
           image: 'mask.png',
           title: 'Assure good fit',
           videoLink: '',
         },
         {
-          content: 'The volume of air between the face and the lenses of a freedive mask should be as low as possible as it will make the equalisation of the mask easier at depth. Masks with bigger volumes are used for scuba diving, where air is not a limiting factor for equalisation in general',
+          content:
+            'The volume of air between the face and the lenses of a freedive mask should be as low as possible as it will make the equalisation of the mask easier at depth. Masks with bigger volumes are used for scuba diving, where air is not a limiting factor for equalisation in general',
           image: 'mask.png',
           title: 'Low volume',
           videoLink: '',
         },
         {
-          content: 'For safety reasons, you want to see the eyes of the freediver you are buddying. Mirrored or tinted lenses can make eye contact difficult or impossible and are thus unsuitable for freediving. While most masks have lenses made of glass, there are a few with plastic lenses. Glass is easier to be kept clean and scratches are less likely to occur. On the other hand, plastic lenses are more flexible and do not alter your vision. After all, glass or plastic is your choice and is of secondary importance. More importantly, pick a mask with a good fit for you',
+          content:
+            'For safety reasons, you want to see the eyes of the freediver you are buddying. Mirrored or tinted lenses can make eye contact difficult or impossible and are thus unsuitable for freediving. While most masks have lenses made of glass, there are a few with plastic lenses. Glass is easier to be kept clean and scratches are less likely to occur. On the other hand, plastic lenses are more flexible and do not alter your vision. After all, glass or plastic is your choice and is of secondary importance. More importantly, pick a mask with a good fit for you',
           image: 'mask.png',
           title: 'Clear lenses',
           videoLink: '',
         },
         {
-          content: 'The softer the skirt (the rubber part that is in touch with your face) the more forgiving the mask is on descent into the deep. A very rigid mask needs to equalised almost constantly to avoid pain from the rising pressure, while a freedive mask with a soft skirt will simply compress a bit to your face until you equalise it.',
+          content:
+            'The softer the skirt (the rubber part that is in touch with your face) the more forgiving the mask is on descent into the deep. A very rigid mask needs to equalised almost constantly to avoid pain from the rising pressure, while a freedive mask with a soft skirt will simply compress a bit to your face until you equalise it.',
           image: 'mask.png',
           title: 'Flexibility',
           videoLink: '',
         },
         {
-          content: 'Before going freediving, spit on the inside of your mask lenses and rub it in thoroughly in order to avoid fogging of the mask. Anti-fog drops work as well but are much less environmentally friendly. Like all freedive gear, after every use rinse your mask well with fresh water. Allow it to dry in a place not exposed to direct sunlight. Put it back in its protection box before packing it away. Watch out for damaged straps. Replacement straps are not always in stock at your favourite dive shop. Thus, it is recommended to get a spare strap right away and store it in the protection box together with your mask.For general cleaning of your masks with plastic lenses, use toothpaste and a toothbrush or a few drops of dishwashing liquid and water. ',
+          content:
+            'Before going freediving, spit on the inside of your mask lenses and rub it in thoroughly in order to avoid fogging of the mask. Anti-fog drops work as well but are much less environmentally friendly. Like all freedive gear, after every use rinse your mask well with fresh water. Allow it to dry in a place not exposed to direct sunlight. Put it back in its protection box before packing it away. Watch out for damaged straps. Replacement straps are not always in stock at your favourite dive shop. Thus, it is recommended to get a spare strap right away and store it in the protection box together with your mask.For general cleaning of your masks with plastic lenses, use toothpaste and a toothbrush or a few drops of dishwashing liquid and water. ',
           image: 'mask.png',
           title: 'Taking care',
           videoLink: '',
         },
         {
-          content: 'You need a set of bi-fins to begin freediving in a swimming pool or open water. It is recommended to start with a pair of short fins to learn the proper finning technique first, before moving on to a longer set of freedive fins. Consequently using snorkelling fins is perfectly fine in the beginning',
+          content:
+            'You need a set of bi-fins to begin freediving in a swimming pool or open water. It is recommended to start with a pair of short fins to learn the proper finning technique first, before moving on to a longer set of freedive fins. Consequently using snorkelling fins is perfectly fine in the beginning',
           image: 'fins.png',
           title: 'Bi-fins',
           videoLink: '',
         },
         {
-          content: 'While short bi-fins are good for training and developing your finning technique, longer fins are more powerful. As soon as your finning technique and your muscular strength and flexibility are ready to handle the greater resistance of long fins, you will create a lot more propulsion with them and thus be more effective in water.',
+          content:
+            'While short bi-fins are good for training and developing your finning technique, longer fins are more powerful. As soon as your finning technique and your muscular strength and flexibility are ready to handle the greater resistance of long fins, you will create a lot more propulsion with them and thus be more effective in water.',
           image: 'fins.png',
           title: 'Length = Power',
           videoLink: '',
         },
         {
-          content: 'Training is the key to efficient use of bi-fins. It takes time to achieve a good finning technique and working with a coach on a regular basis will improve your performance gradually. AIDA focuses on both, open water freediving and pool training. Most freedivers do not live by the sea and will train in pools throughout the year before going to open water on holidays. This is a very efficient way to train and get your finning performance to the next level enabling you to go deeper every time you are back in open water.In case you change from using one type of fin to another, allow for some adaption. You might even consider some pool training with your new fins before going into open water',
+          content:
+            'Training is the key to efficient use of bi-fins. It takes time to achieve a good finning technique and working with a coach on a regular basis will improve your performance gradually. AIDA focuses on both, open water freediving and pool training. Most freedivers do not live by the sea and will train in pools throughout the year before going to open water on holidays. This is a very efficient way to train and get your finning performance to the next level enabling you to go deeper every time you are back in open water.In case you change from using one type of fin to another, allow for some adaption. You might even consider some pool training with your new fins before going into open water',
           image: 'fins.png',
           title: 'Techniques and training',
           videoLink: '',
         },
         {
-          content: 'In freediving we use full foot pockets for bi-fins. Booties combined with scuba fins and ankle straps are not recommended for freediving as the connection between foot and fin is not very direct. Consequently the transmission of energy towards the fin blade is not very effective.The foot pockets should be tight but not painful, even after several hours of usage. If there is play between your foot and the pocket it is likely that you will get blisters. To avoid any friction use neoprene or Lycra™ socks. Wearing socks also contributes to a good insulation in cold water. There is a wide range of foot pockets on the market offering very different shapes. Invest enough time in your research to find your personal best fit',
+          content:
+            'In freediving we use full foot pockets for bi-fins. Booties combined with scuba fins and ankle straps are not recommended for freediving as the connection between foot and fin is not very direct. Consequently the transmission of energy towards the fin blade is not very effective.The foot pockets should be tight but not painful, even after several hours of usage. If there is play between your foot and the pocket it is likely that you will get blisters. To avoid any friction use neoprene or Lycra™ socks. Wearing socks also contributes to a good insulation in cold water. There is a wide range of foot pockets on the market offering very different shapes. Invest enough time in your research to find your personal best fit',
           image: 'fins.png',
           title: 'Full foot',
           videoLink: '',
         },
         {
-          content: 'Freedive fin blades are made of a great variety of materials such as plastic, carbon fibre or Kevlar. As a rule of thumb it can be said that the more advanced the construction, the more delicate the fins are. Plastic fins are perfectly fine all the way up to professional level and they are virtually unbreakable. A feature, which is very welcome in daily freediving. A pure carbon fin is a very efficient tool in water, but it can break by only putting it down on the ground the wrong way.Note that fin blades come in varying grades of stiffness and can often be bought independently from the foot pockets. However, not all fin blades will fit every foot pocket making it necessary to ask before buying',
+          content:
+            'Freedive fin blades are made of a great variety of materials such as plastic, carbon fibre or Kevlar. As a rule of thumb it can be said that the more advanced the construction, the more delicate the fins are. Plastic fins are perfectly fine all the way up to professional level and they are virtually unbreakable. A feature, which is very welcome in daily freediving. A pure carbon fin is a very efficient tool in water, but it can break by only putting it down on the ground the wrong way.Note that fin blades come in varying grades of stiffness and can often be bought independently from the foot pockets. However, not all fin blades will fit every foot pocket making it necessary to ask before buying',
           image: '',
           title: 'Plastic \u2013 fibre glass \u2013 carbon',
           videoLink: '',
         },
         {
-          content: 'Rinse your fins after every use and dry them in a place not exposed to direct sunlight. Always transport your fins in a padded fin bag. When traveling by plane you usually have to check in your fins. Make sure your fin bag is stable and ready for rough handling.Always put your fins out of the way and never leave them on the ground. This way you avoid people stepping or dropping diving weights (or tanks!) on them.',
+          content:
+            'Rinse your fins after every use and dry them in a place not exposed to direct sunlight. Always transport your fins in a padded fin bag. When traveling by plane you usually have to check in your fins. Make sure your fin bag is stable and ready for rough handling.Always put your fins out of the way and never leave them on the ground. This way you avoid people stepping or dropping diving weights (or tanks!) on them.',
           image: '',
           title: 'Taking care',
           videoLink: '',
         },
         {
-          content: 'Monofins derive from the sport of “fin swimming”. Fin swimming is a speed contests in swimming just below the water surface. Today, many freedivers own a monofin and appreciate them for allowing for better performance. Almost all competitive freediving is done with monofins.A monofin asks for an entirely different technique than bi-fins, which should be learned from scratch with a coach. The monofin technique activates a different set of muscles and asks for a great deal of physical flexibility. This requires a lot of practice, but once the technique is mastered, a monofin is more efficient than the best bi-fins.Dedicated companies in the field push the development constantly forward and produce more powerful monofins every year. Technology is constantly adapted by using our understanding of fluid dynamics and biomechanics to reproduce the functionality of flukes and foils from marine mammals and fish. Considering this, we are in for a constant stream of great surprises and astonishing inventions',
+          content:
+            'Monofins derive from the sport of “fin swimming”. Fin swimming is a speed contests in swimming just below the water surface. Today, many freedivers own a monofin and appreciate them for allowing for better performance. Almost all competitive freediving is done with monofins.A monofin asks for an entirely different technique than bi-fins, which should be learned from scratch with a coach. The monofin technique activates a different set of muscles and asks for a great deal of physical flexibility. This requires a lot of practice, but once the technique is mastered, a monofin is more efficient than the best bi-fins.Dedicated companies in the field push the development constantly forward and produce more powerful monofins every year. Technology is constantly adapted by using our understanding of fluid dynamics and biomechanics to reproduce the functionality of flukes and foils from marine mammals and fish. Considering this, we are in for a constant stream of great surprises and astonishing inventions',
           image: 'monofin.png',
           title: 'Monofin',
           videoLink: '',
         },
         {
-          content: 'The snorkel is a basic safety tool. It allows you to breathe while watching your buddy from the surface in the pool or in open water',
+          content:
+            'The snorkel is a basic safety tool. It allows you to breathe while watching your buddy from the surface in the pool or in open water',
           image: 'snorkel.png',
           title: 'Snorkel',
           videoLink: '',
         },
         {
-          content: 'The best snorkel for freediving is fairly rigid. Snorkels with too much flexibility have to be either firmly attached to the mask strap or be held upright with one hand',
+          content:
+            'The best snorkel for freediving is fairly rigid. Snorkels with too much flexibility have to be either firmly attached to the mask strap or be held upright with one hand',
           image: 'snorkel.png',
           title: 'Rigid',
           videoLink: '',
         },
         {
-          content: 'It is easier to purge a snorkel from water when there is an according valve. However, valves tend to leak and are usually quite bulky.Snorkels sink! It is a good advice to attach a floating device to your snorkel, such as a bit of neoprene or insulation foam. This way a stray snorkel will not sink right away but can be spotted drifting at the surface.',
+          content:
+            'It is easier to purge a snorkel from water when there is an according valve. However, valves tend to leak and are usually quite bulky.Snorkels sink! It is a good advice to attach a floating device to your snorkel, such as a bit of neoprene or insulation foam. This way a stray snorkel will not sink right away but can be spotted drifting at the surface.',
           image: 'snorkel.png',
           title: 'With/without purge',
           videoLink: '',
         },
         {
-          content: 'Always remove the snorkel from your mouth before diving.A snorkel kept in the mouth while freediving is a direct water entry to your airways. This makes a rescue in case of a black out almost impossible.Take the snorkel out of your mouth after your one full breath and leave it with your buddy at the surface. You can also hold it in your hand or slip it under your weight belt while diving.',
+          content:
+            'Always remove the snorkel from your mouth before diving.A snorkel kept in the mouth while freediving is a direct water entry to your airways. This makes a rescue in case of a black out almost impossible.Take the snorkel out of your mouth after your one full breath and leave it with your buddy at the surface. You can also hold it in your hand or slip it under your weight belt while diving.',
           image: 'snorkel.png',
           title: 'Remove before diving',
           videoLink: '',
         },
         {
-          content: 't is not absolutely recommended attaching the snorkel to the mask. The mask should be worn as loosely as possible while still ensuring a good seal to the face.When attaching a snorkel, you run the risk of flooding or even losing your mask due to the drag produced by the snorkel.Still many freedivers are content to have their snorkel attached to their mask. If you choose to do so, attach the snorkel at the back of your head where the mask strap is often separated into two parts. Attaching the snorkel at the back of your head will make it stick up vertically when you relax face down in the water. Attaching the snorkel on the side of your head (as most snorkelers tend to do) will drop the tip of the snorkel forward into the water as soon as you put your face in water. This is to be avoided, Try it in the pool or confined water first',
+          content:
+            't is not absolutely recommended attaching the snorkel to the mask. The mask should be worn as loosely as possible while still ensuring a good seal to the face.When attaching a snorkel, you run the risk of flooding or even losing your mask due to the drag produced by the snorkel.Still many freedivers are content to have their snorkel attached to their mask. If you choose to do so, attach the snorkel at the back of your head where the mask strap is often separated into two parts. Attaching the snorkel at the back of your head will make it stick up vertically when you relax face down in the water. Attaching the snorkel on the side of your head (as most snorkelers tend to do) will drop the tip of the snorkel forward into the water as soon as you put your face in water. This is to be avoided, Try it in the pool or confined water first',
           image: 'snorkel.png',
           title: 'Attached to the mask?',
           videoLink: '',
         },
         {
-          content: 'A freedive weight belt is made of flexible material such as silicone or rubber.',
+          content:
+            'A freedive weight belt is made of flexible material such as silicone or rubber.',
           image: 'weightbelt.png',
           title: 'Weight belt',
           videoLink: '',
         },
         {
-          content: 'Freedivers wear their belt on the hips rather than the waist to not interfere with belly breathing and duck dive movements. Pulling the flexible belt tight also keeps it in place and prevents it from sliding up and down along the body while upside down on descent',
+          content:
+            'Freedivers wear their belt on the hips rather than the waist to not interfere with belly breathing and duck dive movements. Pulling the flexible belt tight also keeps it in place and prevents it from sliding up and down along the body while upside down on descent',
           image: 'weightbelt.png',
           title: 'Worn on Hips',
           videoLink: '',
         },
         {
-          content: 'To offset the buoyancy of your wetsuit rather use a greater number of small weights than only a few big chunks of lead. This way you can adjust your buoyancy in small steps,and symmetrically distribute the weights on your belt to avoid a rolling momentum.',
+          content:
+            'To offset the buoyancy of your wetsuit rather use a greater number of small weights than only a few big chunks of lead. This way you can adjust your buoyancy in small steps,and symmetrically distribute the weights on your belt to avoid a rolling momentum.',
           image: 'weightbelt.png',
           title: 'Small Weights',
           videoLink: '',
         },
         {
-          content: 'A freedive weight belt needs to have a quick release buckle which enables a onehanded removal in case of emergency. Make sure the tip of the loose end of the weight belt is tucked under the belt in a way that it is not blocking the release of the belt. This is the same procedure as in scuba diving.',
+          content:
+            'A freedive weight belt needs to have a quick release buckle which enables a onehanded removal in case of emergency. Make sure the tip of the loose end of the weight belt is tucked under the belt in a way that it is not blocking the release of the belt. This is the same procedure as in scuba diving.',
           image: 'weightbelt.png',
           title: 'Quick release',
           videoLink: '',
         },
         {
-          content: 'A flexible weight belt can be worn quite tightly without being uncomfortable in any way. It also creates a seal between your pants and jacket to prevent water from flushing into your suit. This feature is essential when freediving in colder conditions.',
+          content:
+            'A flexible weight belt can be worn quite tightly without being uncomfortable in any way. It also creates a seal between your pants and jacket to prevent water from flushing into your suit. This feature is essential when freediving in colder conditions.',
           image: 'weightbelt.png',
           title: 'Seals suit',
           videoLink: '',
         },
         {
-          content: 'As all freedive gear it is best to rinse the weight belt after usage and keep it away from direct sunlight. Watch out for your feet and the ones of your buddies when manipulating weights. Always hold the belt at both ends or with the buckle closed when transporting it. If you can find them, use environment protection weights',
+          content:
+            'As all freedive gear it is best to rinse the weight belt after usage and keep it away from direct sunlight. Watch out for your feet and the ones of your buddies when manipulating weights. Always hold the belt at both ends or with the buckle closed when transporting it. If you can find them, use environment protection weights',
           image: 'weightbelt.png',
           title: 'Taking care',
           videoLink: '',
@@ -1497,109 +1594,127 @@ export class CourseService {
           videoLink: '',
         },
         {
-          content: 'The closer the suit fits your body, the better it will keep you warm. Ideally your suit should be tailor made to avoid any water flush between the skin and the suit',
+          content:
+            'The closer the suit fits your body, the better it will keep you warm. Ideally your suit should be tailor made to avoid any water flush between the skin and the suit',
           image: 'wetsuit.png',
           title: 'Close fit',
           videoLink: '',
         },
         {
-          content: 'Always wear a full body suit, even in tropical waters. This is to protect you from the sun, from stinging organisms like jellyfish and floating debris. Shorty-wetsuits can be sufficient in combination with rash vests. A freedive suit can have an integrated hood, which protects your head and neck from the sun and keeps you warm. Water augments the loss of body heat through the head. Covering the head with a hood allows us to use thinner neoprene while having the same overall insulation capacity. In cold water an additional swimming cap can be of great help.',
+          content:
+            'Always wear a full body suit, even in tropical waters. This is to protect you from the sun, from stinging organisms like jellyfish and floating debris. Shorty-wetsuits can be sufficient in combination with rash vests. A freedive suit can have an integrated hood, which protects your head and neck from the sun and keeps you warm. Water augments the loss of body heat through the head. Covering the head with a hood allows us to use thinner neoprene while having the same overall insulation capacity. In cold water an additional swimming cap can be of great help.',
           image: 'wetsuit.png',
           title: 'Full body',
           videoLink: '',
         },
         {
-          content: 'Freedive suits are made of two pieces: High waist or long john pants plus a jacket with a beaver tail. As they are tailor made, no zippers or Velcro seams are needed to prevent water flush. Having no zippers also means more mobility, less water drag and consequently better streamlining.',
+          content:
+            'Freedive suits are made of two pieces: High waist or long john pants plus a jacket with a beaver tail. As they are tailor made, no zippers or Velcro seams are needed to prevent water flush. Having no zippers also means more mobility, less water drag and consequently better streamlining.',
           image: 'wetsuit.png',
           title: 'No Zipper',
           videoLink: '',
         },
         {
-          content: 'A freedive suit should be made of high quality neoprene. A good stretch ability of the material will make your movements easier, but will also show signs of wear more quickly. Extremely soft material will be more affected by pressure changes in open water freediving and thus will lose some of its flexibility and insulation capacity over time.',
+          content:
+            'A freedive suit should be made of high quality neoprene. A good stretch ability of the material will make your movements easier, but will also show signs of wear more quickly. Extremely soft material will be more affected by pressure changes in open water freediving and thus will lose some of its flexibility and insulation capacity over time.',
           image: 'wetsuit.png',
           title: 'Mobility',
           videoLink: '',
         },
         {
-          content: 'Depending on the material, you have to take special care when putting on and taking off your wetsuit. For instance, a competition suit can only be put on using a lubricant like soapy water or talcum powder, as it will immediately break if you try otherwise.Choosing the neoprene according to your needs is part of the ordering process of a custom wetsuit. A competition suit is probably made with “open cell” on the inside, combined with a very smooth and slippery layer (“slick” or “smooth” skin) on the outside. This makes it on the one hand very efficient in terms of low water resistance and high insulation capacity, but extremely delicate on the other hand. You can increase the durability of your custom suit by adding linings, both on the inside and outside. However, this will add some water resistance and you will lose some insulation capacity. There is no perfect suit for every purpose. You will have to design and order your suits to your personal needs, performance and temperature of water you want to dive in. The first time you order a custom made suit, the sheer choice can be daunting. Ask your AIDA Instructor for advice on choosing a wetsuit that suits you best.',
+          content:
+            'Depending on the material, you have to take special care when putting on and taking off your wetsuit. For instance, a competition suit can only be put on using a lubricant like soapy water or talcum powder, as it will immediately break if you try otherwise.Choosing the neoprene according to your needs is part of the ordering process of a custom wetsuit. A competition suit is probably made with “open cell” on the inside, combined with a very smooth and slippery layer (“slick” or “smooth” skin) on the outside. This makes it on the one hand very efficient in terms of low water resistance and high insulation capacity, but extremely delicate on the other hand. You can increase the durability of your custom suit by adding linings, both on the inside and outside. However, this will add some water resistance and you will lose some insulation capacity. There is no perfect suit for every purpose. You will have to design and order your suits to your personal needs, performance and temperature of water you want to dive in. The first time you order a custom made suit, the sheer choice can be daunting. Ask your AIDA Instructor for advice on choosing a wetsuit that suits you best.',
           image: 'wetsuit.png',
           title: 'Fragile',
           videoLink: '',
         },
         {
-          content: 'With a lanyard you can attach yourself to the vertical dive line. When using your fins for diving you will attach the strong strap or Velcro of the lanyard to your wrist – usually the one where you do not wear your dive computer. In free immersion (FIM) it is more comfortable to attach the lanyard to your ankle, so it does not interfere with your arm movement. When diving without fins (CNF), the lanyard is mostly attached to a D-ring on the weight belt.The carabiner at the other end of the lanyard is then clicked in to the dive line so it can freely glide, without creating any noticeable friction. It is important that your lanyard complies with the AIDA standards in terms of stability and stiffness. Improperly produced lanyards can easily tangle with the dive line',
+          content:
+            'With a lanyard you can attach yourself to the vertical dive line. When using your fins for diving you will attach the strong strap or Velcro of the lanyard to your wrist – usually the one where you do not wear your dive computer. In free immersion (FIM) it is more comfortable to attach the lanyard to your ankle, so it does not interfere with your arm movement. When diving without fins (CNF), the lanyard is mostly attached to a D-ring on the weight belt.The carabiner at the other end of the lanyard is then clicked in to the dive line so it can freely glide, without creating any noticeable friction. It is important that your lanyard complies with the AIDA standards in terms of stability and stiffness. Improperly produced lanyards can easily tangle with the dive line',
           image: 'lanyard.png',
           title: 'Lanyard: Attaching to the dive line',
           videoLink: '',
         },
         {
-          content: 'The lanyard allows you to keep a perfectly vertical direction along the dive line even in very bad visibility or when diving with closed eyes. Many deep dives are done without a mask, so the vision of the divers is quite reduced. The lanyard will give the freediver immediate feedback if he/she is losing his/her bearings',
+          content:
+            'The lanyard allows you to keep a perfectly vertical direction along the dive line even in very bad visibility or when diving with closed eyes. Many deep dives are done without a mask, so the vision of the divers is quite reduced. The lanyard will give the freediver immediate feedback if he/she is losing his/her bearings',
           image: 'lanyard.png',
           title: 'To keep the bearings',
           videoLink: '',
         },
         {
-          content: 'In a competition setup or for deep freediving in general the dive line is not simply attached to the buoy, but will run over a mechanism with wheels and breaks. The other end of the dive line is a counterweight attached which is considerably heavier than the weight on the dive line. In a case of emergency, e.g. when a freediver is not within vision of the safety divers in due time, the break can be released. The counterweight descends immediately and pulls up the smaller bottom weight. The lanyard of the overdue freediver is caught by the rapidly ascending bottom weight and the diver is hoisted back to the surface',
+          content:
+            'In a competition setup or for deep freediving in general the dive line is not simply attached to the buoy, but will run over a mechanism with wheels and breaks. The other end of the dive line is a counterweight attached which is considerably heavier than the weight on the dive line. In a case of emergency, e.g. when a freediver is not within vision of the safety divers in due time, the break can be released. The counterweight descends immediately and pulls up the smaller bottom weight. The lanyard of the overdue freediver is caught by the rapidly ascending bottom weight and the diver is hoisted back to the surface',
           image: 'lanyard.png',
           title: 'For rescue purposes with a counterweight',
           videoLink: '',
         },
         {
-          content: 'It is important that the lanyard can be released immediately in case it gets tangled. Velcro straps usually use the same quick release as used in surfing leashes, while lanyards that use fabric straps must be combined with a quick-release shackle',
+          content:
+            'It is important that the lanyard can be released immediately in case it gets tangled. Velcro straps usually use the same quick release as used in surfing leashes, while lanyards that use fabric straps must be combined with a quick-release shackle',
           image: 'lanyard.png',
           title: 'Quick release at the wrist',
           videoLink: '',
         },
         {
-          content: 'The freedive buoy, or float, is an integral part of a freedive teaching setup. But also for training and for competition some form of setup with a vertical dive line is essential.',
+          content:
+            'The freedive buoy, or float, is an integral part of a freedive teaching setup. But also for training and for competition some form of setup with a vertical dive line is essential.',
           image: 'freedivebuoy.png',
           title: 'Freedive Buoy',
           videoLink: '',
         },
         {
-          content: 'For good visibility you want your float to be made of a bright signal color like orange or red. As an additional safety feature a diver flag can be attached to the setup. This might be even compulsory if you are freediving in an area with boat traffic.The freedive buoys that are in use today have a flat surface, which enables buddy teams to keep eye contact across the float after surfacing. A flat surface is also ideal if a freediver needs to rest and in a case of emergency a victim can be positioned face up on top of the float if no other means of in water transport is available',
+          content:
+            'For good visibility you want your float to be made of a bright signal color like orange or red. As an additional safety feature a diver flag can be attached to the setup. This might be even compulsory if you are freediving in an area with boat traffic.The freedive buoys that are in use today have a flat surface, which enables buddy teams to keep eye contact across the float after surfacing. A flat surface is also ideal if a freediver needs to rest and in a case of emergency a victim can be positioned face up on top of the float if no other means of in water transport is available',
           image: 'freedivebuoy.png',
           title: 'Safety Feature',
           videoLink: '',
         },
         {
-          content: 'Every freedive buoy has a central mounting point on its lower side, where the vertical dive line can be firmly attached. It is important that the buoy is constructed in such a way that the dive line and bottom weight (see below) cannot be ripped out by a simple failure of material. The dive line is a static (non-stretchy) rope with a diameter of 8mm or more',
+          content:
+            'Every freedive buoy has a central mounting point on its lower side, where the vertical dive line can be firmly attached. It is important that the buoy is constructed in such a way that the dive line and bottom weight (see below) cannot be ripped out by a simple failure of material. The dive line is a static (non-stretchy) rope with a diameter of 8mm or more',
           image: 'freedivebuoy.png',
           title: 'Dive line firmly attached',
           videoLink: '',
         },
         {
-          content: 'A shorter and thinner tethering line allows you to attach the buoy to a mooring line for the duration of the freedive session. A 4mm thick and 10m long line is just fine for this. Also, such a tethering line is essential to “daisy chain” several freedive buoys to each other',
+          content:
+            'A shorter and thinner tethering line allows you to attach the buoy to a mooring line for the duration of the freedive session. A 4mm thick and 10m long line is just fine for this. Also, such a tethering line is essential to “daisy chain” several freedive buoys to each other',
           image: 'freedivebuoy.png',
           title: 'Tethering line',
           videoLink: '',
         },
         {
-          content: 'Ideally there are two large carabiners available at the mounting point below the float: One carabineer allows a secure connection between the dive line and the float, while the second carabineer makes it easier to shorten or lengthen the rope',
+          content:
+            'Ideally there are two large carabiners available at the mounting point below the float: One carabineer allows a secure connection between the dive line and the float, while the second carabineer makes it easier to shorten or lengthen the rope',
           image: 'freedivebuoy.png',
           title: 'Carabiners',
           videoLink: '',
         },
         {
-          content: 'Firmly attached handles around the buoy make your relaxation phase easier. In an open water session performed in the sea you always want to be in touch with either the freedive buoy or the tethering line between buoys: Even on the most quiet day there is a little current which can slowly drag you away from your freedive group while you are relaxing with your eyes closed. Also, the handles can be used to hold a pair of fins in case you choose to switch to “no fins” freediving during the session',
+          content:
+            'Firmly attached handles around the buoy make your relaxation phase easier. In an open water session performed in the sea you always want to be in touch with either the freedive buoy or the tethering line between buoys: Even on the most quiet day there is a little current which can slowly drag you away from your freedive group while you are relaxing with your eyes closed. Also, the handles can be used to hold a pair of fins in case you choose to switch to “no fins” freediving during the session',
           image: 'freedivebuoy.png',
           title: 'Handles to hold on to',
           videoLink: '',
         },
         {
-          content: 'The bottom weight pulls the dive line to a vertical position. It should be as light as possible to make handling easy. For a teaching session a somewhat heavier bottom weight of 7kg is fine, an even heavier weight can be more effective for example for free immersion dives. The bottom weight can be built with a scuba weight belt and normal diving weights, but any block of led is ideal as well.',
+          content:
+            'The bottom weight pulls the dive line to a vertical position. It should be as light as possible to make handling easy. For a teaching session a somewhat heavier bottom weight of 7kg is fine, an even heavier weight can be more effective for example for free immersion dives. The bottom weight can be built with a scuba weight belt and normal diving weights, but any block of led is ideal as well.',
           image: 'freedivebuoy.png',
           title: 'Light Bottom Weight',
           videoLink: '',
         },
         {
-          content: 'For dives deeper than twenty meters or in bad visibility AIDA advises the use of a lanyard. Upon your descent along the dive line, the carabineer of the lanyard will be stopped by a tennis ball, which is attached 1.5-2m above the bottom weight. This avoids entanglement of the lanyard with the bottom weight or bottom plate (see below)',
+          content:
+            'For dives deeper than twenty meters or in bad visibility AIDA advises the use of a lanyard. Upon your descent along the dive line, the carabineer of the lanyard will be stopped by a tennis ball, which is attached 1.5-2m above the bottom weight. This avoids entanglement of the lanyard with the bottom weight or bottom plate (see below)',
           image: 'freedivebuoy.png',
           title: 'Tennis ball to stop lanyard',
           videoLink: '',
         },
         {
-          content: 'In a freedive competition the target depth of each dive is indicated by the bottom plate. This is a horizontal round plate made of any sorts of material. For example a Frisbee can be modified for that purpose. Many freedive instructors and buddy teams have a bottom plate permanently built into their setup to simulate the competition situation',
+          content:
+            'In a freedive competition the target depth of each dive is indicated by the bottom plate. This is a horizontal round plate made of any sorts of material. For example a Frisbee can be modified for that purpose. Many freedive instructors and buddy teams have a bottom plate permanently built into their setup to simulate the competition situation',
           image: 'freedivebuoy.png',
           title: 'Bottom plate',
           videoLink: '',
@@ -1611,13 +1726,15 @@ export class CourseService {
       completed: false,
       innerModules: [
         {
-          content: 'From recreational to extreme/competitive freediving Within AIDA there is a total of eight freediving disciplines. In the AIDA2 Course, you will be introduced to four of them already: STA, DYN, FIM and CWT.Reminder: In some parts of the world, “freediving” is often coined with the term “apnea”. Literally translated from the Greek “apnoia” it means “without breathing” and can be used as a synonym for freediving. Due to AIDA’s French origin the term “apnea” is used frequently',
+          content:
+            'From recreational to extreme/competitive freediving Within AIDA there is a total of eight freediving disciplines. In the AIDA2 Course, you will be introduced to four of them already: STA, DYN, FIM and CWT.Reminder: In some parts of the world, “freediving” is often coined with the term “apnea”. Literally translated from the Greek “apnoia” it means “without breathing” and can be used as a synonym for freediving. Due to AIDA’s French origin the term “apnea” is used frequently',
           image: '',
           title: 'Introduction',
           videoLink: '',
         },
         {
-          content: 'A breath hold performed face down in a pool or confined water is called static apnea (STA). It is a popular competitive discipline as much as an important form of training. ',
+          content:
+            'A breath hold performed face down in a pool or confined water is called static apnea (STA). It is a popular competitive discipline as much as an important form of training. ',
           image: 'staticapnea.png',
           title: 'Static Apnea (STA)',
           videoLink: 'https://player.vimeo.com/video/84772021?h=01d43f7b07',
@@ -1625,23 +1742,27 @@ export class CourseService {
         {
           content: '',
           image: 'staticapnea.png',
-          title: 'A breath hold performed face down in a pool or confined water is called static apnea (STA). It is a popular competitive discipline as much as an important form of training.',
+          title:
+            'A breath hold performed face down in a pool or confined water is called static apnea (STA). It is a popular competitive discipline as much as an important form of training.',
           videoLink: '',
         },
         {
-          content: 'While it is often allowed to do static training in pools, the usage of fins and suits frequently are not. This makes static training in water the most accessible form of training. Furthermore, there are many forms of dry static training. “Static” is thus a very versatile tool to work with on a daily basis.',
+          content:
+            'While it is often allowed to do static training in pools, the usage of fins and suits frequently are not. This makes static training in water the most accessible form of training. Furthermore, there are many forms of dry static training. “Static” is thus a very versatile tool to work with on a daily basis.',
           image: 'staticapnea.png',
           title: 'Most accessible training form',
           videoLink: '',
         },
         {
-          content: 'Holding your breath for an extended time is as much a physical task as it is a mental game. Your mind does not like to stop working and it has a hard time doing nothing. But that is exactly what we ask our minds to do during a static breath hold: Stopping to think, and not wasting any energy on unneeded activity.',
+          content:
+            'Holding your breath for an extended time is as much a physical task as it is a mental game. Your mind does not like to stop working and it has a hard time doing nothing. But that is exactly what we ask our minds to do during a static breath hold: Stopping to think, and not wasting any energy on unneeded activity.',
           image: 'staticapnea.png',
           title: 'Mind game',
           videoLink: '',
         },
         {
-          content: 'After a while in static breath hold, the mind game also becomes a physical one. Some of your breathing muscles will contract and release to initiate the exhalation of excess CO2. Sometimes this is also referred as “convulsions”, but that is not very accurate. If you are able to allow the contractions to happen, they are no more than muscles tensing up and releasing in a more or less rhythmical pattern. As such, these contractions can be used as a timer to gauge one’s breath hold. As they are indicators for rising CO2 level in the body, they can be counted and thus provide valuable information about how much longer you can go on with your breath hold (see a description on how – and why – counting contractions can be useful in chapter 3.3)',
+          content:
+            'After a while in static breath hold, the mind game also becomes a physical one. Some of your breathing muscles will contract and release to initiate the exhalation of excess CO2. Sometimes this is also referred as “convulsions”, but that is not very accurate. If you are able to allow the contractions to happen, they are no more than muscles tensing up and releasing in a more or less rhythmical pattern. As such, these contractions can be used as a timer to gauge one’s breath hold. As they are indicators for rising CO2 level in the body, they can be counted and thus provide valuable information about how much longer you can go on with your breath hold (see a description on how – and why – counting contractions can be useful in chapter 3.3)',
           image: 'staticapnea.png',
           title: 'Contractions',
           videoLink: '',
@@ -1653,69 +1774,80 @@ export class CourseService {
           videoLink: 'https://player.vimeo.com/video/84857817?h=452c9e01a6',
         },
         {
-          content: 'Dynamic apnea (DYN) is about the horizontal distance covered under water on one breath. Like STA, dynamic apnea is introduced in the AIDA2 Course.This discipline is mostly done in pools. It is also possible to perform dynamic apnea in any confined water, such as a sheltered beach, or a lagoon. As long as there are no waves, no currents and reasonable visibility, dynamic can be performed almost anywhere',
+          content:
+            'Dynamic apnea (DYN) is about the horizontal distance covered under water on one breath. Like STA, dynamic apnea is introduced in the AIDA2 Course.This discipline is mostly done in pools. It is also possible to perform dynamic apnea in any confined water, such as a sheltered beach, or a lagoon. As long as there are no waves, no currents and reasonable visibility, dynamic can be performed almost anywhere',
           image: '',
           title: 'Horizontal distance covered on one breath',
           videoLink: '',
         },
         {
-          content: 'There are two forms of dynamic apnea in AIDA: With fins or without. In a competition, monofin and bi-fin divers compete with each other in the same category.',
+          content:
+            'There are two forms of dynamic apnea in AIDA: With fins or without. In a competition, monofin and bi-fin divers compete with each other in the same category.',
           image: 'dynamicapnea.png',
           title: 'Dynamic with fins: DYN',
           videoLink: '',
         },
         {
-          content: 'The other form of dynamic apnea is performed without fins, with the abbreviation DNF (dynamic no fins). With the use of arms and legs the freediver propels himself/herself in an extended breaststroke movement. DNF is a very demanding discipline from a technical standpoint. DNF is not taught in the AIDA Courses, but your AIDA Instructor will provide you with additional training possibilities if you wish so.',
+          content:
+            'The other form of dynamic apnea is performed without fins, with the abbreviation DNF (dynamic no fins). With the use of arms and legs the freediver propels himself/herself in an extended breaststroke movement. DNF is a very demanding discipline from a technical standpoint. DNF is not taught in the AIDA Courses, but your AIDA Instructor will provide you with additional training possibilities if you wish so.',
           image: 'DNF.png',
           title: 'Dynamic no fins: DNF',
           videoLink: '',
         },
         {
-          content: 'Dynamic apnea is an important general training discipline in order to work on body posture, finning technique, CO2 tolerance and so forth. For many freedivers with limited or no access to open water this discipline is their main activity “between trips”.Pool operators quite often do not permit fins, wetsuits or even masks in the pool during public hours. If you want to train in a pool for the first time, make sure you ask about the local regulations. In many places, however freediving or apnea clubs with dedicated training hours can be found. Ask your AIDA Instructor about local freediving clubs, where you can find fellow freedive buddies and a fun group to train with',
+          content:
+            'Dynamic apnea is an important general training discipline in order to work on body posture, finning technique, CO2 tolerance and so forth. For many freedivers with limited or no access to open water this discipline is their main activity “between trips”.Pool operators quite often do not permit fins, wetsuits or even masks in the pool during public hours. If you want to train in a pool for the first time, make sure you ask about the local regulations. In many places, however freediving or apnea clubs with dedicated training hours can be found. Ask your AIDA Instructor about local freediving clubs, where you can find fellow freedive buddies and a fun group to train with',
           image: '',
           title: 'Important training discipline',
           videoLink: '',
         },
         {
-          content: 'Remember that you need a dedicated and qualified buddy to do in-water apnea training in a pool (STA, DYN, DNF), there is no exception to this rule. A lifeguard on duty does not qualify as a buddy',
+          content:
+            'Remember that you need a dedicated and qualified buddy to do in-water apnea training in a pool (STA, DYN, DNF), there is no exception to this rule. A lifeguard on duty does not qualify as a buddy',
           image: '',
           title: 'Lifeguard is NOT a buddy',
           videoLink: '',
         },
         {
-          content: 'In free immersion you pull yourself down and back up the dive line without the use of fins. Competitive FIM is often performed without wearing fins, however during an AIDA Course FIM, dives are performed with fins due to safety reasons.The discipline is introduced both in AIDA1 & AIDA2 Courses and is further trained on every following course level',
+          content:
+            'In free immersion you pull yourself down and back up the dive line without the use of fins. Competitive FIM is often performed without wearing fins, however during an AIDA Course FIM, dives are performed with fins due to safety reasons.The discipline is introduced both in AIDA1 & AIDA2 Courses and is further trained on every following course level',
           image: 'fim.png',
           title:
             'Free Immersion (FIM): Pulling yourself down and back up a line',
           videoLink: '',
         },
         {
-          content: 'Free immersion is a vital part of every open water freedive session. It is the most common way to start your session by slowly pulling yourself down to a comfortable depth. By doing so you can spend time under water without exerting yourself while giving your body and mind time to switch into “freedive mode”.Athletes in a competition get ready for their dives in a similar way. Quite often they will use a perfectly timed series of FIM dives to adapt themselves to the water while still “saving their legs”. After this warm-up process with FIM, the athletes are ready for their deep competition dive with “fresh” legs for CNF or CWT',
+          content:
+            'Free immersion is a vital part of every open water freedive session. It is the most common way to start your session by slowly pulling yourself down to a comfortable depth. By doing so you can spend time under water without exerting yourself while giving your body and mind time to switch into “freedive mode”.Athletes in a competition get ready for their dives in a similar way. Quite often they will use a perfectly timed series of FIM dives to adapt themselves to the water while still “saving their legs”. After this warm-up process with FIM, the athletes are ready for their deep competition dive with “fresh” legs for CNF or CWT',
           image: 'fim.png',
-          title:'Good as a Warm Up',
+          title: 'Good as a Warm Up',
           videoLink: '',
         },
         {
-          content: 'This is probably the most known discipline of freediving. In this discipline you will swim down and back up along a dive line, using the same amount of weight. Hence it is called constant weight (CWT). It is introduced to beginners both in AIDA1 and AIDA2 Courses',
+          content:
+            'This is probably the most known discipline of freediving. In this discipline you will swim down and back up along a dive line, using the same amount of weight. Hence it is called constant weight (CWT). It is introduced to beginners both in AIDA1 and AIDA2 Courses',
           image: 'cwt.png',
           title:
             'Constant Weight (CWT, CNF): Swim down and back up using the same amount of weight',
           videoLink: '',
         },
         {
-          content: 'Constant weight freediving can be performed with fins or without. In competition, freedivers using bi-fins or monofins share one category called CWT',
+          content:
+            'Constant weight freediving can be performed with fins or without. In competition, freedivers using bi-fins or monofins share one category called CWT',
           image: 'cwt.png',
           title: 'Constant weight with fins: CWT',
           videoLink: '',
         },
         {
-          content: 'Diving to depth without using fins is called constant weight no fins, in short CNF. As this form of freediving is often depicted as the purest form of freediving it gets a lot of well-deserved media attention',
+          content:
+            'Diving to depth without using fins is called constant weight no fins, in short CNF. As this form of freediving is often depicted as the purest form of freediving it gets a lot of well-deserved media attention',
           image: 'cnf.png',
           title: 'Constant weight no fins: CNF',
           videoLink: '',
         },
         {
-          content: 'Both disciplines CWT and CNF share the rule of grabbing the rope only once, and that is when you turn. However, it is allowed to glide along the dive line, using one hand to “feel” the rope to keep your orientation. Athletes diving without a mask often apply this form as their eyes are more or less closed during their dive',
+          content:
+            'Both disciplines CWT and CNF share the rule of grabbing the rope only once, and that is when you turn. However, it is allowed to glide along the dive line, using one hand to “feel” the rope to keep your orientation. Athletes diving without a mask often apply this form as their eyes are more or less closed during their dive',
           image: 'cnf.png',
           title: 'Grab the rope only to turn',
           videoLink: '',
@@ -1727,37 +1859,43 @@ export class CourseService {
           videoLink: '',
         },
         {
-          content: 'In the simplest form of variable weight (VWT) a freediver descends holding a weight in his hand. The weight is attached to the dive line and will be stopped at the targeted depth. More sophisticated setups use a weighted sled to which the freediver holds on to during descent.',
+          content:
+            'In the simplest form of variable weight (VWT) a freediver descends holding a weight in his hand. The weight is attached to the dive line and will be stopped at the targeted depth. More sophisticated setups use a weighted sled to which the freediver holds on to during descent.',
           image: 'vwt.png',
           title: 'Descend with weight or sled',
           videoLink: '',
         },
         {
-          content: 'After reaching the targeted depth, the freediver will ascend using his own propulsion. In VWT the freediver commonly does not use a weight belt to offset the buoyancy of your freedive suit, which makes the ascent easier',
+          content:
+            'After reaching the targeted depth, the freediver will ascend using his own propulsion. In VWT the freediver commonly does not use a weight belt to offset the buoyancy of your freedive suit, which makes the ascent easier',
           image: 'vwt.png',
           title: 'Ascend without weights',
           videoLink: '',
         },
         {
-          content: 'The freediver can use the rope to pull himself up or use his fins to get back to the surface. Also a combination of both means of propulsion is possible',
+          content:
+            'The freediver can use the rope to pull himself up or use his fins to get back to the surface. Also a combination of both means of propulsion is possible',
           image: 'vwt.png',
           title: 'Ascend swimming and/or pulling on the line',
           videoLink: '',
         },
         {
-          content: 'Variable weight is a great tool in advanced freediving to adapt to depth. VWT is also done for pure pleasure or for record attempts, but there are no AIDA ratified competitions in this discipline due to the risk factors involved. VWT is introduced in the AIDA4 Course',
+          content:
+            'Variable weight is a great tool in advanced freediving to adapt to depth. VWT is also done for pure pleasure or for record attempts, but there are no AIDA ratified competitions in this discipline due to the risk factors involved. VWT is introduced in the AIDA4 Course',
           image: '',
           title: 'Non Competition Discipline',
           videoLink: '',
         },
         {
-          content: 'In No Limits Freediving (NLT) the freediver descends most commonly by holding on to a weighted sled.Ascend using lifting device, At the target depth, the freediver will often use compressed air to fill a lift bag by opening the valve of a tank attached to a sled. Any other lifting devices are allowed as well. The propulsion of the lifting device lifts brings the athlete back up and close to the surface. He will then let go of the lifting device and ascend slowly in a controlled way along the dive line for the last meters of the ascent',
+          content:
+            'In No Limits Freediving (NLT) the freediver descends most commonly by holding on to a weighted sled.Ascend using lifting device, At the target depth, the freediver will often use compressed air to fill a lift bag by opening the valve of a tank attached to a sled. Any other lifting devices are allowed as well. The propulsion of the lifting device lifts brings the athlete back up and close to the surface. He will then let go of the lifting device and ascend slowly in a controlled way along the dive line for the last meters of the ascent',
           image: 'nolimits.png',
           title: 'No Limits (NLT)',
           videoLink: '',
         },
         {
-          content: 'This discipline has been made popular by the movie “Le Grand Bleu” (The Big Blue). Unlike depicted in the movie there are no competitions in NLT anymore, as the discipline has serious risk factors to be considered. Record attempts have to be approached carefully and in a controlled environment, supervised by experts. The development of a functioning NLT-setup is a task that takes a maximum amount of experience. Furthermore, it takes years of adaption for the human body to handle the extreme depths that must be reached for today’s NLT records.However, done under the supervision of an experienced instructor, NLT to moderate depths is great fun and safe',
+          content:
+            'This discipline has been made popular by the movie “Le Grand Bleu” (The Big Blue). Unlike depicted in the movie there are no competitions in NLT anymore, as the discipline has serious risk factors to be considered. Record attempts have to be approached carefully and in a controlled environment, supervised by experts. The development of a functioning NLT-setup is a task that takes a maximum amount of experience. Furthermore, it takes years of adaption for the human body to handle the extreme depths that must be reached for today’s NLT records.However, done under the supervision of an experienced instructor, NLT to moderate depths is great fun and safe',
           image: 'nolimits.png',
           title: 'No Competition Discipline',
           videoLink: '',
@@ -1819,7 +1957,6 @@ export class CourseService {
   }
 
   getModuleTitleList() {
-    //returns an array of all module titles in current course
     var newArray = [];
     for (let moduleItem of this.AIDA2Default) {
       newArray.push(moduleItem.title);

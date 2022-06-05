@@ -9,7 +9,6 @@ import {
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { LoadingController, Platform } from '@ionic/angular';
 
-
 const IMAGE_DIR = 'stored-images';
 
 interface LocalFile {
@@ -22,17 +21,20 @@ interface LocalFile {
   providedIn: 'root',
 })
 export class PhotoService {
-  images: LocalFile[] = []
-  constructor(private platform: Platform, private loadingCtrl: LoadingController, private userService: UserService){
-  }
+  images: LocalFile[] = [];
+  constructor(
+    private platform: Platform,
+    private loadingCtrl: LoadingController,
+    private userService: UserService
+  ) {}
   /**
    * It deletes a file from the filesystem and then reloads the list of files
    * @param {LocalFile} file - LocalFile - The file to delete
    */
-  async deleteImage(file: LocalFile){
+  async deleteImage(file: LocalFile) {
     await Filesystem.deleteFile({
       directory: Directory.Data,
-      path: file.path
+      path: file.path,
     });
     this.loadFiles();
   }
@@ -50,18 +52,23 @@ export class PhotoService {
 
     Filesystem.readdir({
       directory: Directory.Data,
-      path: IMAGE_DIR
-    }).then(result => {
-      this.loadFileData(result.files);
-    }, async err => {
-      console.log('err: ', err);
-      await Filesystem.mkdir({
-        directory: Directory.Data,
-        path: IMAGE_DIR
-      })
-    }).then(_ => {
-      loading.dismiss();
+      path: IMAGE_DIR,
     })
+      .then(
+        (result) => {
+          this.loadFileData(result.files);
+        },
+        async (err) => {
+          console.log('err: ', err);
+          await Filesystem.mkdir({
+            directory: Directory.Data,
+            path: IMAGE_DIR,
+          });
+        }
+      )
+      .then((_) => {
+        loading.dismiss();
+      });
   }
 
   /**
@@ -70,19 +77,19 @@ export class PhotoService {
    */
   async loadFileData(fileNames: string[]) {
     for (let f of fileNames) {
-      if (f =  `${this.userService.user.email}.jpeg`){
-      const filePath = `${IMAGE_DIR}/${f}`;
+      if ((f = `${this.userService.user.email}.jpeg`)) {
+        const filePath = `${IMAGE_DIR}/${f}`;
 
-      const readFile = await Filesystem.readFile({
-        directory: Directory.Data,
-        path: filePath
-      });
-      this.images.push({
-        name: f,
-        path: filePath,
-        data: `data:image/jpeg;base64,${readFile.data}`
-      });
-    }
+        const readFile = await Filesystem.readFile({
+          directory: Directory.Data,
+          path: filePath,
+        });
+        this.images.push({
+          name: f,
+          path: filePath,
+          data: `data:image/jpeg;base64,${readFile.data}`,
+        });
+      }
     }
   }
 
@@ -107,7 +114,6 @@ export class PhotoService {
     await this.selectImage();
   }
 
-
   /**
    * It takes a photo object, converts it to base64, then saves it to the filesystem.
    * @param {Photo} photo - Photo - this is the photo that was taken by the camera
@@ -120,16 +126,16 @@ export class PhotoService {
       path: `${IMAGE_DIR}/${fileName}`,
       data: base64Data,
     });
-        this.loadFiles();
+    this.loadFiles();
   }
 
- /**
-  * If the app is running on a device, read the file from the filesystem, otherwise fetch the photo
-  * from the web storage and convert it to base64 format
-  * @param {Photo} photo - Photo - this is the photo object that we are passing in.
-  * @returns The base64 string of the photo.
-  */
- async readAsBase64(photo: Photo) {
+  /**
+   * If the app is running on a device, read the file from the filesystem, otherwise fetch the photo
+   * from the web storage and convert it to base64 format
+   * @param {Photo} photo - Photo - this is the photo object that we are passing in.
+   * @returns The base64 string of the photo.
+   */
+  async readAsBase64(photo: Photo) {
     if (this.platform.is('hybrid')) {
       const file = await Filesystem.readFile({
         path: photo.path,
@@ -146,12 +152,13 @@ export class PhotoService {
   }
 
   /* Converting the blob to base64. */
-  convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
-    const reader = new FileReader;
-    reader.onerror = reject;
-    reader.onload = () => {
-      resolve(reader.result);
-    };
-    reader.readAsDataURL(blob);
-  });
+  convertBlobToBase64 = (blob: Blob) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = reject;
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+      reader.readAsDataURL(blob);
+    });
 }

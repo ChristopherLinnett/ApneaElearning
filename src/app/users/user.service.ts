@@ -8,53 +8,54 @@ import { CourseConstructor } from '../instructor/createcourse/studentconstructor
 @Injectable({
   providedIn: 'root',
 })
-export class UserService implements OnInit{
+export class UserService implements OnInit {
   userlist;
   user;
-  existingUsers = {instructor:
-    {
+  existingUsers = {
+    instructor: {
       firstname: 'none',
       lastname: 'none',
       email: 'instructor',
       password: 'password',
       role: 'Instructor',
       courses: {},
-      availableCourses: {0: new CourseConstructor('0', 0,String(new Date()),'AIDA1', 'none'),
-          1: new CourseConstructor('1', 0,String(new Date()),'AIDA2', 'none'),
-          2: new CourseConstructor('2', 0,String(new Date()),'AIDA3', 'none'),
-          3: new CourseConstructor('3', 0,String(new Date()),'AIDA4', 'none'),
-          4: new CourseConstructor('4', 0,String(new Date()),'AIDA5', 'none')
-        }
+      availableCourses: {
+        0: new CourseConstructor('0', 0, String(new Date()), 'AIDA1', 'none'),
+        1: new CourseConstructor('1', 0, String(new Date()), 'AIDA2', 'none'),
+        2: new CourseConstructor('2', 0, String(new Date()), 'AIDA3', 'none'),
+        3: new CourseConstructor('3', 0, String(new Date()), 'AIDA4', 'none'),
+        4: new CourseConstructor('4', 0, String(new Date()), 'AIDA5', 'none'),
+      },
     },
-    instructor2:
-    {
+    instructor2: {
       firstname: 'none',
       lastname: 'none',
       email: 'instructor2',
       password: 'password',
       role: 'Instructor',
       courses: {},
-      availableCourses: {0: new CourseConstructor('0', 0,String(new Date()),'AIDA1', 'none'),
-          1: new CourseConstructor('1', 0,String(new Date()),'AIDA2', 'none'),
-          2: new CourseConstructor('2', 0,String(new Date()),'AIDA3', 'none'),
-          3: new CourseConstructor('3', 0,String(new Date()),'AIDA4', 'none'),
-          4: new CourseConstructor('4', 0,String(new Date()),'AIDA5', 'none')
-        }
+      availableCourses: {
+        0: new CourseConstructor('0', 0, String(new Date()), 'AIDA1', 'none'),
+        1: new CourseConstructor('1', 0, String(new Date()), 'AIDA2', 'none'),
+        2: new CourseConstructor('2', 0, String(new Date()), 'AIDA3', 'none'),
+        3: new CourseConstructor('3', 0, String(new Date()), 'AIDA4', 'none'),
+        4: new CourseConstructor('4', 0, String(new Date()), 'AIDA5', 'none'),
+      },
     },
-    instructor3:
-    {
+    instructor3: {
       firstname: 'none',
       lastname: 'none',
       email: 'instructor3',
       password: 'password',
       role: 'Instructor',
       courses: {},
-      availableCourses: {0: new CourseConstructor('0', 0,String(new Date()),'AIDA1', 'none'),
-          1: new CourseConstructor('1', 0,String(new Date()),'AIDA2', 'none'),
-          2: new CourseConstructor('2', 0,String(new Date()),'AIDA3', 'none'),
-          3: new CourseConstructor('3', 0,String(new Date()),'AIDA4', 'none'),
-          4: new CourseConstructor('4', 0,String(new Date()),'AIDA5', 'none')
-        }
+      availableCourses: {
+        0: new CourseConstructor('0', 0, String(new Date()), 'AIDA1', 'none'),
+        1: new CourseConstructor('1', 0, String(new Date()), 'AIDA2', 'none'),
+        2: new CourseConstructor('2', 0, String(new Date()), 'AIDA3', 'none'),
+        3: new CourseConstructor('3', 0, String(new Date()), 'AIDA4', 'none'),
+        4: new CourseConstructor('4', 0, String(new Date()), 'AIDA5', 'none'),
+      },
     },
   };
   userIndexInDB;
@@ -65,33 +66,37 @@ export class UserService implements OnInit{
     private dataStorageService: DatastorageService
   ) {}
 
-ngOnInit(){
-  this.updateUserlist()
-}
+  ngOnInit() {
+    this.updateUserlist();
+  }
 
-async updateUser(){
-  this.user = this.userlist[`${this.user.email}`]
-}
+  async updateUser() {
+    this.user = this.userlist[`${this.user.email}`];
+  }
 
   async updateUserlist(updateUser = true) {
-    this.userlist = await this.dataStorageService.lookup('users')
-  if (updateUser){this.updateUser()}
+    this.userlist = await this.dataStorageService.lookup('users');
+    if (updateUser) {
+      this.updateUser();
+    }
   }
 
-  async login(inputUser: string, inputPass: string){
-    inputUser = inputUser.toLowerCase().trim()
-    inputPass = inputPass.toLowerCase().trim()
-    await this.updateUserlist(false)
-    if (this.userlist === null){
+  async login(inputUser: string, inputPass: string) {
+    inputUser = inputUser.toLowerCase().trim();
+    inputPass = inputPass.toLowerCase().trim();
+    await this.updateUserlist(false);
+    if (this.userlist === null) {
       await this.dataStorageService.save('users', this.existingUsers);
-      this.userlist = await this.dataStorageService.lookup('users')
+      this.userlist = await this.dataStorageService.lookup('users');
     }
-    if (Object.keys(this.userlist).includes(inputUser) && this.userlist[`${inputUser}`].password == inputPass) {
-      this.user = this.userlist[`${inputUser}`]
-      this.loggedIn = true
-      return
-    
-  }
+    if (
+      Object.keys(this.userlist).includes(inputUser) &&
+      this.userlist[`${inputUser}`].password == inputPass
+    ) {
+      this.user = this.userlist[`${inputUser}`];
+      this.loggedIn = true;
+      return;
+    }
   }
   async showUserOptions() {
     const actionSheet = await this.actionSheetController.create({
@@ -121,14 +126,12 @@ async updateUser(){
           text: 'Cancel',
           icon: 'close',
           role: 'cancel',
-          handler: () => { },
+          handler: () => {},
         },
       ],
     });
     await actionSheet.present();
-
   }
-
 
   getUser() {
     if (this.user) {
@@ -141,11 +144,11 @@ async updateUser(){
   }
 
   async addUsers(usersArray: any[]) {
-    this.userlist= await this.dataStorageService.lookup('users');
+    this.userlist = await this.dataStorageService.lookup('users');
     if (this.userlist) {
       var saveme = this.userlist;
       for (let user of usersArray) {
-        this.userlist[`${user.email}`] = user
+        this.userlist[`${user.email}`] = user;
       }
       await this.dataStorageService.save('users', this.userlist);
     } else {
@@ -153,10 +156,10 @@ async updateUser(){
     }
   }
   async addCourse(course: CourseConstructor) {
-    this.userlist= await this.dataStorageService.lookup('users');
-          this.userlist[`${this.user.email}`].courses[`${course.courseID}`] = course
-          this.dataStorageService.save('users',this.userlist);
-          return;
+    this.userlist = await this.dataStorageService.lookup('users');
+    this.userlist[`${this.user.email}`].courses[`${course.courseID}`] = course;
+    this.dataStorageService.save('users', this.userlist);
+    return;
   }
 
   /**
@@ -165,12 +168,13 @@ async updateUser(){
    * @param {string} courseID - string = the course ID
    * @param studentName - string
    */
-  async updateCourse(courseID: string, studentName){
-    this.userlist= await this.dataStorageService.lookup('users');
-    let newlist = this.userlist
-    newlist[`${this.user.email}`].courses[`${courseID}`].students.push(studentName)
-    this.dataStorageService.save('users', newlist)
-
+  async updateCourse(courseID: string, studentName) {
+    this.userlist = await this.dataStorageService.lookup('users');
+    let newlist = this.userlist;
+    newlist[`${this.user.email}`].courses[`${courseID}`].students.push(
+      studentName
+    );
+    this.dataStorageService.save('users', newlist);
   }
   /**
    * If the user is logged in, return the available courses
@@ -223,4 +227,3 @@ async updateUser(){
     return this.user.firstname;
   }
 }
-

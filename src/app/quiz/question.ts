@@ -5,11 +5,7 @@ export class Question {
   answers: Answer[];
   questionAnswered: number;
   correctAnswer: number;
-  constructor(
-    questionText: string,
-    answers: Answer[],
-    correctAnswer: number
-  ) {
+  constructor(questionText: string, answers: Answer[], correctAnswer: number) {
     this.questionText = questionText;
     this.correctAnswer = correctAnswer;
     this.answers = answers;

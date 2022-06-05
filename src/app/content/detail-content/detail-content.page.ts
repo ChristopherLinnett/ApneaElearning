@@ -3,11 +3,11 @@ import { AlertController, ModalController, NavParams } from '@ionic/angular';
 import { CourseService } from '../course.service';
 import { CurrentModuleService } from './current-module.service';
 import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, {Navigation,Pagination,EffectCoverflow} from "swiper";
+import SwiperCore, { Navigation, Pagination, EffectCoverflow } from 'swiper';
 import { ViewChild } from '@angular/core';
 import { SwiperOptions } from 'swiper';
 import { InProgressPage } from 'src/app/quiz/in-progress/in-progress.page';
-SwiperCore.use([Navigation,Pagination,EffectCoverflow])
+SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 @Component({
   selector: 'app-detail-content',
@@ -15,12 +15,12 @@ SwiperCore.use([Navigation,Pagination,EffectCoverflow])
   styleUrls: ['./detail-content.page.scss'],
 })
 export class DetailContentPage implements OnInit {
-  @ViewChild('swiper') swiper: SwiperComponent
+  @ViewChild('swiper') swiper: SwiperComponent;
   selection: string;
   currentTitle: string;
   currentContent: string;
   moduleTitle = 'Choose Module';
-  config: SwiperOptions = {slidesPerView: 'auto' , effect: 'coverflow'}
+  config: SwiperOptions = { slidesPerView: 'auto', effect: 'coverflow' };
 
   constructor(
     private navParams: NavParams,
@@ -68,25 +68,33 @@ export class DetailContentPage implements OnInit {
         this.currentModuleService.currentModuleIndex
       ].title;
   }
-  async launchModuleQuiz(moduleNo){
-    this.modalController.dismiss()
-      const quizmodal = await this.modalController.create({
-        component: InProgressPage,
-        cssClass: 'my-custom-class'
-      });
-      return await quizmodal.present();
-    }
-  
-  
+  /**
+   * It launches a modal, and then returns the modal.
+   * @param moduleNo - The module number that the user is currently on.
+   * @returns A promise.
+   */
+  async launchModuleQuiz(moduleNo) {
+    this.modalController.dismiss();
+    const quizmodal = await this.modalController.create({
+      component: InProgressPage,
+      cssClass: 'my-custom-class',
+    });
+    return await quizmodal.present();
+  }
 
+  /**
+   * The function above is a function that is called when the user clicks on the next button. The
+   * function moves the content forward one section.
+   */
   onNextClick() {
     //moves content forward one section
-      this.swiper.swiperRef.slideNext()
-
+    this.swiper.swiperRef.slideNext();
   }
+  /**
+   * The above function is used to navigate to the previous slide in the swiper.
+   */
   onBackClick() {
-
-    this.swiper.swiperRef.slidePrev()
+    this.swiper.swiperRef.slidePrev();
   }
 
   async closeModalAlert() {

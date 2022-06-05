@@ -1,14 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title class="ion-align-self-center">{{moduleTitle}}</ion-title>
-    <ion-button
-      (click)="closeModalAlert()"
-      size="small"
-      color="dark"
-      fill="clear"
-      slot="end"
-      ><ion-icon slot="icon-only" name="close"></ion-icon
-    ></ion-button>
+    <ion-button (click)="closeModalAlert()" size="small" color="dark" fill="clear" slot="end">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -17,16 +12,12 @@
     <ion-row *ngFor="let moduleItem of getModuleList(), index as i">
       <ion-col>
         <ion-accordion>
-          <ion-item slot="header"
-            ><p>{{i+1}}) {{moduleItem.title}}</p></ion-item
-          >
+          <ion-item slot="header">
+            <p>{{i+1}}) {{moduleItem.title}}</p>
+          </ion-item>
           <ion-list slot="content">
-            <ion-item
-              *ngFor="let section of moduleItem.innerModules, index as j"
-            >
-              <ion-label (click)="startModules(i,j)"
-                >{{j+1}}) {{section.title}}</ion-label
-              >
+            <ion-item *ngFor="let section of moduleItem.innerModules, index as j">
+              <ion-label (click)="startModules(i,j)">{{j+1}}) {{section.title}}</ion-label>
             </ion-item>
           </ion-list>
         </ion-accordion>
@@ -37,51 +28,55 @@
 <ng-template #showModules>
   <ion-content>
     <swiper #swiper [config]="config">
-    <ng-template swiperSlide *ngFor="let slide of courseService.getAllModules()[currentModuleService.currentModuleIndex].innerModules">
-    <ion-grid>
-      <ion-card>
-        <ion-card-content>
-          <ion-row>
-            <ion-col class="ion-text-center">
-              <ion-label><h1>{{ slide.title }}</h1></ion-label>
-            </ion-col>
-          </ion-row>
-          <ion-img *ngIf="slide.image != ''" src="./assets/img/aida2/{{slide.image}}"></ion-img>
-          <ion-item *ngIf="slide.videoLink != ''">
-              <a href="{{slide.videoLink}}">Watch This Video</a>
-          </ion-item >
-            <ion-row>
-            <ion-col>
-              <ion-label
-              >{{ slide.content }}
-            </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-card-content>
-      </ion-card>
+      <ng-template swiperSlide
+        *ngFor="let slide of courseService.getAllModules()[currentModuleService.currentModuleIndex].innerModules">
+        <ion-grid>
+          <ion-card>
+            <ion-card-content>
+              <ion-row>
+                <ion-col class="ion-text-center">
+                  <ion-label>
+                    <h1>{{ slide.title }}</h1>
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+              <ion-img *ngIf="slide.image != ''" src="./assets/img/aida2/{{slide.image}}"></ion-img>
+              <ion-item *ngIf="slide.videoLink != ''">
+                <a href="{{slide.videoLink}}">Watch This Video</a>
+              </ion-item>
+              <ion-row>
+                <ion-col>
+                  <ion-label>{{ slide.content }}
+                  </ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
         </ion-grid>
-  </ng-template>
-  <ng-template swiperSlide class="verticalcenter" class="ion-text-center">
-    <ion-item-divider></ion-item-divider>
-      <ion-label class="ion-margin-top"><h2>You have reached the end of the chapter</h2></ion-label>
-      <ion-item-divider></ion-item-divider>
-      <ion-card-content>To Proceed, complete the following quiz</ion-card-content>
-      <ion-item-divider></ion-item-divider>
-      <ion-button expand="block" (click)="launchModuleQuiz(this.currentModuleService.currentModuleIndex)">Launch Quiz</ion-button>
+      </ng-template>
+      <ng-template swiperSlide class="verticalcenter" class="ion-text-center">
+        <ion-item-divider></ion-item-divider>
+        <ion-label class="ion-margin-top">
+          <h2>You have reached the end of the chapter</h2>
+        </ion-label>
+        <ion-item-divider></ion-item-divider>
+        <ion-card-content>To Proceed, complete the following quiz</ion-card-content>
+        <ion-item-divider></ion-item-divider>
+        <ion-button expand="block" (click)="launchModuleQuiz(this.currentModuleService.currentModuleIndex)">Launch Quiz
+        </ion-button>
 
-  </ng-template>
-  </swiper>
+      </ng-template>
+    </swiper>
 
   </ion-content>
   <ion-footer>
     <ion-toolbar>
-      <ion-button slot="start" fill="clear" (click)="onBackClick()"
-        ><ion-icon slot="icon-only" name="caret-back"></ion-icon
-      ></ion-button>
-      <ion-button slot="end" fill="clear"  (click)="onNextClick()"
-        ><ion-icon slot="icon-only" name="caret-forward"></ion-icon
-      ></ion-button>
+      <ion-button slot="start" fill="clear" (click)="onBackClick()">
+        <ion-icon slot="icon-only" name="caret-back"></ion-icon>
+      </ion-button>
+      <ion-button slot="end" fill="clear" (click)="onNextClick()">
+        <ion-icon slot="icon-only" name="caret-forward"></ion-icon>
+      </ion-button>
     </ion-toolbar>
   </ion-footer>
 </ng-template>
-

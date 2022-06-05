@@ -114,7 +114,7 @@ export class DashboardComponent implements OnInit {
   createChart() {
     this.chart = new Chart(this.canvas.nativeElement, this.chartConfig as any);
   }
-  
+
   /**
    * The function is called when the user clicks the "X" button in the top right corner of the modal.
    * The function dismisses the modal
@@ -129,7 +129,6 @@ export class DashboardComponent implements OnInit {
   closeModal() {
     this.addStudentModal.dismiss();
   }
-
 
   /**
    * It creates an alert that asks the user if they want to delete a student. If they click yes, it
@@ -203,7 +202,7 @@ export class DashboardComponent implements OnInit {
     var studentsToClear = [];
     var studentsToEdit = [];
     for (let student of this.studentList) {
-      console.log(student, this.userService.userlist[`${student}`])
+      console.log(student, this.userService.userlist[`${student}`]);
       if (
         Object.keys(this.userService.userlist[`${student}`].availableCourses)
           .length < 2

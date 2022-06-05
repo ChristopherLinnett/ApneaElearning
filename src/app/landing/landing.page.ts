@@ -5,7 +5,7 @@ import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { EffectCoverflow } from 'swiper';
 SwiperCore.use([EffectCoverflow]);
 import { Router } from '@angular/router';
-import { ModalController} from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { CourseService } from '../course-landing/course.service';
 import { CreatecourseComponent } from '../instructor/createcourse/createcourse.component';
@@ -42,62 +42,62 @@ export class LandingPage implements OnInit, OnDestroy {
     private courseService: CourseService,
     private router: Router
   ) {
-    this.username = this.userService.user.firstName
+    this.username = this.userService.user.firstName;
     this.loggedIn = this.userService.loggedIn;
-    this.userRole = this.userService.user.userRole
-
+    this.userRole = this.userService.user.userRole;
   }
 
   async ngOnInit() {
-    await this.userService.updateUserlist()
-    await this.synchroniseUser()
+    await this.userService.updateUserlist();
+    await this.synchroniseUser();
     if (this.swiper) {
-      this.swiper.updateSwiper({})
+      this.swiper.updateSwiper({});
     }
-    this.username = this.userService.user.firstName
-    this.availableCourses = Object.values(this.userService.userlist[`${this.userService.user.email}`].availableCourses)
-  
- 
+    this.username = this.userService.user.firstName;
+    this.availableCourses = Object.values(
+      this.userService.userlist[`${this.userService.user.email}`]
+        .availableCourses
+    );
   }
-
 
   async showUserOptions() {
-    this.userService.showUserOptions()
+    this.userService.showUserOptions();
   }
 
- 
   onSelectCourse(course) {
     this.courseService.setCourse(course);
   }
-
-
 
   /**
    * It takes the user's available courses from the database and puts them into an array.
    * @returns the value of the last statement in the function.
    */
   async synchroniseUser() {
-    await this.userService.updateUserlist()
-    this.availableCourses = Object.values(this.userService.userlist[`${this.userService.user.email}`].availableCourses)
-    console.log(this.availableCourses)
+    await this.userService.updateUserlist();
+    this.availableCourses = Object.values(
+      this.userService.userlist[`${this.userService.user.email}`]
+        .availableCourses
+    );
+    console.log(this.availableCourses);
     this.username = this.userService.getfirstname();
     this.userRole = this.userService.getUserRole();
     if (Object.keys(this.userService.user.courses).length == 0) {
-      this.courseDate = ""
-      this.courseType = ""
-      this.studentList = []
+      this.courseDate = '';
+      this.courseType = '';
+      this.studentList = [];
       return;
     } else {
-      this.userCourses = Object.values(this.userService.user['courses'])
-      if (Object.keys(this.userService.user.courses).length > 1){
+      this.userCourses = Object.values(this.userService.user['courses']);
+      if (Object.keys(this.userService.user.courses).length > 1) {
         this.userCourses = this.userCourses
-        .sort((a, b) => a.courseDate - b.courseDate).reverse();}
+          .sort((a, b) => a.courseDate - b.courseDate)
+          .reverse();
+      }
       this.courseDate = this.userCourses[0]['courseDate'];
       this.courseType = this.userCourses[0]['courseType'];
       this.studentList = this.userCourses[0]['students'];
     }
   }
-
 
   /**
    * The function is called when the user clicks the logout button. The function sets the studentView
@@ -124,10 +124,14 @@ export class LandingPage implements OnInit, OnDestroy {
           if (user['email'] == this.userService.getUsername()) {
             this.userService.user = user;
             this.synchroniseUser().then((_) => {
-              this.userCourses = Object.values(this.userService.user['courses'])
-              this.userCourses = this.userCourses.sort((a, b) => {
-                return a.courseDate - b.courseDate;
-              }).reverse();
+              this.userCourses = Object.values(
+                this.userService.user['courses']
+              );
+              this.userCourses = this.userCourses
+                .sort((a, b) => {
+                  return a.courseDate - b.courseDate;
+                })
+                .reverse();
 
               if (this.userCourses.length > 0) {
                 this.courseDate = this.userCourses[0].courseDate;
@@ -149,23 +153,29 @@ export class LandingPage implements OnInit, OnDestroy {
    * @returns The modal is being returned.
    */
   async launchDashboard(course) {
-    if (this.courseDate == "") {return}
+    if (this.courseDate == '') {
+      return;
+    }
     const dashboardModal = await this.modalController.create({
       component: DashboardComponent,
       cssClass: 'dashboardmodal',
       showBackdrop: false,
       backdropDismiss: true,
       canDismiss: true,
-      componentProps: {studentList: course.students, courseDate: course.courseDate,courseType: course.courseType, courseID: course.courseID },
+      componentProps: {
+        studentList: course.students,
+        courseDate: course.courseDate,
+        courseType: course.courseType,
+        courseID: course.courseID,
+      },
     });
     dashboardModal.onDidDismiss().then(() => {
-      this.synchroniseUser()
-      console.log(this.userCourses)
-      this.ngOnInit()
-
+      this.synchroniseUser();
+      console.log(this.userCourses);
+      this.ngOnInit();
     });
     return dashboardModal.present();
   }
 
-  ngOnDestroy() { }
+  ngOnDestroy() {}
 }
