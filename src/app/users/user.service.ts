@@ -159,6 +159,12 @@ async updateUser(){
           return;
   }
 
+  /**
+   * It takes a courseID and a studentName, and adds the studentName to the students array of the
+   * course with the courseID.
+   * @param {string} courseID - string = the course ID
+   * @param studentName - string
+   */
   async updateCourse(courseID: string, studentName){
     this.userlist= await this.dataStorageService.lookup('users');
     let newlist = this.userlist
@@ -166,34 +172,53 @@ async updateUser(){
     this.dataStorageService.save('users', newlist)
 
   }
+  /**
+   * If the user is logged in, return the available courses
+   * @returns The availableCourses property of the user object.
+   */
   getCourses() {
-    //gets available courses if user logged in
     if (this.loggedIn) {
       return this.user.availableCourses;
     }
   }
+  /**
+   * If the user is logged in, return the user's email.
+   * @returns The username of the user if they are logged in.
+   */
   getUsername() {
-    //gets username if logged in
     if (this.loggedIn) {
       return this.user.email;
     }
   }
+  /**
+   * If the user is logged in, return the user's role.
+   * @returns The user role if logged in.
+   */
   getUserRole() {
-    //gets user role if logged in
     if (this.loggedIn) {
       return this.user.role;
     }
   }
+  /**
+   * This function logs out the user and navigates to the login page.
+   */
   logout() {
-    //logs out
     this.user = undefined;
     this.loggedIn = false;
     this.router.navigate(['/login'], { replaceUrl: true });
   }
+  /**
+   * This function returns whether the app state shows logged in.
+   * @returns The loggedIn variable is being returned.
+   */
   isLoggedIn() {
     //returns whether app state shows logged in
     return this.loggedIn;
   }
+  /**
+   * It returns the firstname property of the user object.
+   * @returns The firstname property of the user object.
+   */
   getfirstname() {
     return this.user.firstname;
   }

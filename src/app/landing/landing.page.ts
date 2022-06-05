@@ -45,15 +45,18 @@ export class LandingPage implements OnInit, OnDestroy {
     this.username = this.userService.user.firstName
     this.loggedIn = this.userService.loggedIn;
     this.userRole = this.userService.user.userRole
-    this.availableCourses = Object.values(this.userService.userlist[`${this.userService.user.email}`].availableCourses)
+
   }
 
   async ngOnInit() {
+    await this.userService.updateUserlist()
     await this.synchroniseUser()
     if (this.swiper) {
       this.swiper.updateSwiper({})
     }
     this.username = this.userService.user.firstName
+    this.availableCourses = Object.values(this.userService.userlist[`${this.userService.user.email}`].availableCourses)
+  
  
   }
 
@@ -69,6 +72,10 @@ export class LandingPage implements OnInit, OnDestroy {
 
 
 
+  /**
+   * It takes the user's available courses from the database and puts them into an array.
+   * @returns the value of the last statement in the function.
+   */
   async synchroniseUser() {
     await this.userService.updateUserlist()
     this.availableCourses = Object.values(this.userService.userlist[`${this.userService.user.email}`].availableCourses)
@@ -84,9 +91,7 @@ export class LandingPage implements OnInit, OnDestroy {
       this.userCourses = Object.values(this.userService.user['courses'])
       if (Object.keys(this.userService.user.courses).length > 1){
         this.userCourses = this.userCourses
-        .sort((a, b) => {
-          return a.courseDate - b.courseDate;
-        }).reverse();}
+        .sort((a, b) => a.courseDate - b.courseDate).reverse();}
       this.courseDate = this.userCourses[0]['courseDate'];
       this.courseType = this.userCourses[0]['courseType'];
       this.studentList = this.userCourses[0]['students'];
@@ -94,11 +99,20 @@ export class LandingPage implements OnInit, OnDestroy {
   }
 
 
+  /**
+   * The function is called when the user clicks the logout button. The function sets the studentView
+   * variable to false and calls the logout function in the userService.
+   */
   logout() {
     this.studentView = false;
     this.userService.logout();
   }
 
+  /**
+   * It creates a modal, and when the modal is dismissed, it updates the user's data and then updates
+   * the userCourses array.
+   * @returns The modal.present() is returning a promise.
+   */
   async onCreateCourse() {
     const modal = await this.modalController.create({
       component: CreatecourseComponent,
@@ -128,6 +142,12 @@ export class LandingPage implements OnInit, OnDestroy {
     return modal.present();
   }
 
+  /**
+   * It opens a modal, and when the modal is dismissed, it runs a function that updates the data in the
+   * page that opened the modal.
+   * @param course - this is the course object that is being passed to the modal
+   * @returns The modal is being returned.
+   */
   async launchDashboard(course) {
     if (this.courseDate == "") {return}
     const dashboardModal = await this.modalController.create({

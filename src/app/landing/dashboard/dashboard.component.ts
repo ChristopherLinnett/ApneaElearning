@@ -162,6 +162,11 @@ export class DashboardComponent implements OnInit {
     alert.present();
   }
 
+  /**
+   * This function creates an alert that asks the user if they want to cancel their course. If they
+   * click yes, it calls the cancelCourse() function and closes the modal. If they click no, it closes
+   * the alert.
+   */
   async cancelCourseAlert() {
     //alert to have user confirm they want to close their course content
     let alert = await this.alertCtrl.create({
@@ -174,7 +179,7 @@ export class DashboardComponent implements OnInit {
           id: 'confirm-button',
           handler: async () => {
             await this.cancelCourse();
-            this.closeModal();
+            this.exitThisModal();
           },
         },
         {
@@ -188,11 +193,17 @@ export class DashboardComponent implements OnInit {
     alert.present();
   }
 
+  /**
+   * For each student, remove course with same courseID, for Instructor. Rebuild without that in
+   * courses.
+   * </code>
+   */
   async cancelCourse() {
     //for each student, remove course with same courseID, for Instructor. Rebuild without that in courses
     var studentsToClear = [];
     var studentsToEdit = [];
     for (let student of this.studentList) {
+      console.log(student, this.userService.userlist[`${student}`])
       if (
         Object.keys(this.userService.userlist[`${student}`].availableCourses)
           .length < 2
@@ -315,6 +326,12 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  /**
+   * It deletes a student from the course, and updates the userlist file.
+   * </code>
+   * @param studentEmail - the email of the student to be deleted
+   * @param studentListIndex - the index of the student in the studentList array
+   */
   async deleteStudent(studentEmail, studentListIndex) {
     //delete email from local, update userservice file, save userservice
     this.studentList.splice(studentListIndex, 1);

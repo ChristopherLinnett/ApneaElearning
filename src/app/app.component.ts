@@ -15,6 +15,9 @@ export class AppComponent implements OnInit {
     private userService: UserService
   ) {}
 
+  /**
+   * Show the splash screen, and hide it automatically when the app is ready.
+   */
   async ngOnInit(): Promise<void> {
     await SplashScreen.show({
       autoHide: true

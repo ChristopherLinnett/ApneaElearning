@@ -413,6 +413,10 @@ correctAnswer: 0,
     this.course = courseService.getCourse()
   }
 
+  /**
+   * The function creates a quiz object by calling the createQuiz function, which returns a promise,
+   * and then assigns the quiz object to the quiz variable.
+   */
   async ngOnInit(): Promise<void> {
     this.quiz = await this.createQuiz(this.chapterIndex)
 
@@ -491,6 +495,10 @@ correctAnswer: 0,
   }
 
 
+  /**
+   * The function is called when the user has completed the course, it then displays an alert to the
+   * user.
+   */
   async finishedCourse() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
@@ -504,6 +512,12 @@ correctAnswer: 0,
 
   }
 
+  /**
+   * This function is called when the user has completed the quiz, and it displays a message to the
+   * user depending on whether they passed or failed the quiz.
+   * @param {boolean} success - boolean - this is a boolean value that is passed in from the quiz
+   * component.
+   */
   async finishedQuiz(success: boolean) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
