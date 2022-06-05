@@ -16,7 +16,7 @@
   <ion-grid>
     <ion-row class="ion-margin-vertical">
       <ion-col class="ion-text-center">
-        <ion-label> Your course date is {{ "user.courseDate" }} </ion-label>
+        <ion-label> Your course date is {{ thisCourse.courseDate | date: 'dd/MM/yyyy'}} </ion-label>
       </ion-col>
     </ion-row>
 

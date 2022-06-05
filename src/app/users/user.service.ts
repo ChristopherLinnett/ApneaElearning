@@ -1,3 +1,4 @@
+import { OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
@@ -7,7 +8,7 @@ import { CourseConstructor } from '../instructor/createcourse/studentconstructor
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService implements OnInit{
   userlist;
   user;
   existingUsers = {instructor:
@@ -34,28 +35,32 @@ export class UserService {
     private dataStorageService: DatastorageService
   ) {}
 
+ngOnInit(){
+  this.updateUserlist
+}
 
 async updateUser(){
   this.user = this.userlist[`${this.user.email}`]
 }
 
-  async updateUserlist() {
+  async updateUserlist(updateUser = true) {
     this.userlist = await this.dataStorageService.lookup('users')
-  this.updateUser()
+  if (updateUser){this.updateUser()}
   }
 
   async login(inputUser: string, inputPass: string){
     inputUser = inputUser.toLowerCase().trim()
     inputPass = inputPass.toLowerCase().trim()
-    if (this.userlist == null){
+    await this.updateUserlist(false)
+    if (this.userlist === null){
       await this.dataStorageService.save('users', this.existingUsers);
       this.userlist = await this.dataStorageService.lookup('users')
-    } else {
+    }
     if (Object.keys(this.userlist).includes(inputUser) && this.userlist[`${inputUser}`].password == inputPass) {
       this.user = this.userlist[`${inputUser}`]
       this.loggedIn = true
       return
-    }
+    
   }
   }
   async showUserOptions() {
@@ -124,6 +129,13 @@ async updateUser(){
           return;
   }
 
+  async updateCourse(courseID: string, studentName){
+    this.userlist= await this.dataStorageService.lookup('users');
+    let newlist = this.userlist
+    newlist[`${this.user.email}`].courses[`${courseID}`].students.push(studentName)
+    this.dataStorageService.save('users', newlist)
+
+  }
   getCourses() {
     //gets available courses if user logged in
     if (this.loggedIn) {
@@ -156,3 +168,7 @@ async updateUser(){
     return this.user.firstname;
   }
 }
+function ngOnInit() {
+  throw new Error('Function not implemented.');
+}
+

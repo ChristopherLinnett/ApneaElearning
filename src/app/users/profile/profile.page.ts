@@ -27,17 +27,20 @@ olduser;
     if (this.email && this.email.length >5){
        currentUser.email = this.email.toLowerCase()
     }
-    if (this.firstname && this.firstname.length > 3) {
+    if (this.firstname && this.firstname.length >= 3) {
       currentUser.firstname = this.firstname.toLowerCase()
     }
-    if (this.lastname && this.lastname.length > 3) {
+    if (this.lastname && this.lastname.length >= 2) {
       currentUser.lastname = this.lastname.toLowerCase()
     }
     if (this.phonenum && this.phonenum.length > 6){
       currentUser.phonenum = this.phonenum
     }
-    if (this.oldpassword == currentUser.password && this.newpassword && this.newpassword.length> 5){
+
+    if (this.newpassword && this.newpassword.length> 5){
         currentUser.password = this.newpassword.toLowerCase()
+    }
+    if (this.oldpassword == this.olduser.password){
     var userlist = await this.dataStorage.lookup('users')
     userlist[`${this.olduser.email}`] = currentUser
     await this.dataStorage.save('users', userlist)

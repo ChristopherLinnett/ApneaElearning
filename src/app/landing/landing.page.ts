@@ -53,6 +53,8 @@ export class LandingPage implements OnInit, OnDestroy {
     if (this.swiper) {
       this.swiper.updateSwiper({})
     }
+    this.username = this.userService.user.firstName
+ 
   }
 
 
