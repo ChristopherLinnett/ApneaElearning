@@ -111,7 +111,7 @@ export class InProgressPage implements OnInit {
       },
     ],
 
-    3: [
+    2: [
       {
         questionText: 'Which of these is first in the freedive breathing Cycle',
 
@@ -147,7 +147,7 @@ export class InProgressPage implements OnInit {
       },
     ],
 
-    4: [
+    3: [
       {
         questionText:
           'At 20m below the surface, what volume are your lungs compared to at the surface?',
@@ -186,7 +186,7 @@ export class InProgressPage implements OnInit {
       },
     ],
 
-    5: [
+    4: [
       {
         questionText: 'Which of these is not an example of good technique?',
 
@@ -229,7 +229,7 @@ export class InProgressPage implements OnInit {
       },
     ],
 
-    6: [
+    5: [
       {
         questionText:
           'Which of these is not an appropriate communication method when buddying during a static discipline?',
@@ -312,7 +312,7 @@ export class InProgressPage implements OnInit {
       },
     ],
 
-    7: [
+    6: [
       {
         questionText: 'Which is not a good trait of a freedive mask?',
 
@@ -349,7 +349,7 @@ export class InProgressPage implements OnInit {
         correctAnswer: 2,
       },
     ],
-    8: [
+    7: [
       {
         questionText: 'Lying face down in a pool is which discipline?',
 
@@ -386,7 +386,7 @@ export class InProgressPage implements OnInit {
         correctAnswer: 1,
       },
     ],
-    9: [
+    8: [
       {
         questionText:
           'Congratulations You have completed the Chapters. These questions will not unlock another chapter. Which of these are important?',
