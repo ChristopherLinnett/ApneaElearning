@@ -15,25 +15,25 @@
       </ion-label>
       <ion-item-divider>
       </ion-item-divider>
-        <ion-item-divider color="clear" class="divider-quiz-question"></ion-item-divider>
-        <ion-radio-group [(ngModel)]="quizAnswered[i]" class="pushLower">
-              <ion-item>
-                <ion-label>{{question.answers[0].text}}</ion-label>
-                <ion-radio slot="end" [value]="question.answers[0].num"></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-label>{{question.answers[1].text}}</ion-label>
-                <ion-radio slot="end" [value]="question.answers[1].num"></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-label>{{question.answers[2].text}}</ion-label>
-                <ion-radio slot="end" [value]="question.answers[2].num"></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-label>{{question.answers[3].text}}</ion-label>
-                <ion-radio slot="end" [value]="question.answers[3].num"></ion-radio>
-              </ion-item>
-        </ion-radio-group>
+      <ion-item-divider color="clear" class="divider-quiz-question"></ion-item-divider>
+      <ion-radio-group [(ngModel)]="quizAnswered[i]" class="pushLower">
+        <ion-item>
+          <ion-label>{{question.answers[0].text}}</ion-label>
+          <ion-radio slot="end" [value]="question.answers[0].num"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{question.answers[1].text}}</ion-label>
+          <ion-radio slot="end" [value]="question.answers[1].num"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{question.answers[2].text}}</ion-label>
+          <ion-radio slot="end" [value]="question.answers[2].num"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{question.answers[3].text}}</ion-label>
+          <ion-radio slot="end" [value]="question.answers[3].num"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
     </ng-template>
     <ng-template swiperSlide class="verticalcenter">
       <ion-card>
@@ -45,5 +45,5 @@
   </swiper>
 </ion-content>
 <ion-footer>
-<app-swipernav (forwardButtonPress)="onNextClick()" (backButtonPress)="onBackClick()"></app-swipernav>
+  <app-swipernav (forwardButtonPress)="onNextClick()" (backButtonPress)="onBackClick()"></app-swipernav>
 </ion-footer>

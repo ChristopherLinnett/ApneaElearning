@@ -8,14 +8,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class SwipernavComponent implements OnInit {
   @Output() forwardButtonPress: EventEmitter<any> = new EventEmitter();
   @Output() backButtonPress: EventEmitter<any> = new EventEmitter();
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
 
-  forwardFunction(){
-    this.forwardButtonPress.emit(null)
+  forwardFunction() {
+    this.forwardButtonPress.emit(null);
   }
-  backFunction(){
-    this.backButtonPress.emit(null)
+  backFunction() {
+    this.backButtonPress.emit(null);
   }
 }

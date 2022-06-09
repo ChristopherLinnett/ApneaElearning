@@ -426,12 +426,6 @@ export class InProgressPage implements OnInit {
   };
   quizAnswered: any[] = [];
 
-  /**
-   * The function creates a quiz object based on the chapter index.
-   * @param {CurrentModuleService} currentModuleService - CurrentModuleService is a service that I
-   * created to keep track of the current module that the user is on.
-   * @param {CourseService} courseService - This is a service that contains the course object.
-   */
   constructor(
     private alertController: AlertController,
     private modalController: ModalController,
@@ -452,23 +446,22 @@ export class InProgressPage implements OnInit {
     this.quiz = await this.createQuiz(this.chapterIndex);
   }
 
-
-/**
-   * The function above is a function that is called when the user clicks on the next button. The
-   * function moves the content forward one section.
+  /**
+   * OnNextClick() is a function that takes in a string and returns nothing. It's a function that is
+   * called when the next button is clicked.
+   * @param [value] - 'string' - the value of the button
    */
- onNextClick(value?:'string') {
-  //moves content forward one section
-    this.swiper.swiperRef.slideNext()
+  onNextClick(value?: 'string') {
+    this.swiper.swiperRef.slideNext();
+  }
 
-}
-/**
- * The above function is used to navigate to the previous slide in the swiper.
- */
-onBackClick(value?:'string') {
-  this.swiper.swiperRef.slidePrev()
-}
-
+  /**
+   * When the back button is clicked, the swiper slides to the previous slide.
+   * @param [value] - 'string' - the value of the button
+   */
+  onBackClick(value?: 'string') {
+    this.swiper.swiperRef.slidePrev();
+  }
 
   /**
    * It creates a quiz with 5 questions, each question has 5 answers, one of which is correct.

@@ -9,8 +9,8 @@ describe('SwipernavComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SwipernavComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [SwipernavComponent],
+      imports: [IonicModule.forRoot()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SwipernavComponent);
