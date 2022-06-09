@@ -3,11 +3,11 @@ import { AlertController, ModalController, NavParams } from '@ionic/angular';
 import { CourseService } from '../course.service';
 import { CurrentModuleService } from './current-module.service';
 import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, {Navigation,Pagination,EffectCoverflow} from "swiper";
+import SwiperCore, { Navigation, Pagination, EffectCoverflow } from 'swiper';
 import { ViewChild } from '@angular/core';
 import { SwiperOptions } from 'swiper';
 import { InProgressPage } from 'src/app/quiz/in-progress/in-progress.page';
-SwiperCore.use([Navigation,Pagination,EffectCoverflow])
+SwiperCore.use([Navigation, Pagination, EffectCoverflow]);
 
 @Component({
   selector: 'app-detail-content',
@@ -15,12 +15,12 @@ SwiperCore.use([Navigation,Pagination,EffectCoverflow])
   styleUrls: ['./detail-content.page.scss'],
 })
 export class DetailContentPage implements OnInit {
-  @ViewChild('swiper') swiper: SwiperComponent
+  @ViewChild('swiper') swiper: SwiperComponent;
   selection: string;
   currentTitle: string;
   currentContent: string;
   moduleTitle = 'Choose Module';
-  config: SwiperOptions = {slidesPerView: 'auto' , effect: 'coverflow'}
+  config: SwiperOptions = { slidesPerView: 'auto', effect: 'coverflow' };
 
   constructor(
     private navParams: NavParams,
@@ -30,6 +30,10 @@ export class DetailContentPage implements OnInit {
     public courseService: CourseService
   ) {}
 
+  /**
+   * If the selection is start, then start the modules at the current module index and the current page
+   * index.
+   */
   ngOnInit() {
     this.selection = this.navParams.get('selection');
     if (this.selection == 'start') {
@@ -38,23 +42,39 @@ export class DetailContentPage implements OnInit {
     if (this.selection == 'continue') {
     }
   }
+
+  /**
+   * It returns a list of modules from the course service.
+   * @returns An Observable of type Module[]
+   */
   getModuleList() {
-    //returns the data for the whole course
     return this.courseService.getAllModules();
   }
 
+  /**
+   * The closeModal() function is a method that is called when the user clicks the close button on the
+   * modal. It dismisses the modal.
+   */
   closeModal() {
-    //closes the module
     this.modalController.dismiss();
   }
+
+  /**
+   * It takes two inputs, moduleIndex and innerIndex, and returns the content of the section that
+   * corresponds to those inputs.
+   * @param moduleIndex - the index of the module in the array of modules
+   * @param innerIndex - the index of the section within the module
+   */
   startModules(moduleIndex, innerIndex) {
-    //accepts module/section as inputs and returns content fo that section
     this.selection = '';
     this.currentModuleService.initialise(moduleIndex, innerIndex);
     this.getContent();
   }
+
+  /**
+   * It gets the title and content of the current module/section from the courseService.
+   */
   getContent() {
-    //pulls content for current referenced module/section
     this.currentTitle =
       this.courseService.getAllModules()[
         this.currentModuleService.currentModuleIndex
@@ -73,31 +93,28 @@ export class DetailContentPage implements OnInit {
    * @param moduleNo - The module number that the user is currently on.
    * @returns A promise.
    */
-  async launchModuleQuiz(moduleNo){
-    this.modalController.dismiss()
-      const quizmodal = await this.modalController.create({
-        component: InProgressPage,
-        cssClass: 'my-custom-class'
-      });
-      return await quizmodal.present();
-    }
-  
-  
+  async launchModuleQuiz(moduleNo) {
+    this.modalController.dismiss();
+    const quizmodal = await this.modalController.create({
+      component: InProgressPage,
+      cssClass: 'my-custom-class',
+    });
+    return await quizmodal.present();
+  }
 
   /**
    * The function above is a function that is called when the user clicks on the next button. The
    * function moves the content forward one section.
    */
-  onNextClick(value?:'string') {
+  onNextClick(value?: 'string') {
     //moves content forward one section
-      this.swiper.swiperRef.slideNext()
-
+    this.swiper.swiperRef.slideNext();
   }
   /**
    * The above function is used to navigate to the previous slide in the swiper.
    */
-  onBackClick(value?:'string') {
-    this.swiper.swiperRef.slidePrev()
+  onBackClick(value?: 'string') {
+    this.swiper.swiperRef.slidePrev();
   }
 
   async closeModalAlert() {
