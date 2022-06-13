@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SwiperModule } from 'swiper/angular';
+import { SwiperComponent, SwiperModule } from 'swiper/angular';
 import { IonicModule } from '@ionic/angular';
 
 import { InProgressPageRoutingModule } from './in-progress-routing.module';
 
 import { InProgressPage } from './in-progress.page';
+import { SwipernavComponent } from 'src/app/shared/swipernav/swipernav.component';
+import { DetailContentPage } from 'src/app/content/detail-content/detail-content.page';
 
 @NgModule({
+  entryComponents: [],
+  exports: [],
   imports: [
     SwiperModule,
     CommonModule,
@@ -16,6 +20,6 @@ import { InProgressPage } from './in-progress.page';
     IonicModule,
     InProgressPageRoutingModule,
   ],
-  declarations: [InProgressPage],
+  declarations: [],
 })
 export class InProgressPageModule {}

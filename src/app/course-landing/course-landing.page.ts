@@ -13,42 +13,73 @@ import { CourseService } from './course.service';
   styleUrls: ['./course-landing.page.scss'],
 })
 export class CourseLandingPage implements OnInit {
-  thisCourse: { title: String; description: String };
+  thisCourse;
   quizAvailable = true;
+  thisAvailableChapters;
   constructor(
     private currentModuleService: CurrentModuleService,
     public courseService: CourseService,
     public userService: UserService,
     private router: Router,
     private modalController: ModalController
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.thisCourse = this.courseService.getCourse();
-    console.log(this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedQuizzes)
+    this.thisAvailableChapters = this.thisCourse.unlockedChapters;
   }
+
+  /**
+   * It takes a module number as a parameter, sets the current module index to that number, and then
+   * launches the quiz modal.
+   * @param moduleNo - The module number that the user is currently on.
+   * @returns The modal is being returned.
+   */
+  async launchModuleQuiz(moduleNo) {
+    this.currentModuleService.currentModuleIndex = moduleNo;
+    const quizmodal = await this.modalController.create({
+      component: InProgressPage,
+      cssClass: 'my-custom-class',
+    });
+    return await quizmodal.present();
+  }
+
+  /**
+   * The ngOnInit() function is a lifecycle hook that is called after Angular has initialized all
+   * data-bound properties of a directive.
+   */
+  ngOnInit() {
+    console.log(this.thisCourse);
+  }
+  /**
+   * The function onClickModule() is called when the user clicks on a module. The function then
+   * navigates the user to the overview page.
+   * </code>
+   */
   onClickModule() {
-    //move to course overview page
     this.router.navigate(['overview']);
   }
+  /**
+   * "When the user clicks on a chapter, the chapter number is passed to the currentModuleService,
+   * which is then used to determine which chapter to display in the DetailContentPage."
+   * </code>
+   * @param chapter - the index of the chapter that was clicked
+   * @returns The modal.present() is returning a promise.
+   */
   async launchModule(chapter) {
-      //creates a modal that calculates the user's progress in content and starts after last completed module
-      this.currentModuleService.currentModuleIndex=chapter
-      const modal = await this.modalController.create({
-        component: DetailContentPage,
-        componentProps: { selection: 'start' },
-        backdropDismiss: false,
-      });
-      modal.onDidDismiss().then(() => {});
-      return modal.present();
-    }
-      
-  launchQuiz() {
-    this.router.navigate(['/app-landing']); //move to quiz in progress page
+    this.currentModuleService.currentModuleIndex = chapter;
+    const modal = await this.modalController.create({
+      component: DetailContentPage,
+      componentProps: { selection: 'start' },
+      backdropDismiss: false,
+    });
+    modal.onDidDismiss().then(() => {});
+    return modal.present();
   }
 
+  /**
+   * The showUserOptions() function is called when the user clicks on the user icon in the top right
+   * corner of the page. This function calls the showUserOptions() function in the userService.ts file.
+   */
   async showUserOptions() {
-    //logs out  user
     this.userService.showUserOptions();
   }
 }

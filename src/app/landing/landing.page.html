@@ -1,21 +1,25 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="end">
-    <ion-button (click)="showUserOptions()" size="small" color="dark" fill="dark" slot="end">
-      <ion-popover trigger="popovertrigger" reference="event">
-        <ng-template>
-          <ion-content>
-          <ion-list class="ion-padding">
-            <li><ion-label [routerLink]="['/profile']" >Update Profile</ion-label></li>
-            <li><ion-label (click)="logout">logout</ion-label></li>
-          </ion-list>
-          </ion-content>
-        </ng-template>
-      </ion-popover>
-      <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
-    </ion-button>
+      <ion-button (click)="showUserOptions()" size="small" color="dark" fill="dark" slot="end">
+        <ion-popover trigger="popovertrigger" reference="event">
+          <ng-template>
+            <ion-content>
+              <ion-list class="ion-padding">
+                <li>
+                  <ion-label [routerLink]="['/profile']">Update Profile</ion-label>
+                </li>
+                <li>
+                  <ion-label (click)="logout">logout</ion-label>
+                </li>
+              </ion-list>
+            </ion-content>
+          </ng-template>
+        </ion-popover>
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
 
-  </ion-buttons>
+    </ion-buttons>
     <ion-title>Apnea Elearning</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -28,20 +32,23 @@
     <ion-row>
       <div align="center">
         <ion-label>Welcome
-        <ion-text color="secondary"> <span>{{username}}</span></ion-text> to your
-        Apnea Elearning App.</ion-label></div>
+          <ion-text color="secondary"> <span>{{username}}</span></ion-text> to your
+          Apnea Elearning App.
+        </ion-label>
+      </div>
     </ion-row>
     <hr />
     <ion-row>
       <div align="center">
         To get started, select an available course from below
-    </div>
+      </div>
     </ion-row>
     <swiper #swiper [config]="config">
       <ng-template swiperSlide *ngFor="let course of availableCourses, index as i">
-              <ion-card *ngIf="availableCourses.length>0">
-                  <img src="./assets/img/aida{{course.index+1}}image.png" alt="" [routerLink]="['/course-landing']" (click)="onSelectCourse(course.title,i)">
-              </ion-card>
+        <ion-card *ngIf="availableCourses.length>0">
+          <img src="./assets/img/{{course['courseType'].toLowerCase()}}image.png" alt=""
+            [routerLink]="['/course-landing']" (click)="onSelectCourse(course)">
+        </ion-card>
       </ng-template>
     </swiper>
   </ion-grid>
@@ -49,14 +56,14 @@
 
 <ion-content *ngIf="!studentView && userRole=='Instructor'">
   <ion-grid>
-        <ion-row>
+    <ion-row>
       <ion-col>
         <ion-card (click)="launchDashboard(userCourses[0])">
           <ion-card-header class="ion-text-center">
             <ion-card-title>Upcoming Course</ion-card-title>
           </ion-card-header>
           <ion-card-content class="ion-text-center">
-            <ion-card-subtitle >{{courseDate | date: 'dd/MM/yyyy'}}</ion-card-subtitle>
+            <ion-card-subtitle>{{courseDate | date: 'dd/MM/yyyy'}}</ion-card-subtitle>
             <ion-card-subtitle>{{courseType}}</ion-card-subtitle>
             <ion-list class="ion-text-center">
               <ion-item *ngFor="let student of studentList">{{student}}</ion-item>
@@ -70,8 +77,8 @@
       <ion-col size="3"></ion-col>
       <ion-col size="6" class="ion-align-items-center" class="ion-text-center">
         <ion-buttons>
-        <ion-button (click)="onCreateCourse()" expand="block">Create Course</ion-button>
-      </ion-buttons>
+          <ion-button (click)="onCreateCourse()" expand="block">Create Course</ion-button>
+        </ion-buttons>
       </ion-col>
       <ion-col size="3"></ion-col>
     </ion-row>
@@ -83,7 +90,7 @@
               <ion-label>Upcoming Courses</ion-label>
             </ion-item>
             <ion-list slot="content">
-              <ion-item  *ngFor="let course of userCourses" (click)="launchDashboard(course)">
+              <ion-item *ngFor="let course of userCourses" (click)="launchDashboard(course)">
                 <ion-label>{{course.courseType}} {{course.courseDate | date: 'dd/MM/yyyy'}}</ion-label>
               </ion-item>
             </ion-list>
@@ -94,11 +101,13 @@
   </ion-grid>
 </ion-content>
 
-<ion-footer *ngIf="userRole=='Instructor'">
+<ion-footer >
+  <div *ngIf="userRole=='Instructor'">
   <ion-toolbar class="ion-align-items-center">
     <ion-item>
       <ion-label>Student View</ion-label>
       <ion-toggle [(ngModel)]="studentView" color="primary"></ion-toggle>
     </ion-item>
   </ion-toolbar>
+  </div>
 </ion-footer>

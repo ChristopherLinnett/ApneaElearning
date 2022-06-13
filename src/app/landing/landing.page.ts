@@ -5,7 +5,7 @@ import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { EffectCoverflow } from 'swiper';
 SwiperCore.use([EffectCoverflow]);
 import { Router } from '@angular/router';
-import { ModalController} from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { CourseService } from '../course-landing/course.service';
 import { CreatecourseComponent } from '../instructor/createcourse/createcourse.component';
@@ -21,13 +21,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 /* It's a class that displays a list of courses that a user can select. */
 export class LandingPage implements OnInit, OnDestroy {
   private loggedInSubscribed: Subscription;
-  availableCourses: { index: number, title: string; description: string }[] = [];
+  availableCourses = [];
   username: string;
   loggedIn: boolean;
   userRole: string;
   firstname: string;
   studentView: Boolean = false;
-  user;  
   userCourses = [];
   courseDate = '';
   courseType = '';
@@ -35,15 +34,7 @@ export class LandingPage implements OnInit, OnDestroy {
 
   @ViewChild('swiper') swiper: SwiperComponent;
   config: SwiperOptions = { slidesPerView: 'auto', effect: 'coverflow' };
-  /**
-   * The above function is a constructor function that takes in the following parameters:
-   * dataStorageService, modalController, userService, courseService, and router.
-   * @param {DatastorageService} dataStorageService - DatastorageService,
-   * @param {ModalController} modalController - ModalController,
-   * @param {UserService} userService - UserService
-   * @param {CourseService} courseService - CourseService,
-   * @param {Router} router - Router
-   */
+
   constructor(
     private dataStorageService: DatastorageService,
     private modalController: ModalController,
@@ -51,72 +42,83 @@ export class LandingPage implements OnInit, OnDestroy {
     private courseService: CourseService,
     private router: Router
   ) {
-    this.username = this.userService.getfirstname();
+    this.username = this.userService.user.firstName;
     this.loggedIn = this.userService.loggedIn;
+    this.userRole = this.userService.user.userRole;
   }
-  /**
-   * When the page loads, synchronise the user, then update the swiper.
-   */
+
   async ngOnInit() {
-    await this.synchroniseUser()
+    await this.userService.updateUserlist();
+    await this.synchroniseUser();
     if (this.swiper) {
-      this.swiper.updateSwiper({})
+      this.swiper.updateSwiper({});
     }
+    this.username = this.userService.user.firstName;
+    this.availableCourses = Object.values(
+      this.userService.userlist[`${this.userService.user.email}`]
+        .availableCourses
+    );
   }
 
-  /**
-   * The showUserOptions() function is called when the user clicks on the user icon in the header. It
-   * calls the showUserOptions() function in the userService, which is a service that handles all user
-   * related functions.
-   */
   async showUserOptions() {
-    this.userService.showUserOptions()
+    this.userService.showUserOptions();
   }
 
-  /**
-   * When a course button is pressed, the course's state is updated to show that as the current course
-   * @param course - the course that was selected
-   */
-  onSelectCourse(course,index) {
+  onSelectCourse(course) {
     this.courseService.setCourse(course);
-    this.courseService.currentCourseSelectionIndex = index;
   }
 
-
   /**
-   * It takes the courses from the userService and compares them to the courses from the courseService.
-   * If they match, it pushes the course from the courseService into the availableCourses array.
-   * @returns the value of the last expression in the function.
+   * It takes the user's available courses from the database and puts them into an array.
+   * @returns the value of the last statement in the function.
    */
   async synchroniseUser() {
-    var availableCourseNames = await this.userService.getCourses();
-    for (let course of this.courseService.getAllCourses()) {
-      for (let testCourse of availableCourseNames) {
-        if (testCourse.courseType == course.title) {
-          this.availableCourses.push(course);
-        }
-      }
-    }
-
+    await this.userService.updateUserlist();
+    this.availableCourses = Object.values(
+      this.userService.userlist[`${this.userService.user.email}`]
+        .availableCourses
+    );
+    console.log(this.availableCourses);
     this.username = this.userService.getfirstname();
     this.userRole = this.userService.getUserRole();
-    if (this.userService.user.courses.length == 0) {
-      this.courseDate = ""
-      this.courseType = ""
-      this.studentList = []
+    if (Object.keys(this.userService.user.courses).length == 0) {
+      this.courseDate = '';
+      this.courseType = '';
+      this.studentList = [];
       return;
     } else {
-      this.userCourses = this.userService.getUser().courses;
-      if (this.userCourses.length > 1)
-      {this.userCourses = this.userCourses
-        .sort((a, b) => {
-          return a.courseDate - b.courseDate;
-        }).reverse();}
-      this.courseDate = this.userCourses[0].courseDate;
-      this.courseType = this.userCourses[0].courseType;
-      this.studentList = this.userCourses[0].students;
+      this.userCourses = Object.values(this.userService.user['courses']);
+      if (Object.keys(this.userService.user.courses).length > 1) {
+        this.userCourses = this.userCourses
+          .sort((a, b) => a.courseDate - b.courseDate)
+          .reverse();
+      }
+      this.courseDate = this.userCourses[0]['courseDate'];
+      this.courseType = this.userCourses[0]['courseType'];
+      this.studentList = this.userCourses[0]['students'];
     }
   }
+
+
+/**
+   * The function above is a function that is called when the user clicks on the next button. The
+   * function moves the content forward one section.
+   */
+ onNextClick(value?:'string') {
+  //moves content forward one section
+    this.swiper.swiperRef.slideNext()
+
+}
+/**
+ * The above function is used to navigate to the previous slide in the swiper.
+ */
+onBackClick(value?:'string') {
+  this.swiper.swiperRef.slidePrev()
+}
+
+
+
+
 
   /**
    * The function is called when the user clicks the logout button. The function sets the studentView
@@ -128,8 +130,8 @@ export class LandingPage implements OnInit, OnDestroy {
   }
 
   /**
-   * It launches a modal, and when the modal is dismissed, it updates the user's courses and then
-   * updates the courseDate, courseType, and studentList variables.
+   * It creates a modal, and when the modal is dismissed, it updates the user's data and then updates
+   * the userCourses array.
    * @returns The modal.present() is returning a promise.
    */
   async onCreateCourse() {
@@ -139,14 +141,18 @@ export class LandingPage implements OnInit, OnDestroy {
     });
     modal.onDidDismiss().then(() => {
       this.dataStorageService.lookup('users').then((userlist) => {
-        for (let user of userlist) {
-          if (user.email == this.userService.getUsername()) {
+        for (let user of Object.values(userlist)) {
+          if (user['email'] == this.userService.getUsername()) {
             this.userService.user = user;
             this.synchroniseUser().then((_) => {
-              this.userCourses = this.userService.getUser().courses;
-              this.userCourses = this.userCourses.sort((a, b) => {
-                return a.courseDate - b.courseDate;
-              }).reverse();
+              this.userCourses = Object.values(
+                this.userService.user['courses']
+              );
+              this.userCourses = this.userCourses
+                .sort((a, b) => {
+                  return a.courseDate - b.courseDate;
+                })
+                .reverse();
 
               if (this.userCourses.length > 0) {
                 this.courseDate = this.userCourses[0].courseDate;
@@ -161,22 +167,36 @@ export class LandingPage implements OnInit, OnDestroy {
     return modal.present();
   }
 
+  /**
+   * It opens a modal, and when the modal is dismissed, it runs a function that updates the data in the
+   * page that opened the modal.
+   * @param course - this is the course object that is being passed to the modal
+   * @returns The modal is being returned.
+   */
   async launchDashboard(course) {
+    if (this.courseDate == '') {
+      return;
+    }
     const dashboardModal = await this.modalController.create({
       component: DashboardComponent,
       cssClass: 'dashboardmodal',
       showBackdrop: false,
       backdropDismiss: true,
       canDismiss: true,
-      componentProps: {studentList: course.students, courseDate: course.courseDate,courseType: course.courseType, courseID: course.courseID },
+      componentProps: {
+        studentList: course.students,
+        courseDate: course.courseDate,
+        courseType: course.courseType,
+        courseID: course.courseID,
+      },
     });
     dashboardModal.onDidDismiss().then(() => {
-      this.synchroniseUser()
-      console.log('dismissed')
-
+      this.synchroniseUser();
+      console.log(this.userCourses);
+      this.ngOnInit();
     });
     return dashboardModal.present();
   }
 
-  ngOnDestroy() { }
+  ngOnDestroy() {}
 }

@@ -53,7 +53,7 @@ export class LoginPage implements OnInit {
     this.username = '';
     this.password = '';
     this.savelogin = false;
-    this.router.navigate(['/landing'], { replaceUrl: true });
+      this.router.navigate(['/landing'], { replaceUrl: true });
   }
 
   /**
@@ -61,7 +61,7 @@ export class LoginPage implements OnInit {
    */
   async ngOnInit() {
     await this.dataStorage.init()
-    var details = await this.dataStorage.lookup('saveduserdetails');
+        var details = await this.dataStorage.lookup('saveduserdetails');
     if (details && details != { username: '', password: '' }) {
       this.username = details.username;
       this.password = details.password;

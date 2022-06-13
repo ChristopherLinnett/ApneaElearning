@@ -6,38 +6,42 @@
 </ion-header>
 
 <ion-content>
-      <div class="ion-padding-top">
-      <ion-avatar *ngIf="photoService.images.length == 0; else profilePicture" (click)="photoService.selectImage()"><ion-img src="./assets/img/noprofileimage.jpg"></ion-img></ion-avatar>
-    </div>
-    <ng-template #profilePicture class="centered">
-      <ion-item>
-        <ion-avatar  (click)="photoService.replaceImage(photoService.images[0])"><ion-img [src]="photoService.images[0].data"></ion-img></ion-avatar>
-        <ion-button fill="clear" (click)="deleteImage(photoService.images[0])">x</ion-button>
-      </ion-item>
+  <div class="ion-padding-top">
+    <ion-avatar *ngIf="photoService.images.length == 0; else profilePicture" (click)="photoService.selectImage()">
+      <ion-img src="./assets/img/noprofileimage.jpg"></ion-img>
+    </ion-avatar>
+  </div>
+  <ng-template #profilePicture class="centered">
+    <ion-item>
+      <ion-avatar (click)="photoService.replaceImage(photoService.images[0])">
+        <ion-img [src]="photoService.images[0].data"></ion-img>
+      </ion-avatar>
+      <ion-button fill="clear" (click)="deleteImage(photoService.images[0])">x</ion-button>
+    </ion-item>
 
-    </ng-template>
+  </ng-template>
 
 
-      <ion-item class="ion-margin-top">
-        <ion-label position="fixed">First Name:</ion-label>
-        <ion-input [(ngModel)]="firstname" placeholder="{{olduser.firstname}}" type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="fixed">Last Name:</ion-label>
-        <ion-input [(ngModel)]="lastname" placeholder="{{olduser.lastname}}" type="text"></ion-input>
-      </ion-item>
-      <ion-item class="ion-margin-top">
-        <ion-label position="fixed">Phone:</ion-label>
-        <ion-input [(ngModel)]="phonenum" placeholder="{{olduser.phonenum}}" type="tel"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label class="ion-margin-top" position="floating">Current Password</ion-label>
-        <ion-input [(ngModel)]="oldpassword" type="password"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">New Password</ion-label>
-        <ion-input [(ngModel)]="newpassword" type="password"></ion-input>
-      </ion-item>
-      <ion-button (click)="saveProfile()">Save</ion-button>
+  <ion-item class="ion-margin-top">
+    <ion-label position="fixed">First Name:</ion-label>
+    <ion-input [(ngModel)]="firstname" placeholder="{{olduser.firstname}}" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">Last Name:</ion-label>
+    <ion-input [(ngModel)]="lastname" placeholder="{{olduser.lastname}}" type="text"></ion-input>
+  </ion-item>
+  <ion-item class="ion-margin-top">
+    <ion-label position="fixed">Phone:</ion-label>
+    <ion-input [(ngModel)]="phonenum" placeholder="{{olduser.phonenum}}" type="tel"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label class="ion-margin-top" position="floating">Current Password</ion-label>
+    <ion-input [(ngModel)]="oldpassword" type="password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">New Password</ion-label>
+    <ion-input [(ngModel)]="newpassword" type="password"></ion-input>
+  </ion-item>
+  <ion-button (click)="saveProfile()">Save</ion-button>
 
 </ion-content>

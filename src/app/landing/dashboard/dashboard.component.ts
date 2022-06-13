@@ -1,7 +1,11 @@
+import {
+  CourseConstructor,
+  StudentConstructor,
+} from './../../instructor/createcourse/studentconstructor.class';
 import { Input } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, IonModal, ModalController } from '@ionic/angular';
 import Chart from 'Chart.js/auto';
 import { DatastorageService } from 'src/app/datastorage.service';
 import { UserService } from 'src/app/users/user.service';
@@ -12,14 +16,15 @@ import { UserService } from 'src/app/users/user.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild('addStudentModal') addStudentModal: IonModal;
   @Input('courseDate') courseDate;
   @Input('courseType') courseType;
   @Input('studentList') studentList = [];
   @Input('courseID') courseID;
-
+  invalidEntry = false;
   @ViewChild('chartCanvas', { static: true }) canvas;
   chart: any;
-
+  email = '';
   chartType = 'bar';
   chartData = [];
   labels;
@@ -34,19 +39,22 @@ export class DashboardComponent implements OnInit {
     private alertCtrl: AlertController
   ) {}
 
-  ngOnInit() {
+  /**
+   * It takes the data from the database and uses it to create a chart.
+   */
+  async ngOnInit() {
+    await this.userService.updateUserlist();
     this.labels = this.studentList.map((x) => this.studentList.indexOf(x) + 1);
-    var allUsersEmail = this.userService.userlist.map((x) => x.email);
-    var studentUserIndexes = [];
-    for (let student of this.studentList) {
-      studentUserIndexes.push(allUsersEmail.indexOf(student));
-    }
-    console.log(studentUserIndexes);
-
-    this.chartData = studentUserIndexes.map(
+    console.log(
+      this.userService.userlist[
+        `${this.studentList[this.studentList.length - 1]}`
+      ]
+    );
+    this.chartData = this.studentList.map(
       (x) =>
-        this.userService.userlist[x].availableCourses[0].unlockedChapters
-          .length - 1
+        this.userService.userlist[`${x}`]['availableCourses'][
+          `${this.courseID}`
+        ]['unlockedChapters'].length - 1
     );
     this.chartConfig = {
       type: this.chartType,
@@ -92,13 +100,42 @@ export class DashboardComponent implements OnInit {
     this.createChart();
   }
 
+  /**
+   * The function is called when the user clicks the "Add Student" button. The function then calls the
+   * present() function on the addStudentModal object.
+   */
+  launchAddStudentModal() {
+    this.addStudentModal.present();
+  }
+
+  /**
+   * Create a new chart using the canvas element and the chartConfig object.
+   */
   createChart() {
     this.chart = new Chart(this.canvas.nativeElement, this.chartConfig as any);
   }
 
-  closeModal() {
+  /**
+   * The function is called when the user clicks the "X" button in the top right corner of the modal.
+   * The function dismisses the modal
+   */
+  exitThisModal() {
     this.modalController.dismiss();
   }
+  /**
+   * The function is called when the user successfully adds a student on the modal. The function closes
+   * the modal.
+   */
+  closeModal() {
+    this.addStudentModal.dismiss();
+  }
+
+  /**
+   * It creates an alert that asks the user if they want to delete a student. If they click yes, it
+   * calls the deleteStudent function.
+   * @param studentEmail - the email of the student to be deleted
+   * @param studentListIndex - the index of the student in the list of students
+   */
   async deleteStudentAlert(studentEmail, studentListIndex) {
     //alert to have user confirm they want to close their course content
     let alert = await this.alertCtrl.create({
@@ -124,6 +161,11 @@ export class DashboardComponent implements OnInit {
     alert.present();
   }
 
+  /**
+   * This function creates an alert that asks the user if they want to cancel their course. If they
+   * click yes, it calls the cancelCourse() function and closes the modal. If they click no, it closes
+   * the alert.
+   */
   async cancelCourseAlert() {
     //alert to have user confirm they want to close their course content
     let alert = await this.alertCtrl.create({
@@ -136,7 +178,7 @@ export class DashboardComponent implements OnInit {
           id: 'confirm-button',
           handler: async () => {
             await this.cancelCourse();
-            this.closeModal();
+            this.exitThisModal();
           },
         },
         {
@@ -150,69 +192,194 @@ export class DashboardComponent implements OnInit {
     alert.present();
   }
 
+  /**
+   * For each student, remove course with same courseID, for Instructor. Rebuild without that in
+   * courses.
+   * </code>
+   */
   async cancelCourse() {
-    const thisCourseID = this.courseID;
-    const allThisUserCourseIDs = this.userService.user.courses.map(
-      (x) => x.courseID
-    ); //get CourseIds by index for matching
-    const thisCourseIndex = allThisUserCourseIDs.indexOf(thisCourseID);
-    const allUsersEmail = this.userService.userlist.map((x) => x.email);
-    const thisUserIndex = allUsersEmail.indexOf(this.userService.user.email);
-    this.userService.userlist[thisUserIndex].courses.splice(thisCourseIndex, 1); //remove course from instructor
+    //for each student, remove course with same courseID, for Instructor. Rebuild without that in courses
+    var studentsToClear = [];
+    var studentsToEdit = [];
     for (let student of this.studentList) {
-      let studentIndex = allUsersEmail.indexOf(student);
-      let thisStudentsCourseIDs = this.userService.userlist[
-        studentIndex
-      ].availableCourses.map((x) => x.courseID);
-      let thisStudentCourseIndex = thisStudentsCourseIDs.indexOf(this.courseID);
-
-      if (this.userService.userlist[studentIndex].availableCourses.length < 2) {
-        this.userService.userlist.splice(studentIndex, 1); //remove the student
+      console.log(student, this.userService.userlist[`${student}`]);
+      if (
+        Object.keys(this.userService.userlist[`${student}`].availableCourses)
+          .length < 2
+      ) {
+        studentsToClear.push(student);
       } else {
-        this.userService.userlist[studentIndex].availableCourses.splice(thisStudentCourseIndex,1); //remove the course from student
+        studentsToEdit.push(student);
       }
-      await this.dataStorageService.save('users', this.userService.userlist);
+    }
+    var newUserList = {};
+    for (let user of Object.keys(this.userService.userlist)) {
+      if (
+        user! in studentsToClear &&
+        user! in studentsToEdit &&
+        user != this.userService.user.email
+      ) {
+        newUserList[`${user}`] = this.userService.userlist[`${user}`];
+      } else {
+        if (user! in studentsToClear && user != this.userService.user.email) {
+          const thisUser = this.userService.userlist[`${user}`];
+          const newAvailableCourses = {};
+          for (let course of Object.keys(thisUser.availableCourses)) {
+            if (course != this.courseID) {
+              newAvailableCourses[`${course}`] =
+                thisUser.availableCourses[`${course}`];
+            }
+          }
+          const newUser = new StudentConstructor(
+            thisUser.index,
+            thisUser.email,
+            thisUser.role,
+            thisUser.courses,
+            newAvailableCourses,
+            thisUser.firstName,
+            thisUser.lastName,
+            thisUser.password
+          );
+          newUserList[`${newUser.email}`] = newUser;
+        } //students now cleared of courses or deleted
+        else {
+          if (user == this.userService.user.email) {
+            const thisUser = this.userService.userlist[`${user}`];
+            var newCourses = {};
+            for (let course of Object.keys(thisUser.courses)) {
+              if (course != this.courseID) {
+                newCourses[`${course}`] = thisUser.courses[`${course}`];
+              }
+            }
+            const newTeacher = new StudentConstructor(
+              thisUser.index,
+              thisUser.email,
+              thisUser.role,
+              newCourses,
+              thisUser.availableCourses,
+              thisUser.firstName,
+              thisUser.lastName,
+              thisUser.password
+            );
+            newUserList[`${newTeacher.email}`] = newTeacher;
+          }
+        }
+      }
+      await this.dataStorageService.save('users', newUserList);
+      await this.userService.updateUserlist();
     }
   }
-  async deleteStudent(studentEmail, studentListIndex) {
-    const thisCourseID = this.courseID;
-    const allThisUserCourseIDs = this.userService.user.courses.map(
-      (x) => x.courseID
-    ); //get CourseIds by index for matching
-    const thisCourseIndex = allThisUserCourseIDs.indexOf(thisCourseID);
-    const allUsersEmail = this.userService.userlist.map((x) => x.email);
-    const thisUserIndex = allUsersEmail.indexOf(this.userService.user.email);
+  async addStudent(studentEmail) {
+    this.email = '';
+    this.invalidEntry = false;
+    if (studentEmail.length > 5 && studentEmail.includes('@')) {
+      this.studentList.push(studentEmail);
+      var thisUserlist = await this.dataStorageService.lookup('users');
+      thisUserlist[`${this.userService.user.email}`].courses[
+        `${this.courseID}`
+      ].students.push(studentEmail);
+      if (!Object.keys(thisUserlist).includes(studentEmail)) {
+        thisUserlist[`${studentEmail}`] = new StudentConstructor(
+          Object.keys(thisUserlist).length,
+          studentEmail,
+          'student',
+          {},
+          {},
+          '',
+          '',
+          studentEmail
+        );
+        thisUserlist[`${studentEmail}`]['availableCourses'][
+          `${this.courseID}`
+        ] = new CourseConstructor(
+          this.courseID,
+          0,
+          this.courseDate,
+          this.courseType,
+          this.userService.getUsername()
+        );
 
-    var studentIndex = allUsersEmail.indexOf(studentEmail);
-    let thisStudentsCourseIDs = this.userService.userlist[
-      studentIndex
-    ].availableCourses.map((x) => x.courseID);
-    let thisStudentCourseIndex = thisStudentsCourseIDs.indexOf(this.courseID);
-    if (this.userService.userlist[studentIndex].availableCourses.length < 2) {
-      this.userService.userlist.splice(studentIndex, 1);
+        console.log(
+          thisUserlist[`${studentEmail}`],
+          this.studentList.includes(studentEmail)
+        );
+        await this.dataStorageService.save('users', thisUserlist);
+        this.chart.destroy();
+        await this.ngOnInit();
+        this.closeModal();
+      } else {
+        thisUserlist[`${studentEmail}`].availableCourses[`${this.courseID}`] =
+          new CourseConstructor(
+            this.courseID,
+            0,
+            this.courseDate,
+            this.courseType,
+            this.userService.user.email
+          );
+        await this.dataStorageService.save('users', thisUserlist);
+      }
     } else {
-      this.userService.userlist[studentIndex].availableCourses.splice(
-        thisStudentCourseIndex,
-        1
-      );
-      this.studentList.splice(studentListIndex, 1);
-    } //course removed from student
-    studentIndex =
-      this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students.indexOf(studentEmail);
-    console.log(
-      this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students
-    );
-    console.log(studentIndex);
-    this.userService.userlist[thisUserIndex].courses[
-      thisCourseIndex
-    ].students.splice(studentIndex, 1); //remove student from course in instructor
-    console.log(
-      this.userService.userlist[thisUserIndex].courses[thisCourseIndex].students
-    );
-    await this.dataStorageService.save('users', this.userService.userlist);
-    this.chart.destroy()
-     this.ngOnInit()
+      setTimeout(() => {
+        this.invalidEntry = true;
+      }, 100);
+    }
+  }
 
-
+  /**
+   * It deletes a student from the course, and updates the userlist file.
+   * </code>
+   * @param studentEmail - the email of the student to be deleted
+   * @param studentListIndex - the index of the student in the studentList array
+   */
+  async deleteStudent(studentEmail, studentListIndex) {
+    //delete email from local, update userservice file, save userservice
+    this.studentList.splice(studentListIndex, 1);
+    var thisUserlist = await this.dataStorageService.lookup('users');
+    var myUserlist = {};
+    for (let student of Object.keys(thisUserlist)) {
+      if (thisUserlist[`${student}`].email != studentEmail) {
+        const thisUser = thisUserlist[`${student}`];
+        myUserlist[`${student}`] = new StudentConstructor(
+          thisUser.index,
+          thisUser.email,
+          thisUser.role,
+          thisUser.courses,
+          thisUser.availableCourses,
+          thisUser.firstName,
+          thisUser.lastName,
+          thisUser.password
+        );
+      } else {
+        const thisUser = thisUserlist[`${student}`];
+        if (Object.keys(thisUser.availableCourses).length > 1) {
+          const newAvailableCourses = {};
+          for (let course of Object.keys(thisUser.availableCourses)) {
+            if (course != this.courseID) {
+              newAvailableCourses[`${course}`] =
+                thisUser.availableCourses[`${course}`];
+            }
+          }
+          myUserlist[`${student}`] = new StudentConstructor(
+            thisUser.index,
+            thisUser.email,
+            thisUser.role,
+            thisUser.courses,
+            newAvailableCourses,
+            thisUser.firstName,
+            thisUser.lastName,
+            thisUser.password
+          );
+        }
+      }
+      if (student == this.userService.user.email) {
+        const thisUser = thisUserlist[`${student}`];
+        myUserlist[`${thisUser.email}`].courses[`${this.courseID}`].students =
+          this.studentList;
+      }
+    }
+    await this.dataStorageService.save('users', myUserlist);
+    await this.userService.updateUserlist();
+    this.chart.destroy();
+    await this.ngOnInit();
   }
 }

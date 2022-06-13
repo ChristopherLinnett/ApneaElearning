@@ -2,21 +2,16 @@
   <ion-toolbar>
     <ion-back-button slot="start" defaultHref=""></ion-back-button>
     <ion-title>{{thisCourse.title}} Course</ion-title>
-    <ion-button
-      (click)="showUserOptions()"
-      size="small"
-      color="dark"
-      fill="clear"
-      slot="end"
-      ><ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon
-    ></ion-button>
+    <ion-button (click)="showUserOptions()" size="small" color="dark" fill="clear" slot="end">
+      <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-grid>
     <ion-row class="ion-margin-vertical">
       <ion-col class="ion-text-center">
-        <ion-label> Your course date is {{ "user.courseDate" }} </ion-label>
+        <ion-label> Your course date is {{ thisCourse.courseDate | date: 'dd/MM/yyyy'}} </ion-label>
       </ion-col>
     </ion-row>
 
@@ -37,18 +32,35 @@
   <ion-accordion-group>
     <ion-accordion>
       <ion-item slot="header">
-        <ion-label>Chapter Selection</ion-label>
+        <ion-label>Review</ion-label>
       </ion-item>
-      <ion-list slot="content">
-        <ion-item  *ngFor="let chapter of this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters, index as i" (click)="launchModule(chapter)">
-          <ion-label>Chapter {{chapter+1}}</ion-label>
-        </ion-item>
-      </ion-list>
+      <div slot="content">
+        <ion-accordion-group>
+          <ion-accordion>
+            <ion-item slot="header">
+              <ion-label>Chapter Selection</ion-label>
+            </ion-item>
+            <ion-list slot="content">
+              <ion-item *ngFor="let chapter of thisAvailableChapters, index as i" (click)="launchModule(chapter)">
+                <ion-label class="ion-text-center">Chapter {{chapter+1}}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-accordion>
+          <ion-accordion *ngIf="thisCourse.unlockedQuizzes.length>0">
+            <ion-item slot="header">
+              <ion-label>Available Quizzes</ion-label>
+            </ion-item>
+            <ion-list slot="content">
+              <ion-item *ngFor="let quizNo of thisCourse.unlockedQuizzes">
+                <ion-label class="ion-text-center" (click)="launchModuleQuiz(quizNo)">Chapter {{quizNo + 1}} Quiz</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-accordion>
+        </ion-accordion-group>
+      </div>
     </ion-accordion>
   </ion-accordion-group>
-  <ion-button expand="block" (click)="launchModule(this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters[this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters.length-1])">{{this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedChapters.length > 1 ? "Continue Course" : "Start Course"}}</ion-button>
 
-      <ion-col size="6" *ngIf="this.userService.user.availableCourses[this.courseService.currentCourseSelectionIndex].unlockedQuizzes.length>0">
-        <ion-button expand="block" (click)="launchQuiz()">Quiz</ion-button>
-      </ion-col>
+  <ion-button expand="block" (click)="launchModule(thisCourse.unlockedChapters.length-1)">
+    {{thisCourse.unlockedChapters.length > 1 ? "Continue Course" : "Start Course"}}</ion-button>
 </ion-footer>

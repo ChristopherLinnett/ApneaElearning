@@ -1,3 +1,4 @@
+import { OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
@@ -7,46 +8,56 @@ import { CourseConstructor } from '../instructor/createcourse/studentconstructor
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService implements OnInit {
   userlist;
-  user: {
-    firstname: string;
-    lastname: string;
-    email: string;
-    phonenum: string;
-    password: string;
-    role: string;
-    courses: any[];
-    availableCourses: CourseConstructor[];
-  };
-  existingUsers = [
-    {
+  user;
+  existingUsers = {
+    instructor: {
       firstname: 'none',
       lastname: 'none',
       email: 'instructor',
       password: 'password',
       role: 'Instructor',
-      courses: [],
-      availableCourses: [
-        new CourseConstructor('0',0,'25/05/2022', 'AIDA1', this.getUsername()),
-        new CourseConstructor('0',1,'25/05/2022', 'AIDA2', this.getUsername()),
-        new CourseConstructor('0',2,'25/05/2022', 'AIDA3', this.getUsername()),
-        new CourseConstructor('0',3,'25/05/2022', 'AIDA4', this.getUsername()),
-        new CourseConstructor('0',4,'25/05/2022','AIDA Instructor',this.getUsername()),
-      ],
+      courses: {},
+      availableCourses: {
+        0: new CourseConstructor('0', 0, String(new Date()), 'AIDA1', 'none'),
+        1: new CourseConstructor('1', 0, String(new Date()), 'AIDA2', 'none'),
+        2: new CourseConstructor('2', 0, String(new Date()), 'AIDA3', 'none'),
+        3: new CourseConstructor('3', 0, String(new Date()), 'AIDA4', 'none'),
+        4: new CourseConstructor('4', 0, String(new Date()), 'AIDA5', 'none'),
+      },
     },
-    {
+    instructor2: {
       firstname: 'none',
       lastname: 'none',
-      email: 'newstudent',
+      email: 'instructor2',
       password: 'password',
-      role: 'Student',
-      courses: [],
-      availableCourses: [
-        new CourseConstructor("0",1,'25/05/2022', 'AIDA2', 'Instructor'),
-      ],
+      role: 'Instructor',
+      courses: {},
+      availableCourses: {
+        0: new CourseConstructor('0', 0, String(new Date()), 'AIDA1', 'none'),
+        1: new CourseConstructor('1', 0, String(new Date()), 'AIDA2', 'none'),
+        2: new CourseConstructor('2', 0, String(new Date()), 'AIDA3', 'none'),
+        3: new CourseConstructor('3', 0, String(new Date()), 'AIDA4', 'none'),
+        4: new CourseConstructor('4', 0, String(new Date()), 'AIDA5', 'none'),
+      },
     },
-  ];
+    instructor3: {
+      firstname: 'none',
+      lastname: 'none',
+      email: 'instructor3',
+      password: 'password',
+      role: 'Instructor',
+      courses: {},
+      availableCourses: {
+        0: new CourseConstructor('0', 0, String(new Date()), 'AIDA1', 'none'),
+        1: new CourseConstructor('1', 0, String(new Date()), 'AIDA2', 'none'),
+        2: new CourseConstructor('2', 0, String(new Date()), 'AIDA3', 'none'),
+        3: new CourseConstructor('3', 0, String(new Date()), 'AIDA4', 'none'),
+        4: new CourseConstructor('4', 0, String(new Date()), 'AIDA5', 'none'),
+      },
+    },
+  };
   userIndexInDB;
   loggedIn: boolean = false;
   constructor(
@@ -55,23 +66,36 @@ export class UserService {
     private dataStorageService: DatastorageService
   ) {}
 
-  async login(inputUser: String, inputPass: String) {
-    //authenticates login, updates info then returns
-    this.userlist= await this.dataStorageService.lookup('users');
-    if (this.userlist) {
-      for (let user of this.userlist) {
-        if (
-          user.email == inputUser.trim().toLowerCase() &&
-          user.password == inputPass.trim().toLowerCase()
-        ) {
-          this.user = user;
-          this.loggedIn = true;
-          var userlistEmails = this.userlist.map(x => x.email)
-          this.userIndexInDB = userlistEmails.indexOf(user.email)
-        }
-      }
-    } else {
+  ngOnInit() {
+    this.updateUserlist();
+  }
+
+  async updateUser() {
+    this.user = this.userlist[`${this.user.email}`];
+  }
+
+  async updateUserlist(updateUser = true) {
+    this.userlist = await this.dataStorageService.lookup('users');
+    if (updateUser) {
+      this.updateUser();
+    }
+  }
+
+  async login(inputUser: string, inputPass: string) {
+    inputUser = inputUser.toLowerCase().trim();
+    inputPass = inputPass.toLowerCase().trim();
+    await this.updateUserlist(false);
+    if (this.userlist === null) {
       await this.dataStorageService.save('users', this.existingUsers);
+      this.userlist = await this.dataStorageService.lookup('users');
+    }
+    if (
+      Object.keys(this.userlist).includes(inputUser) &&
+      this.userlist[`${inputUser}`].password == inputPass
+    ) {
+      this.user = this.userlist[`${inputUser}`];
+      this.loggedIn = true;
+      return;
     }
   }
   async showUserOptions() {
@@ -102,16 +126,12 @@ export class UserService {
           text: 'Cancel',
           icon: 'close',
           role: 'cancel',
-          handler: () => { },
+          handler: () => {},
         },
       ],
     });
     await actionSheet.present();
-
-    const { role, data } = await actionSheet.onDidDismiss();
-    console.log('', role, data);
   }
-
 
   getUser() {
     if (this.user) {
@@ -124,59 +144,85 @@ export class UserService {
   }
 
   async addUsers(usersArray: any[]) {
-    this.userlist= await this.dataStorageService.lookup('users');
+    this.userlist = await this.dataStorageService.lookup('users');
     if (this.userlist) {
-      let saveme = this.userlist.concat(usersArray);
-      console.log(this.userlist[this.userlist.length - 1]);
-      await this.dataStorageService.save('users', saveme);
+      var saveme = this.userlist;
+      for (let user of usersArray) {
+        this.userlist[`${user.email}`] = user;
+      }
+      await this.dataStorageService.save('users', this.userlist);
     } else {
       await this.dataStorageService.save('users', this.existingUsers);
     }
   }
   async addCourse(course: CourseConstructor) {
-    this.userlist= await this.dataStorageService.lookup('users');
-    if (this.userlist) {
-      for (let user of this.userlist) {
-        if (user.email == this.getUsername()) {
-          user.courses.push(course);
-          this.dataStorageService.save('users',this.userlist);
-          return;
-        }
-      }
-    } else {
-      await this.dataStorageService.save('users', this.existingUsers);
-      this.addCourse(course);
-    }
+    this.userlist = await this.dataStorageService.lookup('users');
+    this.userlist[`${this.user.email}`].courses[`${course.courseID}`] = course;
+    this.dataStorageService.save('users', this.userlist);
+    return;
   }
 
+  /**
+   * It takes a courseID and a studentName, and adds the studentName to the students array of the
+   * course with the courseID.
+   * @param {string} courseID - string = the course ID
+   * @param studentName - string
+   */
+  async updateCourse(courseID: string, studentName) {
+    this.userlist = await this.dataStorageService.lookup('users');
+    let newlist = this.userlist;
+    newlist[`${this.user.email}`].courses[`${courseID}`].students.push(
+      studentName
+    );
+    this.dataStorageService.save('users', newlist);
+  }
+  /**
+   * If the user is logged in, return the available courses
+   * @returns The availableCourses property of the user object.
+   */
   getCourses() {
-    //gets available courses if user logged in
     if (this.loggedIn) {
       return this.user.availableCourses;
     }
   }
+  /**
+   * If the user is logged in, return the user's email.
+   * @returns The username of the user if they are logged in.
+   */
   getUsername() {
-    //gets username if logged in
     if (this.loggedIn) {
       return this.user.email;
     }
   }
+  /**
+   * If the user is logged in, return the user's role.
+   * @returns The user role if logged in.
+   */
   getUserRole() {
-    //gets user role if logged in
     if (this.loggedIn) {
       return this.user.role;
     }
   }
+  /**
+   * This function logs out the user and navigates to the login page.
+   */
   logout() {
-    //logs out
     this.user = undefined;
     this.loggedIn = false;
     this.router.navigate(['/login'], { replaceUrl: true });
   }
+  /**
+   * This function returns whether the app state shows logged in.
+   * @returns The loggedIn variable is being returned.
+   */
   isLoggedIn() {
     //returns whether app state shows logged in
     return this.loggedIn;
   }
+  /**
+   * It returns the firstname property of the user object.
+   * @returns The firstname property of the user object.
+   */
   getfirstname() {
     return this.user.firstname;
   }

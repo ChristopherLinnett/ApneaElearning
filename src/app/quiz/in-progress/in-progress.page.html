@@ -15,29 +15,29 @@
       </ion-label>
       <ion-item-divider>
       </ion-item-divider>
-        <ion-item-divider color="clear" class="divider-quiz-question"></ion-item-divider>
-        <ion-radio-group [(ngModel)]="quizAnswered[i]" class="pushLower">
-              <ion-item>
-                <ion-label>{{question.answers[0].text}}</ion-label>
-                <ion-radio slot="end" [value]="question.answers[0].num"></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-label>{{question.answers[1].text}}</ion-label>
-                <ion-radio slot="end" [value]="question.answers[1].num"></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-label>{{question.answers[2].text}}</ion-label>
-                <ion-radio slot="end" [value]="question.answers[2].num"></ion-radio>
-              </ion-item>
-              <ion-item>
-                <ion-label>{{question.answers[3].text}}</ion-label>
-                <ion-radio slot="end" [value]="question.answers[3].num"></ion-radio>
-              </ion-item>
-        </ion-radio-group>
+      <ion-item-divider color="clear" class="divider-quiz-question"></ion-item-divider>
+      <ion-radio-group [(ngModel)]="quizAnswered[i]" class="pushLower">
+        <ion-item>
+          <ion-label>{{question.answers[0].text}}</ion-label>
+          <ion-radio slot="end" [value]="question.answers[0].num"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{question.answers[1].text}}</ion-label>
+          <ion-radio slot="end" [value]="question.answers[1].num"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{question.answers[2].text}}</ion-label>
+          <ion-radio slot="end" [value]="question.answers[2].num"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>{{question.answers[3].text}}</ion-label>
+          <ion-radio slot="end" [value]="question.answers[3].num"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
     </ng-template>
     <ng-template swiperSlide class="verticalcenter">
       <ion-card>
-        <img src="./assets/img/aida{{courseIndex+1}}image.png">
+        <img src="./assets/img/{{course.title.toLowerCase()}}image.png">
         <ion-button (click)="markQuiz()" expand="block">Submit Quiz</ion-button>
       </ion-card>
     </ng-template>
@@ -45,11 +45,5 @@
   </swiper>
 </ion-content>
 <ion-footer>
-
-  <ion-button slot="end" fill="clear">
-    <ion-icon slot="icon-only" name="caret-back"></ion-icon>
-  </ion-button>
-  <ion-button slot="start" fill="clear">
-    <ion-icon slot="icon-only" name="caret-forward"></ion-icon>
-  </ion-button>
+  <app-swipernav (forwardButtonPress)="onNextClick()" (backButtonPress)="onBackClick()"></app-swipernav>
 </ion-footer>
